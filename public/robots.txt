@@ -1,0 +1,7 @@
+# robots.txt
+
+# Allow all web crawlers access to most of the website
+User-agent: *
+
+# If you have a sitemap, include it here
+Sitemap: https://tusitio.com/sitemap.xml

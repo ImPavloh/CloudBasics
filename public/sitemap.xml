@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://cloudbasics.vercel.app/</loc>
+    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
+    <lastmod>2024-11-11</lastmod>
+  </url>
+  <url>
+    <loc>https://cloudbasics.vercel.app/temas</loc>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+    <lastmod>2024-11-11</lastmod>
+  </url>
+  <url>
+    <loc>https://cloudbasics.vercel.app/recursos</loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+    <lastmod>2024-11-11</lastmod>
+  </url>
+</urlset>
