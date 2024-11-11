@@ -1,108 +1,291 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FaCloud, FaMoneyBillWave, FaServer, FaShieldAlt, FaNetworkWired, FaDesktop, FaDatabase, FaArchway, FaBalanceScale, FaSearch } from 'react-icons/fa'
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Input } from "@/components/ui/input"
+import * as Icons from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { Textarea } from '@/components/ui/textarea'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import { topics, categories } from '@/components/topics/data'
 
-import ComputacionEnLaNube from '../../components/Computacion'
-import PreciosEnLaNube from '../../components/Precios'
-import InfraestructuraEnLaNube from '../../components/Infraestructura'
-import SeguridadEnLaNube from '../../components/Seguridad'
-import RedesEnLaNube from '../../components/Redes'
-import ServiciosDeComputacion from '../../components/ServiciosDeComputacion'
-import AlmacenamientoEnLaNube from '../../components/Almacenamiento'
-import BasesDeDatosEnLaNube from '../../components/BasesDeDatos'
-import PrincipiosArquitectonicosNube from '../../components/PrincipiosArquitectonicos'
-import ArquitecturasElasticas from '../../components/ArquitecturasElasticas'
+export default function Temas() {
+  const [searchQuery, setSearchQuery] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('Todos')
+  const [selectedTopic, setSelectedTopic] = useState(topics[0])
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [isLeftSidebarCollapsed, setIsLeftSidebarCollapsed] = useState(false)
+  const [isRightSidebarCollapsed, setIsRightSidebarCollapsed] = useState(false)
+  const [notes, setNotes] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('cloudNotes') || ''
+    }
+    return ''
+  })
 
-interface Topic {
-  id: number
-  titulo: string
-  icono: React.ComponentType
-  descripcion: string
-  componente: React.ComponentType
-}
+  const searchInputRef = useRef<HTMLInputElement>(null)
 
-const temas: Topic[] = [
-  { id: 1, titulo: 'Computación en la Nube', icono: FaCloud, descripcion: 'Definición y modelos de computación en la nube', componente: ComputacionEnLaNube },
-  { id: 2, titulo: 'Precios en la Nube', icono: FaMoneyBillWave, descripcion: 'Filosofía de precios y factores de costo', componente: PreciosEnLaNube },
-  { id: 3, titulo: 'Infraestructura en la Nube', icono: FaServer, descripcion: 'Componentes de la infraestructura en la nube', componente: InfraestructuraEnLaNube },
-  { id: 4, titulo: 'Seguridad en la Nube', icono: FaShieldAlt, descripcion: 'Medidas de seguridad y conformidad', componente: SeguridadEnLaNube },
-  { id: 5, titulo: 'Redes en la Nube', icono: FaNetworkWired, descripcion: 'Creación de una nube privada virtual', componente: RedesEnLaNube },
-  { id: 6, titulo: 'Servicios de Cómputo', icono: FaDesktop, descripcion: 'Casos de uso de servicios de computación en nube', componente: ServiciosDeComputacion },
-  { id: 7, titulo: 'Almacenamiento en la Nube', icono: FaDatabase, descripcion: 'Servicios de almacenamiento en la nube', componente: AlmacenamientoEnLaNube },
-  { id: 8, titulo: 'Bases de Datos en la Nube', icono: FaDatabase, descripcion: 'Bases de datos administradas en la nube', componente: BasesDeDatosEnLaNube },
-  { id: 9, titulo: 'Arquitectura en la Nube', icono: FaArchway, descripcion: 'Principios arquitectónicos en la nube', componente: PrincipiosArquitectonicosNube },
-  { id: 10, titulo: 'Escalabilidad y Monitoreo', icono: FaBalanceScale, descripcion: 'Balanceo de carga, autoescalado y monitorización', componente: ArquitecturasElasticas },
-]
+  useEffect(() => {
+    if (searchInputRef.current) {
+      searchInputRef.current.focus()
+    }
+  }, [])
 
-export default function PlataformaAprendizaje() {
-  const [temaSeleccionado, setTemaSeleccionado] = useState<Topic>(temas[0])
-  const [busqueda, setBusqueda] = useState('')
+  useEffect(() => {
+    localStorage.setItem('cloudNotes', notes)
+  }, [notes])
 
-  const temasFiltrados = temas.filter(tema =>
-    tema.titulo.toLowerCase().includes(busqueda.toLowerCase()) ||
-    tema.descripcion.toLowerCase().includes(busqueda.toLowerCase())
+  const filteredTopics = useMemo(() => {
+    return topics.filter((topic) => {
+      const matchesCategory =
+        selectedCategory === 'Todos' || topic.category === selectedCategory
+      const matchesSearch =
+        topic.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        topic.description.toLowerCase().includes(searchQuery.toLowerCase())
+      return matchesCategory && matchesSearch
+    })
+  }, [selectedCategory, searchQuery])
+
+  const handleDownloadNotes = () => {
+    const element = document.createElement('a')
+    const file = new Blob([notes], { type: 'text/plain' })
+    element.href = URL.createObjectURL(file)
+    element.download = 'cloud_notes.txt'
+    document.body.appendChild(element)
+    element.click()
+    document.body.removeChild(element)
+  }
+
+  const LeftSidebar = () => (
+    <Card
+      className={`h-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-md shadow-lg ${
+        isLeftSidebarCollapsed ? 'w-16' : 'w-80'
+      }`}
+    >
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardTitle className="text-sm font-medium">
+          {isLeftSidebarCollapsed ? 'Temas' : 'Explorar Temas'}
+        </CardTitle>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="w-9 p-0"
+          onClick={() => setIsLeftSidebarCollapsed(!isLeftSidebarCollapsed)}
+          aria-label={
+            isLeftSidebarCollapsed ? 'Expandir sidebar' : 'Colapsar sidebar'
+          }
+        >
+          {isLeftSidebarCollapsed ? (
+            <Icons.PanelLeftOpen className="h-4 w-4" />
+          ) : (
+            <Icons.PanelLeftClose className="h-4 w-4" />
+          )}
+        </Button>
+      </CardHeader>
+      <CardContent>
+        {!isLeftSidebarCollapsed && (
+          <ScrollArea className="h-[calc(100vh-8rem)]">
+            <div className="space-y-4">
+              <div className="relative">
+                <Icons.Search className="absolute left-2.5 top-3 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Buscar temas..."
+                  className="pl-8 bg-white dark:bg-gray-700"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  ref={searchInputRef}
+                />
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {categories.map((category) => (
+                  <Badge
+                    key={category}
+                    variant={
+                      selectedCategory === category ? 'default' : 'outline'
+                    }
+                    className="cursor-pointer hover:bg-primary/90"
+                    onClick={() => setSelectedCategory(category)}
+                  >
+                    {category}
+                  </Badge>
+                ))}
+              </div>
+              <div className="space-y-2">
+                {filteredTopics.map((topic) => {
+                  const isDisabled = topics.indexOf(topic) >= 3
+                  return (
+                    <TooltipProvider key={topic.id}>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant={
+                              selectedTopic.id === topic.id
+                                ? 'secondary'
+                                : 'ghost'
+                            }
+                            className={`
+                              w-full justify-start text-left relative
+                              ${
+                                isDisabled
+                                  ? 'opacity-60 hover:opacity-70'
+                                  : 'hover:bg-primary/10 dark:hover:bg-primary/20'
+                              }
+                            `}
+                            onClick={() => {
+                              if (!isDisabled) {
+                                setSelectedTopic(topic)
+                                setSidebarOpen(false)
+                              }
+                            }}
+                            disabled={isDisabled}
+                            aria-label={`Seleccionar tema: ${topic.title}`}
+                          >
+                            <div className="flex items-start w-full gap-2">
+                              <Icons.Tag
+                                className={`h-5 w-5 shrink-0 ${
+                                  isDisabled
+                                    ? 'text-muted-foreground'
+                                    : 'text-primary'
+                                }`}
+                              />
+                              <div className="flex-grow min-w-0">
+                                <div className="font-medium truncate">
+                                  {topic.title}
+                                </div>
+                                <div className="text-xs text-muted-foreground truncate">
+                                  {topic.description}
+                                </div>
+                              </div>
+                              {isDisabled && (
+                                <Badge
+                                  variant="secondary"
+                                  className="ml-auto shrink-0 h-5 gap-1 bg-muted/50"
+                                >
+                                  <Icons.Clock className="h-3 w-3" />
+                                  <span className="text-xs">Próximamente</span>
+                                </Badge>
+                              )}
+                            </div>
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>{topic.description}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  )
+                })}
+              </div>
+            </div>
+          </ScrollArea>
+        )}
+      </CardContent>
+    </Card>
+  )
+
+  const RightSidebar = () => (
+    <Card
+      className={`h-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-md shadow-lg ${
+        isRightSidebarCollapsed ? 'w-12' : 'w-80'
+      }`}
+    >
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardTitle className="text-sm font-medium">
+          {isRightSidebarCollapsed ? 'Notas' : 'Notas Rápidas'}
+        </CardTitle>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="w-9 p-0"
+          onClick={() => setIsRightSidebarCollapsed(!isRightSidebarCollapsed)}
+          aria-label={
+            isRightSidebarCollapsed ? 'Expandir notas' : 'Colapsar notas'
+          }
+        >
+          {isRightSidebarCollapsed ? (
+            <Icons.PanelRightOpen className="h-4 w-4" />
+          ) : (
+            <Icons.PanelRightClose className="h-4 w-4" />
+          )}
+        </Button>
+      </CardHeader>
+      {!isRightSidebarCollapsed && (
+        <CardContent className="space-y-4">
+          <Textarea
+            placeholder="Escribe tus notas aquí..."
+            className="h-[calc(100vh-16rem)] resize-none"
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
+          />
+          <div className="flex space-x-2">
+            <Button onClick={handleDownloadNotes} className="flex-1">
+              <Icons.Download className="mr-2 h-4 w-4" />
+              Descargar
+            </Button>
+          </div>
+        </CardContent>
+      )}
+    </Card>
   )
 
   return (
-    <div className="min-h-screen mx-auto mt-8 p-4">
-      <h1 className="text-3xl font-bold text-center mb-8">Cloud Basics</h1>
-      <div className="flex flex-col md:flex-row gap-8">
-        <Card className="w-full md:w-1/3 lg:w-1/4">
-          <CardHeader>
-            <CardTitle className="text-xl font-semibold">Temas</CardTitle>
-            <div className="relative">
-              <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-              <Input
-                type="text"
-                placeholder="Buscar temas..."
-                value={busqueda}
-                onChange={(e) => setBusqueda(e.target.value)}
-                className="pl-10"
-              />
-            </div>
-          </CardHeader>
-          <CardContent>
-            <Tabs
-              orientation="vertical"
-              value={temaSeleccionado.id.toString()}
-              onValueChange={(valor) => setTemaSeleccionado(temas.find(t => t.id.toString() === valor) || temas[0])}
-            >
-              <TabsList className="flex flex-col justify-start w-full gap-2">
-                {temasFiltrados.map((tema) => (
-                  <TabsTrigger
-                    key={tema.id}
-                    value={tema.id.toString()}
-                     className="justify-start w-full"
-                  >
-                    <tema.icono className="mr-2" aria-hidden="true" />
-                    <span>{tema.titulo}</span>
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-            </Tabs>
-          </CardContent>
-        </Card>
+    <div className="min-h-screen dark:bg-gray-900 bg-gray-100 flex pt-16">
+      <div
+        className={`hidden lg:block h-[calc(100vh-4rem)] fixed left-0 top-24 p-4 ${
+          isLeftSidebarCollapsed ? 'w-24' : 'w-80'
+        }`}
+      >
+        <LeftSidebar />
+      </div>
 
-        <Card className="w-full md:w-2/3 lg:w-3/4">
-          <CardContent>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={temaSeleccionado.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.25 }}
-              >
-                {temaSeleccionado.componente && <temaSeleccionado.componente />}
-              </motion.div>
-            </AnimatePresence>
-          </CardContent>
-        </Card>
+      <div className="lg:hidden fixed top-20 left-4 z-50">
+        <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
+          <SheetTrigger asChild>
+            <Button variant="outline" size="icon" aria-label="Abrir menú">
+              <Icons.Menu className="h-6 w-6" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="w-80 p-0">
+            <LeftSidebar />
+          </SheetContent>
+        </Sheet>
+      </div>
+
+      <main
+        className={`flex-1 ${
+          isLeftSidebarCollapsed ? 'lg:ml-24' : 'lg:ml-80'
+        } ${isRightSidebarCollapsed ? 'lg:mr-12' : 'lg:mr-80'}`}
+      >
+        <div className="container mx-auto px-4 py-8">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={selectedTopic.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <selectedTopic.component />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </main>
+
+      <div
+        className={`hidden lg:block ${
+          isRightSidebarCollapsed ? 'w-12' : 'w-80'
+        } h-[calc(100vh-4rem)] fixed right-0 top-24 p-4`}
+      >
+        <RightSidebar />
       </div>
     </div>
   )
