@@ -18,7 +18,7 @@ const Footer = () => {
               <span className="sr-only">Twitter</span>
               <FaTwitter className="h-6 w-6" aria-hidden="true" />
             </Link>
-            <Link href="https://linkedin.com/impavloh" className="text-gray-400 hover:text-blue-800 dark:hover:text-gray-300 transition-colors">
+            <Link href="https://linkedin.com/in/impavloh" className="text-gray-400 hover:text-blue-800 dark:hover:text-gray-300 transition-colors">
               <span className="sr-only">LinkedIn</span>
               <FaLinkedin className="h-6 w-6" aria-hidden="true" />
             </Link>

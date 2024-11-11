@@ -32,7 +32,7 @@ const Navbar = () => {
             </div>
           </div>
           <div className="hidden md:block px-2">
-            <Link href="" className="inline-flex items-center px-4 py-2 gap-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700">
+            <Link href="https://github.com/impavloh/cloudbasics" className="inline-flex items-center px-4 py-2 gap-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700">
                 <span>Repositorio</span>
                 <FaGithub className="h-6 w-6" aria-hidden="true" />
             </Link>
