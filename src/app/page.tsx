@@ -89,19 +89,19 @@ export default function Home() {
             {[
               {
                 icon: FaCloud,
-                title: 'Conceptos Básicos',
+                title: 'Conceptos básicos',
                 description:
                   'Aprende los fundamentos del cloud computing, incluyendo modelos de servicio y tipos de implementación.',
               },
               {
                 icon: FaBook,
-                title: 'Temas Avanzados',
+                title: 'Temas avanzados',
                 description:
                   'Explora temas avanzados como seguridad en la nube, arquitecturas y estrategias de migración.',
               },
               {
                 icon: FaTools,
-                title: 'Recursos Prácticos',
+                title: 'Recursos prácticos',
                 description:
                   'Accede a tutoriales, guías y herramientas para aplicar tus conocimientos en proyectos reales.',
               },

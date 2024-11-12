@@ -18,6 +18,7 @@ export interface Topic {
   description: string
   category: string
   component: React.ComponentType
+  available: boolean
 }
 
 export const topics: Topic[] = [
@@ -28,6 +29,7 @@ export const topics: Topic[] = [
     description: 'Definición y modelos',
     category: 'Fundamentos',
     component: ComputacionEnLaNube,
+    available: true,
   },
   {
     id: 'pricing',
@@ -36,6 +38,7 @@ export const topics: Topic[] = [
     description: 'Precios y costos',
     category: 'Negocios',
     component: PreciosEnLaNube,
+    available: true,
   },
   {
     id: 'infra',
@@ -44,6 +47,7 @@ export const topics: Topic[] = [
     description: 'Componentes de infraestructura',
     category: 'Técnico',
     component: InfraestructuraEnLaNube,
+    available: true,
   },
   {
     id: 'security',
@@ -52,6 +56,7 @@ export const topics: Topic[] = [
     description: 'Seguridad y conformidad',
     category: 'Seguridad',
     component: SeguridadEnLaNube,
+    available: false,
   },
   {
     id: 'networking',
@@ -60,6 +65,7 @@ export const topics: Topic[] = [
     description: 'Nube privada virtual',
     category: 'Técnico',
     component: RedesEnLaNube,
+    available: false,
   },
   {
     id: 'compute',
@@ -68,6 +74,7 @@ export const topics: Topic[] = [
     description: 'Casos de uso',
     category: 'Servicios',
     component: ServiciosDeComputacion,
+    available: false,
   },
   {
     id: 'storage',
@@ -76,6 +83,7 @@ export const topics: Topic[] = [
     description: 'Servicios de almacenamiento',
     category: 'Servicios',
     component: AlmacenamientoEnLaNube,
+    available: false,
   },
   {
     id: 'databases',
@@ -84,6 +92,7 @@ export const topics: Topic[] = [
     description: 'Bases de datos administradas',
     category: 'Servicios',
     component: BasesDeDatosEnLaNube,
+    available: false,
   },
   {
     id: 'architecture',
@@ -92,6 +101,7 @@ export const topics: Topic[] = [
     description: 'Principios arquitectónicos',
     category: 'Diseño',
     component: PrincipiosArquitectonicosNube,
+    available: false,
   },
   {
     id: 'elastic',
@@ -100,6 +110,7 @@ export const topics: Topic[] = [
     description: 'Escalado y monitorización',
     category: 'Operaciones',
     component: ArquitecturasElasticas,
+    available: false,
   },
 ]
 

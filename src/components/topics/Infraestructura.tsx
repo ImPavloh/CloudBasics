@@ -41,7 +41,7 @@ const itemVariants = {
 
 export default function InfraestructuraEnLaNube() {
   return (
-    <Card className="w-full max-w-6xl mx-auto bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-xl">
+    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <CardHeader>
         <CardTitle className="text-4xl font-bold flex items-center text-blue-600 dark:text-blue-400">
           <FaCloud className="mr-4 h-8 w-8" />
@@ -79,7 +79,7 @@ export default function InfraestructuraEnLaNube() {
           </TabsContent>
         </Tabs>
       </CardContent>
-    </Card>
+    </main>
   )
 }
 

@@ -32,7 +32,7 @@ export default function RootLayout({
     <html lang="es">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml"></link>
         <meta name="theme-color" content="#2b184a" />
         <link rel="canonical" href="https://cloudbasics.vercel.app" />
       </head>
