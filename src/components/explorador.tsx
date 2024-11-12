@@ -11,7 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Textarea } from '@/components/ui/textarea'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { topics, categories } from '@/components/topics/data'
 
 interface ExplorerProps {
@@ -25,7 +25,7 @@ export default function Explorador({ initialTopicId }: ExplorerProps) {
   const [selectedCategory, setSelectedCategory] = useState('Todos')
   const [selectedTopic, setSelectedTopic] = useState(() => {
     if (initialTopicId) {
-      const topic = topics.find(t => t.id === initialTopicId)
+      const topic = topics.find((t) => t.id === initialTopicId)
       return topic || topics[0]
     }
     return topics[0]
@@ -46,7 +46,7 @@ export default function Explorador({ initialTopicId }: ExplorerProps) {
 
   useEffect(() => {
     if (initialTopicId) {
-      const topic = topics.find(t => t.id === initialTopicId)
+      const topic = topics.find((t) => t.id === initialTopicId)
       if (topic) {
         setSelectedTopic(topic)
         setSelectedCategory(topic.category)
@@ -66,7 +66,7 @@ export default function Explorador({ initialTopicId }: ExplorerProps) {
 
   useEffect(() => {
     const topicId = pathname.split('/').pop()
-    const topicFromUrl = topics.find(topic => topic.id === topicId)
+    const topicFromUrl = topics.find((topic) => topic.id === topicId)
     if (topicFromUrl) {
       setSelectedTopic(topicFromUrl)
       setSelectedCategory(topicFromUrl.category)
@@ -171,9 +171,7 @@ export default function Explorador({ initialTopicId }: ExplorerProps) {
                     <Button
                       key={topic.id}
                       variant={
-                        selectedTopic.id === topic.id
-                          ? 'secondary'
-                          : 'ghost'
+                        selectedTopic.id === topic.id ? 'secondary' : 'ghost'
                       }
                       className={`
                         w-full justify-start text-left relative
@@ -266,9 +264,24 @@ export default function Explorador({ initialTopicId }: ExplorerProps) {
         <CardContent className="space-y-4">
           <Tabs defaultValue="notes" className="w-full">
             <TabsList className="grid w-full grid-cols-3 bg-gray-100 dark:bg-gray-700">
-              <TabsTrigger value="notes" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-600">Notas</TabsTrigger>
-              <TabsTrigger value="highlight" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-600">Resaltar</TabsTrigger>
-              <TabsTrigger value="tags" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-600">Etiquetas</TabsTrigger>
+              <TabsTrigger
+                value="notes"
+                className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-600"
+              >
+                Notas
+              </TabsTrigger>
+              <TabsTrigger
+                value="highlight"
+                className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-600"
+              >
+                Resaltar
+              </TabsTrigger>
+              <TabsTrigger
+                value="tags"
+                className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-600"
+              >
+                Etiquetas
+              </TabsTrigger>
             </TabsList>
             <TabsContent value="notes">
               <Textarea
@@ -277,13 +290,19 @@ export default function Explorador({ initialTopicId }: ExplorerProps) {
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
               />
-              <Button onClick={handleDownloadNotes} className="w-full mt-2 bg-primary hover:bg-primary/90 text-primary-foreground">
+              <Button
+                onClick={handleDownloadNotes}
+                className="w-full mt-2 bg-primary hover:bg-primary/90 text-primary-foreground"
+              >
                 <Icons.Download className="mr-2 h-4 w-4" />
                 Descargar
               </Button>
             </TabsContent>
             <TabsContent value="highlight">
-              <Button onClick={handleHighlight} className="w-full mb-2 bg-yellow-500 hover:bg-yellow-600 text-yellow-50">
+              <Button
+                onClick={handleHighlight}
+                className="w-full mb-2 bg-yellow-500 hover:bg-yellow-600 text-yellow-50"
+              >
                 <Icons.Highlighter className="mr-2 h-4 w-4" />
                 Resaltar selección
               </Button>
@@ -296,7 +315,11 @@ export default function Explorador({ initialTopicId }: ExplorerProps) {
             <TabsContent value="tags">
               <div className="flex flex-wrap gap-2 mb-2">
                 {tags.map((tag, index) => (
-                  <Badge key={index} variant="secondary" className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
+                  <Badge
+                    key={index}
+                    variant="secondary"
+                    className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
+                  >
                     {tag}
                   </Badge>
                 ))}
@@ -314,7 +337,9 @@ export default function Explorador({ initialTopicId }: ExplorerProps) {
                 />
                 <Button
                   onClick={() => {
-                    const input = document.querySelector('input[placeholder="Nueva etiqueta"]') as HTMLInputElement
+                    const input = document.querySelector(
+                      'input[placeholder="Nueva etiqueta"]',
+                    ) as HTMLInputElement
                     if (input) {
                       handleAddTag(input.value)
                       input.value = ''
@@ -345,7 +370,12 @@ export default function Explorador({ initialTopicId }: ExplorerProps) {
       <div className="lg:hidden fixed top-4 left-4 z-50">
         <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
           <SheetTrigger asChild>
-            <Button variant="outline" size="icon" aria-label="Abrir menú" className="bg-white dark:bg-gray-800">
+            <Button
+              variant="outline"
+              size="icon"
+              aria-label="Abrir menú"
+              className="bg-white dark:bg-gray-800"
+            >
               <Icons.Menu className="h-6 w-6" />
             </Button>
           </SheetTrigger>
@@ -363,18 +393,22 @@ export default function Explorador({ initialTopicId }: ExplorerProps) {
         <div className="container mx-auto px-4">
           <AnimatePresence mode="wait">
             <motion.div
-                key={selectedTopic.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-              >
+              key={selectedTopic.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
               {selectedTopic.component ? (
                 <selectedTopic.component />
               ) : (
                 <div className="text-center py-10">
-                  <h2 className="text-2xl font-bold mb-4">{selectedTopic.title}</h2>
-                  <p className="text-gray-600 dark:text-gray-300">{selectedTopic.description}</p>
+                  <h2 className="text-2xl font-bold mb-4">
+                    {selectedTopic.title}
+                  </h2>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    {selectedTopic.description}
+                  </p>
                 </div>
               )}
             </motion.div>

@@ -2,20 +2,13 @@
 
 import { motion } from 'framer-motion'
 import {
-  Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import {
-  FaServer,
-  FaNetworkWired,
-  FaDatabase,
-  FaCloud,
-  FaShieldAlt,
-} from 'react-icons/fa'
+import { Server, Network, Database, Cloud, Shield } from 'lucide-react'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -44,7 +37,7 @@ export default function InfraestructuraEnLaNube() {
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <CardHeader>
         <CardTitle className="text-4xl font-bold flex items-center text-blue-600 dark:text-blue-400">
-          <FaCloud className="mr-4 h-8 w-8" />
+          <Cloud className="mr-4 h-8 w-8" />
           Infraestructura de la nube
         </CardTitle>
         <CardDescription className="text-lg text-gray-600 dark:text-gray-300">
@@ -105,25 +98,25 @@ function ComponentesPrincipales() {
 
       {[
         {
-          icon: FaServer,
+          icon: Server,
           title: 'Centros de Datos y Servidores',
           description:
             'El corazón palpitante de la nube, estos centros albergan miles de servidores interconectados que procesan y almacenan datos a escala masiva.',
         },
         {
-          icon: FaNetworkWired,
+          icon: Network,
           title: 'Redes y Conectividad',
           description:
             'Una red robusta y de alta velocidad es crucial para garantizar la comunicación eficiente entre los componentes de la nube y los usuarios finales.',
         },
         {
-          icon: FaDatabase,
+          icon: Database,
           title: 'Sistemas de Almacenamiento',
           description:
             'Desde discos de estado sólido hasta sistemas de almacenamiento en red, estos componentes aseguran que los datos estén siempre disponibles y protegidos.',
         },
         {
-          icon: FaShieldAlt,
+          icon: Shield,
           title: 'Seguridad y Cumplimiento',
           description:
             'Capas múltiples de seguridad, incluyendo firewalls, encriptación y controles de acceso, protegen los datos y servicios en la nube.',

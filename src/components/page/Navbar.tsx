@@ -2,78 +2,43 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import {
-  FaCloud,
-  FaBars,
-  FaTimes,
-  FaGithub,
-  FaSun,
-  FaMoon,
-} from 'react-icons/fa'
+import Image from 'next/image'
+import { Menu, X, Sun, Moon, Github } from 'lucide-react'
 import { useTheme } from '../ThemeProvider'
 
-const Navbar = () => {
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const { theme, toggleTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark')
+  }
 
   return (
-    <nav className="fixed top-4 transform w-11/12 max-w-7xl rounded-lg z-50 bg-white dark:bg-gray-800 shadow-lg shadow-black/50 border border-gray-700 inset-x-0 mx-auto space-x-6">
+    <nav className="fixed top-4 w-11/12 max-w-7xl rounded-lg z-50 bg-white dark:bg-gray-800 shadow-lg shadow-black/50 border border-gray-700 inset-x-0 mx-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0">
-              <FaCloud className="h-8 w-8 text-blue-500" aria-hidden="true" />
-              <span className="sr-only">Fundamentos Cloud Computing</span>
+              <Image
+                src="/favicon.svg"
+                alt="Fundamentos Cloud Computing"
+                width={32}
+                height={32}
+                className="text-blue-500"
+              />
             </Link>
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
-                <Link
-                  href="/"
-                  className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Inicio
-                </Link>
-                <Link
-                  href="/temas"
-                  className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Temas
-                </Link>
-                <Link
-                  href="/recursos"
-                  className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Recursos
-                </Link>
+            <div className="hidden md:block ml-10">
+              <div className="flex items-baseline space-x-4">
+                <NavLink href="/">Inicio</NavLink>
+                <NavLink href="/temas">Temas</NavLink>
+                <NavLink href="/recursos">Recursos</NavLink>
               </div>
             </div>
           </div>
           <div className="hidden md:flex items-center space-x-4">
-            <button
-              onClick={toggleTheme}
-              className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-md"
-              aria-label={
-                theme === 'dark'
-                  ? 'Cambiar a modo claro'
-                  : 'Cambiar a modo oscuro'
-              }
-            >
-              {theme === 'dark' ? (
-                <FaSun className="h-6 w-6" />
-              ) : (
-                <FaMoon className="h-6 w-6" />
-              )}
-            </button>
-            <Link
-              href="https://github.com/impavloh/cloudbasics"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="inline-flex items-center px-4 py-2 gap-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-300"
-            >
-              <span>Repositorio</span>
-              <FaGithub className="h-6 w-6" aria-hidden="true" />
-            </Link>
+            <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+            <GithubLink />
           </div>
           <div className="-mr-2 flex md:hidden">
             <button
@@ -85,9 +50,9 @@ const Navbar = () => {
             >
               <span className="sr-only">Abrir menú principal</span>
               {isOpen ? (
-                <FaTimes className="block h-6 w-6" aria-hidden="true" />
+                <X className="block h-6 w-6" aria-hidden="true" />
               ) : (
-                <FaBars className="block h-6 w-6" aria-hidden="true" />
+                <Menu className="block h-6 w-6" aria-hidden="true" />
               )}
             </button>
           </div>
@@ -97,51 +62,19 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden" id="mobile-menu">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <Link
-              href="/"
-              className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium"
-            >
+            <NavLink href="/" mobile>
               Inicio
-            </Link>
-            <Link
-              href="/temas"
-              className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium"
-            >
+            </NavLink>
+            <NavLink href="/temas" mobile>
               Temas
-            </Link>
-            <Link
-              href="/recursos"
-              className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium"
-            >
+            </NavLink>
+            <NavLink href="/recursos" mobile>
               Recursos
-            </Link>
+            </NavLink>
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between px-4">
-            <button
-              onClick={toggleTheme}
-              className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-md"
-              aria-label={
-                theme === 'dark'
-                  ? 'Cambiar a modo claro'
-                  : 'Cambiar a modo oscuro'
-              }
-            >
-              {theme === 'dark' ? (
-                <FaSun className="h-6 w-6" />
-              ) : (
-                <FaMoon className="h-6 w-6" />
-              )}
-            </button>
-            <Link
-              href="https://github.com/impavloh/cloudbasics"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="text-gray-400 hover:text-black dark:hover:text-gray-300"
-            >
-              <span className="sr-only">GitHub</span>
-              <FaGithub className="h-6 w-6" aria-hidden="true" />
-            </Link>
+            <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+            <GithubLink mobile />
           </div>
         </div>
       )}
@@ -149,4 +82,71 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+function NavLink({
+  href,
+  children,
+  mobile = false,
+}: {
+  href: string
+  children: React.ReactNode
+  mobile?: boolean
+}) {
+  const baseClasses =
+    'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md text-sm font-medium'
+  const mobileClasses = mobile ? 'block px-3 py-2 text-base' : 'px-3 py-2'
+
+  return (
+    <Link href={href} className={`${baseClasses} ${mobileClasses}`}>
+      {children}
+    </Link>
+  )
+}
+
+function ThemeToggle({
+  theme,
+  toggleTheme,
+}: {
+  theme: string
+  toggleTheme: () => void
+}) {
+  return (
+    <button
+      onClick={toggleTheme}
+      className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-md"
+      aria-label={
+        theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'
+      }
+    >
+      {theme === 'dark' ? (
+        <Sun className="h-6 w-6" aria-hidden="true" />
+      ) : (
+        <Moon className="h-6 w-6" aria-hidden="true" />
+      )}
+    </button>
+  )
+}
+
+function GithubLink({ mobile = false }: { mobile?: boolean }) {
+  const baseClasses =
+    'inline-flex items-center gap-2 text-sm font-medium rounded-md transition-colors duration-300'
+  const desktopClasses = mobile
+    ? ''
+    : 'px-4 py-2 border border-transparent shadow-sm text-white bg-blue-600 hover:bg-blue-700'
+  const mobileClasses = mobile
+    ? 'text-gray-400 hover:text-black dark:hover:text-gray-300'
+    : ''
+
+  return (
+    <Link
+      href="https://github.com/impavloh/cloudbasics"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="GitHub"
+      className={`${baseClasses} ${desktopClasses} ${mobileClasses}`}
+    >
+      {!mobile && <span>Repositorio</span>}
+      <Github className="h-6 w-6" aria-hidden="true" />
+      {mobile && <span className="sr-only">GitHub</span>}
+    </Link>
+  )
+}

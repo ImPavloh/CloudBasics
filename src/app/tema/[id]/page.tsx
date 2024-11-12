@@ -2,13 +2,13 @@ import { notFound } from 'next/navigation'
 import { topics } from '@/components/topics/data'
 import Explorador from '@/components/explorador'
 
-interface TopicPageProps {
+interface TemaProps {
   params: {
     id: string
   }
 }
 
-export default function TopicPage({ params }: TopicPageProps) {
+export default function Tema({ params }: TemaProps) {
   const topic = topics.find((t) => t.id === params.id)
 
   if (!topic) {

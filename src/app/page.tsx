@@ -1,7 +1,8 @@
 'use client'
 
-import { FaCloud, FaBook, FaTools } from 'react-icons/fa'
+import { Book, Wrench, Cloud } from 'lucide-react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import Footer from '../components/page/Footer'
 
 export default function Home() {
@@ -28,7 +29,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div className="flex flex-col min-h-screen">
       <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-8 text-center">
         <motion.div
           className="lg:text-center"
@@ -41,9 +42,12 @@ export default function Home() {
             animate={{ scale: 1 }}
             transition={{ type: 'spring', stiffness: 260, damping: 20 }}
           >
-            <FaCloud
-              className="mx-auto h-24 w-24 text-blue-500"
-              aria-hidden="true"
+            <Image
+              src="/favicon.svg"
+              alt="CloudBasics Logo"
+              width={96}
+              height={96}
+              className="mx-auto"
             />
           </motion.div>
           <span className="block font-bold text-gray-900 dark:text-white text-xl mb-4">
@@ -88,19 +92,19 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                icon: FaCloud,
+                icon: Cloud,
                 title: 'Conceptos básicos',
                 description:
                   'Aprende los fundamentos del cloud computing, incluyendo modelos de servicio y tipos de implementación.',
               },
               {
-                icon: FaBook,
+                icon: Book,
                 title: 'Temas avanzados',
                 description:
                   'Explora temas avanzados como seguridad en la nube, arquitecturas y estrategias de migración.',
               },
               {
-                icon: FaTools,
+                icon: Wrench,
                 title: 'Recursos prácticos',
                 description:
                   'Accede a tutoriales, guías y herramientas para aplicar tus conocimientos en proyectos reales.',
@@ -121,10 +125,10 @@ export default function Home() {
                         />
                       </motion.span>
                     </div>
-                    <h2 className="mt-8 text-lg font-medium text-gray-900 dark:text-white tracking-tight">
+                    <h2 className="mt-6 text-lg font-medium text-gray-900 dark:text-white tracking-tight">
                       {item.title}
                     </h2>
-                    <p className="mt-5 text-base text-gray-600 dark:text-gray-300">
+                    <p className="mt-4 text-base text-gray-600 dark:text-gray-300">
                       {item.description}
                     </p>
                   </div>

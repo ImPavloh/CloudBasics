@@ -29,14 +29,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml"></link>
+        <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
         <meta name="theme-color" content="#2b184a" />
         <link rel="canonical" href="https://cloudbasics.vercel.app" />
       </head>
-      <body className={`${inter.className} h-full`}>
+      <body
+        className={`${inter.className} min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900`}
+      >
         <ThemeProvider>
           <Navbar />
           <main>{children}</main>

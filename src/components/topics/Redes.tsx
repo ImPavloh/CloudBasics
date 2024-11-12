@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { FaNetworkWired } from 'react-icons/fa'
+import { Network } from 'lucide-react';
 
 export default function RedesEnLaNube() {
   return (
     <Card className="w-full max-w-4xl mx-auto">
       <CardHeader>
         <CardTitle className="text-3xl font-bold flex items-center">
-          <FaNetworkWired className="mr-2" />
+          <Network className="mr-2" />
           Redes en la Nube
         </CardTitle>
         <CardDescription>Creación de una nube privada virtual</CardDescription>

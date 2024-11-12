@@ -1,4 +1,4 @@
-import * as Icons from 'lucide-react'
+import { LucideIcon, Cloud, DollarSign, Server, Shield, Network, Monitor, Database, LayoutGrid, Scale } from 'lucide-react'
 
 import ComputacionEnLaNube from '@/components/topics/Computacion'
 import PreciosEnLaNube from '@/components/topics/Precios'
@@ -14,7 +14,7 @@ import ArquitecturasElasticas from '@/components/topics/ArquitecturasElasticas'
 export interface Topic {
   id: string
   title: string
-  icon: keyof typeof Icons
+  icon: LucideIcon
   description: string
   category: string
   component: React.ComponentType
@@ -25,7 +25,7 @@ export const topics: Topic[] = [
   {
     id: 'cloud',
     title: 'Computación en la nube',
-    icon: 'Cloud',
+    icon: Cloud,
     description: 'Definición y modelos',
     category: 'Fundamentos',
     component: ComputacionEnLaNube,
@@ -34,7 +34,7 @@ export const topics: Topic[] = [
   {
     id: 'pricing',
     title: 'Economía y facturación',
-    icon: 'DollarSign',
+    icon: DollarSign,
     description: 'Precios y costos',
     category: 'Negocios',
     component: PreciosEnLaNube,
@@ -43,7 +43,7 @@ export const topics: Topic[] = [
   {
     id: 'infra',
     title: 'Infraestructura de la nube',
-    icon: 'Server',
+    icon: Server,
     description: 'Componentes de infraestructura',
     category: 'Técnico',
     component: InfraestructuraEnLaNube,
@@ -52,7 +52,7 @@ export const topics: Topic[] = [
   {
     id: 'security',
     title: 'Seguridad en la Nube',
-    icon: 'Shield',
+    icon: Shield,
     description: 'Seguridad y conformidad',
     category: 'Seguridad',
     component: SeguridadEnLaNube,
@@ -61,7 +61,7 @@ export const topics: Topic[] = [
   {
     id: 'networking',
     title: 'Redes en la Nube',
-    icon: 'Network',
+    icon: Network,
     description: 'Nube privada virtual',
     category: 'Técnico',
     component: RedesEnLaNube,
@@ -70,7 +70,7 @@ export const topics: Topic[] = [
   {
     id: 'compute',
     title: 'Servicios de Cómputo',
-    icon: 'Monitor',
+    icon: Monitor,
     description: 'Casos de uso',
     category: 'Servicios',
     component: ServiciosDeComputacion,
@@ -79,7 +79,7 @@ export const topics: Topic[] = [
   {
     id: 'storage',
     title: 'Almacenamiento en la Nube',
-    icon: 'Database',
+    icon: Database,
     description: 'Servicios de almacenamiento',
     category: 'Servicios',
     component: AlmacenamientoEnLaNube,
@@ -88,7 +88,7 @@ export const topics: Topic[] = [
   {
     id: 'databases',
     title: 'Bases de Datos en la Nube',
-    icon: 'Database',
+    icon: Database,
     description: 'Bases de datos administradas',
     category: 'Servicios',
     component: BasesDeDatosEnLaNube,
@@ -97,7 +97,7 @@ export const topics: Topic[] = [
   {
     id: 'architecture',
     title: 'Principios Arquitectónicos en la Nube',
-    icon: 'LayoutGrid',
+    icon: LayoutGrid,
     description: 'Principios arquitectónicos',
     category: 'Diseño',
     component: PrincipiosArquitectonicosNube,
@@ -106,7 +106,7 @@ export const topics: Topic[] = [
   {
     id: 'elastic',
     title: 'Arquitecturas Elásticas',
-    icon: 'Scale',
+    icon: Scale,
     description: 'Escalado y monitorización',
     category: 'Operaciones',
     component: ArquitecturasElasticas,
@@ -114,4 +114,4 @@ export const topics: Topic[] = [
   },
 ]
 
-export const categories = ['Todos', ...new Set(topics.map((topic) => topic.category))]
+export const categories = ['Todos', ...Array.from(new Set(topics.map((topic) => topic.category)))]
