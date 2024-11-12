@@ -214,10 +214,7 @@ export default function Explorador({ initialTopicId }: ExplorerProps) {
                           </div>
                         </div>
                         {isDisabled && (
-                          <Badge
-                            variant="secondary"
-                            className="ml-auto shrink-0 h-5 gap-1 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300"
-                          >
+                          <Badge className="ml-auto shrink-0 h-5 gap-1 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
                             <Icons.Clock className="h-3 w-3" />
                             <span className="text-xs">Próximamente</span>
                           </Badge>
@@ -317,7 +314,6 @@ export default function Explorador({ initialTopicId }: ExplorerProps) {
                 {tags.map((tag, index) => (
                   <Badge
                     key={index}
-                    variant="secondary"
                     className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
                   >
                     {tag}
@@ -386,7 +382,7 @@ export default function Explorador({ initialTopicId }: ExplorerProps) {
       </div>
 
       <main
-        className={`mt-24 flex-1 overflow-auto transition-all duration-300 ${
+        className={`mt-16 flex-1 overflow-auto transition-all duration-300 ${
           isLeftSidebarCollapsed ? 'lg:ml-16' : 'lg:ml-64'
         } ${isRightSidebarCollapsed ? 'lg:mr-12' : 'lg:mr-64'}`}
       >

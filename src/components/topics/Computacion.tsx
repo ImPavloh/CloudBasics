@@ -10,6 +10,10 @@ import {
   Shield,
   Zap,
   ArrowRight,
+  RefreshCw,
+  DollarSign,
+  Lock,
+  Layers,
 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
@@ -119,11 +123,12 @@ function IntroduccionComputacionNube() {
           </CardHeader>
           <CardContent>
             <p className="text-gray-700 dark:text-gray-300">
-              La computación en la nube es un modelo de entrega de servicios de
-              TI a través de internet. En lugar de mantener servidores físicos e
-              infraestructura, las empresas pueden acceder a recursos
-              informáticos bajo demanda de proveedores en la nube. Esto incluye
-              servidores, almacenamiento, bases de datos, redes, software y más.
+              La computación en la nube se refiere a la entrega de recursos y
+              servicios de tecnología de la información (TI) a través de
+              internet. Esto incluye servidores, almacenamiento, bases de datos,
+              redes y software. En lugar de mantener infraestructuras locales,
+              las empresas pueden acceder a estos recursos bajo demanda desde
+              proveedores de servicios en la nube.
             </p>
           </CardContent>
         </Card>
@@ -141,33 +146,33 @@ function IntroduccionComputacionNube() {
               {[
                 {
                   icon: Zap,
-                  text: 'Autoservicio bajo demanda',
+                  text: 'Acceso bajo demanda',
                   description:
-                    'Los usuarios pueden aprovisionar capacidades informáticas según sea necesario sin requerir interacción humana con el proveedor de servicios.',
+                    'Los recursos se pueden usar cuando se necesiten, sin necesidad de realizar grandes inversiones previas.',
+                },
+                {
+                  icon: RefreshCw,
+                  text: 'Escalabilidad',
+                  description:
+                    'Es fácil aumentar o disminuir los recursos o servicios utilizados, adaptándose a las necesidades.',
+                },
+                {
+                  icon: DollarSign,
+                  text: 'Pago por uso',
+                  description:
+                    'Solo se paga por los recursos consumidos, evitando costos innecesarios.',
                 },
                 {
                   icon: Globe,
-                  text: 'Amplio acceso a la red',
+                  text: 'Acceso global',
                   description:
-                    'Los servicios están disponibles en la red y se accede a través de mecanismos estándar que promueven el uso por plataformas de clientes heterogéneas.',
+                    'Los recursos están disponibles desde cualquier lugar con conexión a internet.',
                 },
                 {
-                  icon: Server,
-                  text: 'Agrupación de recursos',
+                  icon: Lock,
+                  text: 'Seguridad mejorada',
                   description:
-                    'Los recursos informáticos del proveedor se agrupan para servir a múltiples consumidores utilizando un modelo multi-inquilino.',
-                },
-                {
-                  icon: Cloud,
-                  text: 'Rápida elasticidad',
-                  description:
-                    'Las capacidades pueden aprovisionarse y liberarse elásticamente para escalar rápidamente hacia fuera y hacia dentro según la demanda.',
-                },
-                {
-                  icon: Database,
-                  text: 'Servicio medido',
-                  description:
-                    'Los sistemas en la nube controlan y optimizan automáticamente el uso de recursos aprovechando una capacidad de medición.',
+                    'Los proveedores de nube ofrecen medidas de seguridad avanzadas y actualizaciones automáticas.',
                 },
               ].map((item, index) => (
                 <li
@@ -195,23 +200,33 @@ function IntroduccionComputacionNube() {
           <CardContent>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <h3 className="text-lg font-semibold mb-2">On-premise</h3>
+                <h3 className="text-lg font-semibold mb-2 flex items-center">
+                  <Server className="mr-2 h-5 w-5 text-blue-500" />
+                  On-premise
+                </h3>
                 <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
                   <li>Control total sobre hardware y software</li>
                   <li>Costos iniciales más altos</li>
                   <li>Requiere experiencia en TI interna</li>
                   <li>Escalabilidad limitada</li>
                   <li>Responsable de la seguridad y el mantenimiento</li>
+                  <li>Sin dependencia de internet</li>
+                  <li>Mayor personalización</li>
                 </ul>
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-2">Nube</h3>
+                <h3 className="text-lg font-semibold mb-2 flex items-center">
+                  <Cloud className="mr-2 h-5 w-5 text-blue-500" />
+                  Nube
+                </h3>
                 <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
                   <li>Modelo de pago por uso</li>
                   <li>Escalable y flexible</li>
                   <li>Mantenimiento de TI reducido</li>
                   <li>Acceso desde cualquier lugar</li>
                   <li>Actualizaciones y parches de seguridad automáticos</li>
+                  <li>Dependencia de la conectividad a internet</li>
+                  <li>Posibles problemas de seguridad y privacidad</li>
                 </ul>
               </div>
             </div>
@@ -246,6 +261,12 @@ function ModelosServicioNube() {
             'Computación de alto rendimiento',
             'Análisis de big data',
           ],
+          components: [
+            'Servidores virtuales',
+            'Almacenamiento',
+            'Redes',
+            'Máquinas virtuales',
+          ],
         },
         {
           title: 'Plataforma como Servicio (PaaS)',
@@ -262,6 +283,12 @@ function ModelosServicioNube() {
             'Desarrollo de APIs',
             'Análisis de negocios',
           ],
+          components: [
+            'Entornos de desarrollo integrados',
+            'Base de datos gestionada',
+            'Middleware',
+            'Herramientas de desarrollo colaborativo',
+          ],
         },
         {
           title: 'Software como Servicio (SaaS)',
@@ -273,6 +300,12 @@ function ModelosServicioNube() {
             'Gestión de relaciones con clientes',
             'Planificación de recursos empresariales',
             'Herramientas de colaboración',
+          ],
+          components: [
+            'Aplicaciones web',
+            'Almacenamiento en la nube',
+            'Actualizaciones automáticas',
+            'Acceso multiplataforma',
           ],
         },
       ].map((model, index) => (
@@ -305,6 +338,14 @@ function ModelosServicioNube() {
                     ))}
                   </ul>
                 </div>
+              </div>
+              <div className="mt-4">
+                <h4 className="font-semibold mb-2">Componentes clave:</h4>
+                <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
+                  {model.components.map((component, i) => (
+                    <li key={i}>{component}</li>
+                  ))}
+                </ul>
               </div>
             </CardContent>
           </Card>
@@ -353,7 +394,7 @@ function ModelosImplementacionNube() {
         },
         {
           title: 'Nube híbrida',
-          icon: Cloud,
+          icon: Layers,
           description:
             'Una composición de dos o más infraestructuras en la nube distintas (privada, comunitaria o pública) que siguen siendo entidades únicas, pero están unidas por tecnología estandarizada o propietaria.',
           pros: ['Flexibilidad', 'Rentabilidad', 'Seguridad mejorada'],
@@ -479,9 +520,9 @@ function MigracionNube() {
               <AccordionItem value="rehost">
                 <AccordionTrigger>Realojar (Lift and Shift)</AccordionTrigger>
                 <AccordionContent>
-                  Mover aplicaciones a la nube sin hacer cambios. Este es el
-                  método más rápido pero no aprovecha al máximo las capacidades
-                  de la nube.
+                  Mover aplicaciones y datos a la nube tal como están, sin
+                  cambios significativos. Este es el método más rápido pero no
+                  aprovecha al máximo las capacidades de la nube.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="refactor">
@@ -491,7 +532,8 @@ function MigracionNube() {
                 <AccordionContent>
                   Realizar algunas optimizaciones para aprovechar las
                   capacidades de la nube, pero manteniendo la arquitectura
-                  central igual.
+                  central igual. Modificar aplicaciones para aprovechar mejor
+                  las características nativas de la nube.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="revise">
@@ -544,11 +586,13 @@ function AdopcionNube() {
           </CardHeader>
           <CardContent>
             <p className="text-gray-700 dark:text-gray-300 mb-4">
-              El Marco de Adopción de la Nube proporciona mejores prácticas,
-              documentación y herramientas que los arquitectos de nube,
-              profesionales de TI y tomadores de decisiones empresariales
-              necesitan para lograr sus objetivos a corto y largo plazo con
-              éxito.
+              El Marco de Adopción de la Nube (CAF) es un conjunto de prácticas
+              recomendadas, herramientas y orientación que ayuda a las
+              organizaciones a comenzar a utilizar tecnologías en la nube.
+              Proporciona mejores prácticas, documentación y herramientas que
+              los arquitectos de nube, profesionales de TI y tomadores de
+              decisiones empresariales necesitan para lograr sus objetivos a
+              corto y largo plazo con éxito.
             </p>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
@@ -570,6 +614,10 @@ function AdopcionNube() {
                   <li>Alinea los objetivos de negocio y TI</li>
                   <li>Proporciona una metodología consistente</li>
                   <li>Mejora la excelencia operativa</li>
+                  <li>Identifica deficiencias en habilidades y procesos</li>
+                  <li>Ayuda a mitigar riesgos</li>
+                  <li>Gestiona costes</li>
+                  <li>Garantiza el cumplimiento normativo</li>
                 </ul>
               </div>
             </div>
@@ -604,7 +652,7 @@ function AdopcionNube() {
               <li className="flex items-start">
                 <ArrowRight className="h-5 w-5 text-blue-500 mr-2 mt-1" />
                 <span>
-                  <strong>Implementar medidas de seguridad Sólidas:</strong>{' '}
+                  <strong>Implementar medidas de seguridad sólidas:</strong>{' '}
                   Utilizar encriptación, controles de acceso y auditorías de
                   seguridad regulares.
                 </span>
@@ -631,6 +679,22 @@ function AdopcionNube() {
                     Planificar para la recuperación ante desastres:
                   </strong>{' '}
                   Implementar estrategias robustas de respaldo y recuperación.
+                </span>
+              </li>
+              <li className="flex items-start">
+                <ArrowRight className="h-5 w-5 text-blue-500 mr-2 mt-1" />
+                <span>
+                  <strong>Evaluar la preparación:</strong> Revisar las
+                  capacidades tecnológicas, las necesidades del negocio y las
+                  habilidades del equipo antes de la migración.
+                </span>
+              </li>
+              <li className="flex items-start">
+                <ArrowRight className="h-5 w-5 text-blue-500 mr-2 mt-1" />
+                <span>
+                  <strong>Definir objetivos claros:</strong> Establecer metas
+                  específicas para la migración a la nube, como mejorar la
+                  agilidad o reducir costos.
                 </span>
               </li>
             </ul>
