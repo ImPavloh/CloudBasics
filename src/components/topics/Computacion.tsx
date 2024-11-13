@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Cloud, Server, Database, Globe, Shield, Zap, ArrowRight, RefreshCw, DollarSign, Lock, Layers, Terminal, Package, HardDrive, Network, Monitor } from 'lucide-react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import {
   Accordion,
   AccordionContent,
@@ -40,18 +40,20 @@ export default function FundamentosComputacionNube() {
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <motion.div
-        className="text-center mb-12"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <h1 className="text-2xl font-extrabold text-gray-900 dark:text-white sm:text-4xl md:text-5xl">
-          Introducción a la computación en la nube
-        </h1>
-        <p className="mt-3 mx-auto text-base text-gray-500 dark:text-gray-300 sm:text-lg md:mt-5 md:text-xl">
-          Descubre los conceptos esenciales, modelos y estrategias en la
-          computación en la nube moderna.
-        </p>
+          <CardHeader>
+            <CardTitle className="text-4xl font-bold flex items-center text-blue-600 dark:text-blue-400">
+              <Cloud className="mr-4 h-8 w-8" />
+              Introducción a la computación en la nube
+            </CardTitle>
+            <CardDescription className="text-lg text-gray-600 dark:text-gray-300">
+            Descubre los conceptos esenciales, modelos y estrategias en la
+            computación en la nube moderna.
+            </CardDescription>
+        </CardHeader>
       </motion.div>
 
       <Tabs
@@ -759,7 +761,7 @@ function ServiceModelComparison() {
   }
 
   return (
-      <Card className="p-6 w-full max-w-4xl mx-auto bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+      <Card className="p-6 w-full max-w-7xl mx-auto bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle className="text-2xl font-bold text-blue-600 dark:text-blue-400">
             Comparación de Modelos de Servicio en la Nube

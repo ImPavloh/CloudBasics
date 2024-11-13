@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import {
   Accordion,
   AccordionContent,
@@ -19,7 +19,8 @@ import {
   Shield,
   Activity,
   AlertCircle,
-  Archive
+  Archive,
+  Cloud
 } from 'lucide-react'
 
 const containerVariants = {
@@ -50,19 +51,21 @@ export default function EconomiaFacturacionNube() {
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <motion.div
-        className="text-center mb-12"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <h1 className="text-2xl font-extrabold text-gray-900 dark:text-white sm:text-4xl md:text-5xl">
-          Economía y facturación en la nube
-        </h1>
-        <p className="mt-3 mx-auto text-base text-gray-500 dark:text-gray-300 sm:text-lg md:mt-5 md:text-xl">
-          Comprende los aspectos económicos y de facturación en los servicios de
-          computación en la nube para optimizar costes y maximizar el valor de
-          tu inversión.
-        </p>
+          <CardHeader>
+            <CardTitle className="text-4xl font-bold flex items-center text-blue-600 dark:text-blue-400">
+              <Cloud className="mr-4 h-8 w-8" />
+              Economía y facturación en la nube
+            </CardTitle>
+            <CardDescription className="text-lg text-gray-600 dark:text-gray-300">
+              Comprende los aspectos económicos y de facturación en los servicios de
+              computación en la nube para optimizar costes y maximizar el valor de
+              tu inversión.
+            </CardDescription>
+        </CardHeader>
       </motion.div>
 
       <Tabs
