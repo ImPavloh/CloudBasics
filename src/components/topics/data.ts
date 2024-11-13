@@ -51,7 +51,7 @@ export const topics: Topic[] = [
   },
   {
     id: 'security',
-    title: 'Seguridad en la Nube',
+    title: 'Seguridad',
     icon: Shield,
     description: 'Seguridad y conformidad',
     category: 'Seguridad',
@@ -60,7 +60,7 @@ export const topics: Topic[] = [
   },
   {
     id: 'networking',
-    title: 'Redes en la Nube',
+    title: 'Redes',
     icon: Network,
     description: 'Nube privada virtual',
     category: 'Técnico',
@@ -69,7 +69,7 @@ export const topics: Topic[] = [
   },
   {
     id: 'compute',
-    title: 'Servicios de Cómputo',
+    title: 'Servicios de cómputo',
     icon: Monitor,
     description: 'Casos de uso',
     category: 'Servicios',
@@ -78,7 +78,7 @@ export const topics: Topic[] = [
   },
   {
     id: 'storage',
-    title: 'Almacenamiento en la Nube',
+    title: 'Almacenamiento',
     icon: Database,
     description: 'Servicios de almacenamiento',
     category: 'Servicios',
@@ -87,7 +87,7 @@ export const topics: Topic[] = [
   },
   {
     id: 'databases',
-    title: 'Bases de Datos en la Nube',
+    title: 'Bases de datos',
     icon: Database,
     description: 'Bases de datos administradas',
     category: 'Servicios',
@@ -96,7 +96,7 @@ export const topics: Topic[] = [
   },
   {
     id: 'architecture',
-    title: 'Principios Arquitectónicos en la Nube',
+    title: 'Principios arquitectónicos',
     icon: LayoutGrid,
     description: 'Principios arquitectónicos',
     category: 'Diseño',
@@ -105,7 +105,7 @@ export const topics: Topic[] = [
   },
   {
     id: 'elastic',
-    title: 'Arquitecturas Elásticas',
+    title: 'Arquitecturas elásticas',
     icon: Scale,
     description: 'Escalado y monitorización',
     category: 'Operaciones',

@@ -17,6 +17,9 @@ import {
   BarChart,
   Calculator,
   Shield,
+  Activity,
+  AlertCircle,
+  Archive
 } from 'lucide-react'
 
 const containerVariants = {
@@ -539,28 +542,8 @@ function OptimizacionCostes() {
               busca maximizar el valor obtenido de los servicios en la nube
               mientras se minimizan los gastos.
             </p>
+            <CostOptimizationComparison />
             <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="conceptos-clave">
-                <AccordionTrigger>
-                  Conceptos Clave en Optimización
-                </AccordionTrigger>
-                <AccordionContent>
-                  <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                    <li>
-                      NURI (Non-Usage Resource Identification): Identificación
-                      de recursos no utilizados
-                    </li>
-                    <li>
-                      PURI (Provisioned Unused Resource Identification):
-                      Recursos aprovisionados pero no utilizados
-                    </li>
-                    <li>
-                      AURI (Active Unused Resource Identification): Recursos
-                      activos pero no utilizados efectivamente
-                    </li>
-                  </ul>
-                </AccordionContent>
-              </AccordionItem>
               <AccordionItem value="estrategias">
                 <AccordionTrigger>Estrategias de Optimización</AccordionTrigger>
                 <AccordionContent>
@@ -595,5 +578,70 @@ function OptimizacionCostes() {
         </Card>
       </motion.div>
     </motion.div>
+  )
+}
+
+function CostOptimizationComparison() {
+  const concepts = [
+    {
+      name: "AURI",
+      fullName: "Active Unused Resource Identification",
+      description: "Recursos activos pero no utilizados efectivamente",
+      icon: <Activity className="w-8 h-8 text-blue-500" />,
+      color: "bg-blue-100 dark:bg-blue-900",
+      textColor: "text-blue-700 dark:text-blue-300",
+      borderColor: "border-blue-300 dark:border-blue-700",
+    },
+    {
+      name: "NURI",
+      fullName: "Non-Usage Resource Identification",
+      description: "Identificación de recursos no utilizados",
+      icon: <AlertCircle className="w-8 h-8 text-red-500" />,
+      color: "bg-red-100 dark:bg-red-900",
+      textColor: "text-red-700 dark:text-red-300",
+      borderColor: "border-red-300 dark:border-red-700",
+    },
+    {
+      name: "PURI",
+      fullName: "Provisioned Unused Resource Identification",
+      description: "Recursos aprovisionados pero no utilizados",
+      icon: <Archive className="w-8 h-8 text-yellow-500" />,
+      color: "bg-yellow-100 dark:bg-yellow-900",
+      textColor: "text-yellow-700 dark:text-yellow-300",
+      borderColor: "border-yellow-300 dark:border-yellow-700",
+    },
+  ]
+
+  return (
+    <div className="w-full max-w-4xl mx-auto p-4">
+      <h2 className="text-2xl font-bold text-center mb-6 text-gray-800 dark:text-gray-200">
+        Comparación de Conceptos de Optimización de Costes
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {concepts.map((concept) => (
+          <Card
+            key={concept.name}
+            className={`${concept.color} ${concept.borderColor} border-2 transition-all duration-300 hover:shadow-lg`}
+          >
+            <CardHeader>
+              <CardTitle className={`flex items-center gap-2 ${concept.textColor}`}>
+                {concept.icon}
+                <span>{concept.name}</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className={`font-semibold mb-2 ${concept.textColor}`}>{concept.fullName}</p>
+              <p className={`text-sm ${concept.textColor}`}>{concept.description}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+      <div className="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">
+        <p>
+          Estos conceptos son fundamentales para la optimización de costes en la nube.
+          Identificar y gestionar adecuadamente estos recursos puede llevar a ahorros significativos.
+        </p>
+      </div>
+    </div>
   )
 }

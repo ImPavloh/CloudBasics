@@ -15,7 +15,7 @@ const TabsList = React.forwardRef<
     ref={ref}
     className={cn(
       'flex flex-wrap justify-start items-center rounded-xl bg-neutral-100 p-1 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400 border dark:border-neutral-600',
-      'max-w-full overflow-x-auto',
+      'max-w-full overflow-hidden',
       className,
     )}
     {...props}

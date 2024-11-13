@@ -12,7 +12,7 @@ export default function Tema({ params }: TemaProps) {
   const topic = topics.find((t) => t.id === params.id)
 
   if (!topic) {
-    notFound()
+    notFound() // tal vez crear un page nuevo para informar que aún no está disponible
   }
 
   return <Explorador initialTopicId={params.id} />

@@ -26,7 +26,7 @@ const itemVariants = {
 export default function Temas() {
   const [selectedCategory, setSelectedCategory] = useState<string>('Todos')
   const [searchTerm, setSearchTerm] = useState<string>('')
-  const [showUnavailable, setShowUnavailable] = useState<boolean>(false)
+  const [showUnavailable, setShowUnavailable] = useState<boolean>(true)
 
   const filteredTopics = useMemo(() => {
     return topics.filter(

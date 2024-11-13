@@ -3,16 +3,11 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu, X, Sun, Moon, Github } from 'lucide-react'
-import { useTheme } from '../ThemeProvider'
+import { Menu, X, Github } from 'lucide-react'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const { theme, setTheme } = useTheme()
-
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
-  }
 
   return (
     <nav className="fixed top-4 w-11/12 max-w-7xl rounded-lg z-50 bg-white dark:bg-gray-800 shadow-lg shadow-black/50 border border-gray-700 inset-x-0 mx-auto">
@@ -37,7 +32,7 @@ export default function Navbar() {
             </div>
           </div>
           <div className="hidden md:flex items-center space-x-4">
-            <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+            <ThemeToggle />
             <GithubLink />
           </div>
           <div className="-mr-2 flex md:hidden">
@@ -73,7 +68,7 @@ export default function Navbar() {
             </NavLink>
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between px-4">
-            <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+            <ThemeToggle />
             <GithubLink mobile />
           </div>
         </div>
@@ -99,30 +94,6 @@ function NavLink({
     <Link href={href} className={`${baseClasses} ${mobileClasses}`}>
       {children}
     </Link>
-  )
-}
-
-function ThemeToggle({
-  theme,
-  toggleTheme,
-}: {
-  theme: string
-  toggleTheme: () => void
-}) {
-  return (
-    <button
-      onClick={toggleTheme}
-      className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-md"
-      aria-label={
-        theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'
-      }
-    >
-      {theme === 'dark' ? (
-        <Sun className="h-6 w-6" aria-hidden="true" />
-      ) : (
-        <Moon className="h-6 w-6" aria-hidden="true" />
-      )}
-    </button>
   )
 }
 

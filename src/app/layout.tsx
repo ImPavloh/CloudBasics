@@ -39,7 +39,7 @@ export default function RootLayout({
       <body
         className={`${inter.className} min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900`}
       >
-        <ThemeProvider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
           <main>{children}</main>
         </ThemeProvider>

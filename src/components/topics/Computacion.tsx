@@ -2,19 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import {
-  Cloud,
-  Server,
-  Database,
-  Globe,
-  Shield,
-  Zap,
-  ArrowRight,
-  RefreshCw,
-  DollarSign,
-  Lock,
-  Layers,
-} from 'lucide-react'
+import { Cloud, Server, Database, Globe, Shield, Zap, ArrowRight, RefreshCw, DollarSign, Lock, Layers, Terminal, Package, HardDrive, Network, Monitor } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   Accordion,
@@ -245,6 +233,9 @@ function ModelosServicioNube() {
       animate="visible"
       className="space-y-8"
     >
+      <motion.div variants={itemVariants}>
+        <ServiceModelComparison />
+      </motion.div>
       {[
         {
           title: 'Infraestructura como Servicio (IaaS)',
@@ -702,5 +693,112 @@ function AdopcionNube() {
         </Card>
       </motion.div>
     </motion.div>
+  )
+}
+
+function ServiceModelComparison() {
+  const layers = [
+    { name: "Applications", icon: <Monitor className="w-4 h-4" /> },
+    { name: "Data", icon: <Database className="w-4 h-4" /> },
+    { name: "Runtime", icon: <Terminal className="w-4 h-4" /> },
+    { name: "Middleware", icon: <Package className="w-4 h-4" /> },
+    { name: "O/S", icon: <Layers className="w-4 h-4" /> },
+    { name: "Virtualization", icon: <Cloud className="w-4 h-4" /> },
+    { name: "Servers", icon: <Server className="w-4 h-4" /> },
+    { name: "Storage", icon: <HardDrive className="w-4 h-4" /> },
+    { name: "Networking", icon: <Network className="w-4 h-4" /> }
+  ]
+
+  const models = ["On-site", "IaaS", "PaaS", "SaaS"]
+
+  const responsibilities: { [key: string]: { [key: string]: string } } = {
+    "On-site": {
+      "Applications": "you",
+      "Data": "you",
+      "Runtime": "you",
+      "Middleware": "you",
+      "O/S": "you",
+      "Virtualization": "you",
+      "Servers": "you",
+      "Storage": "you",
+      "Networking": "you"
+    },
+    "IaaS": {
+      "Applications": "you",
+      "Data": "you",
+      "Runtime": "you",
+      "Middleware": "you",
+      "O/S": "you",
+      "Virtualization": "provider",
+      "Servers": "provider",
+      "Storage": "provider",
+      "Networking": "provider"
+    },
+    "PaaS": {
+      "Applications": "you",
+      "Data": "you",
+      "Runtime": "provider",
+      "Middleware": "provider",
+      "O/S": "provider",
+      "Virtualization": "provider",
+      "Servers": "provider",
+      "Storage": "provider",
+      "Networking": "provider"
+    },
+    "SaaS": {
+      "Applications": "provider",
+      "Data": "provider",
+      "Runtime": "provider",
+      "Middleware": "provider",
+      "O/S": "provider",
+      "Virtualization": "provider",
+      "Servers": "provider",
+      "Storage": "provider",
+      "Networking": "provider"
+    }
+  }
+
+  return (
+      <Card className="p-6 w-full max-w-4xl mx-auto bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+        <CardHeader className="flex flex-row items-center justify-between">
+          <CardTitle className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+            Comparación de Modelos de Servicio en la Nube
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {models.map((model) => (
+              <div key={model} className="space-y-2">
+                <h3 className="text-lg font-semibold text-center mb-4">{model}</h3>
+                {layers.map((layer) => (
+                  <div
+                    key={`${model}-${layer.name}`}
+                    className={`p-2 rounded-md text-sm flex items-center justify-between ${
+                      responsibilities[model][layer.name] === "you"
+                        ? "bg-teal-500 dark:bg-teal-600 text-white"
+                        : "bg-red-500 dark:bg-red-600 text-white"
+                    }`}
+                  >
+                    <span className="flex items-center gap-2">
+                      {layer.icon}
+                      {layer.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center text-sm">
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 bg-teal-500 dark:bg-teal-600 rounded-sm" />
+              <span>Usted gestiona</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 bg-red-500 dark:bg-red-600 rounded-sm" />
+              <span>El proveedor de servicios gestiona</span>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
   )
 }
