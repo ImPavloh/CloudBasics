@@ -1,8 +1,9 @@
 'use client'
 
-import { Book, Wrench, Cloud } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { Book, Wrench, Cloud, Compass, FileText } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import Footer from '../components/page/Footer'
 
 export default function Home() {
@@ -27,6 +28,27 @@ export default function Home() {
       },
     },
   }
+
+  const features = [
+    {
+      icon: Cloud,
+      title: 'Conceptos básicos',
+      description:
+        'Aprende los fundamentos del cloud computing, incluyendo modelos de servicio y tipos de implementación.',
+    },
+    {
+      icon: Book,
+      title: 'Temas avanzados',
+      description:
+        'Explora temas avanzados como seguridad en la nube, arquitecturas y estrategias de migración.',
+    },
+    {
+      icon: Wrench,
+      title: 'Recursos prácticos',
+      description:
+        'Accede a tutoriales, guías y herramientas para aplicar tus conocimientos en proyectos reales.',
+    },
+  ]
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -81,6 +103,36 @@ export default function Home() {
             Aprende sobre infraestructura, servicios y mejores prácticas en la
             nube.
           </motion.p>
+
+          <AnimatePresence>
+            <motion.div
+              className="mt-8 flex justify-center space-x-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+            >
+              <Link
+                href="/temas"
+                className="group inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-all duration-300"
+              >
+                Explorar temas
+                <Compass
+                  className="ml-2 -mr-1 h-5 w-5 transition-transform duration-300 group-hover:rotate-45"
+                  aria-hidden="true"
+                />
+              </Link>
+              <Link
+                href="/recursos"
+                className="group inline-flex items-center px-6 py-3 border border-gray-300 dark:border-gray-600 text-base font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700"
+              >
+                Ver recursos
+                <FileText
+                  className="ml-2 -mr-1 h-5 w-5 transition-opacity duration-300 opacity-75 group-hover:opacity-100"
+                  aria-hidden="true"
+                />
+              </Link>
+            </motion.div>
+          </AnimatePresence>
         </motion.div>
 
         <motion.div
@@ -90,26 +142,7 @@ export default function Home() {
           animate="visible"
         >
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                icon: Cloud,
-                title: 'Conceptos básicos',
-                description:
-                  'Aprende los fundamentos del cloud computing, incluyendo modelos de servicio y tipos de implementación.',
-              },
-              {
-                icon: Book,
-                title: 'Temas avanzados',
-                description:
-                  'Explora temas avanzados como seguridad en la nube, arquitecturas y estrategias de migración.',
-              },
-              {
-                icon: Wrench,
-                title: 'Recursos prácticos',
-                description:
-                  'Accede a tutoriales, guías y herramientas para aplicar tus conocimientos en proyectos reales.',
-              },
-            ].map((item, index) => (
+            {features.map((item, index) => (
               <motion.div key={index} className="pt-6" variants={itemVariants}>
                 <div className="flow-root bg-white dark:bg-gray-800 rounded-lg px-6 pb-8 shadow-md dark:shadow-gray-700">
                   <div className="-mt-6">

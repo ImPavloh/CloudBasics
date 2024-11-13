@@ -1,9 +1,36 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { Cloud, Server, Database, Globe, Shield, Zap, ArrowRight, RefreshCw, DollarSign, Lock, Layers, Terminal, Package, HardDrive, Network, Monitor } from 'lucide-react'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { motion, AnimatePresence } from 'framer-motion'
+import {
+  Cloud,
+  Server,
+  Database,
+  Globe,
+  Shield,
+  Zap,
+  ArrowRight,
+  RefreshCw,
+  DollarSign,
+  Lock,
+  Layers,
+  Terminal,
+  Package,
+  HardDrive,
+  Network,
+  Monitor,
+  ChevronRight,
+  ChevronDown,
+  ChevronUp,
+  LucideIcon,
+} from 'lucide-react'
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from '@/components/ui/card'
 import {
   Accordion,
   AccordionContent,
@@ -11,6 +38,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Button } from '@/components/ui/button'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -34,26 +62,103 @@ const itemVariants = {
   },
 }
 
-export default function FundamentosComputacionNube() {
+interface Layer {
+  name: string
+  icon: LucideIcon
+}
+
+interface Responsibility {
+  [key: string]: 'you' | 'provider'
+}
+
+interface ModelResponsibilities {
+  [key: string]: Responsibility
+}
+
+const layers: Layer[] = [
+  { name: 'Applications', icon: Monitor },
+  { name: 'Data', icon: Database },
+  { name: 'Runtime', icon: Terminal },
+  { name: 'Middleware', icon: Package },
+  { name: 'O/S', icon: Layers },
+  { name: 'Virtualization', icon: Cloud },
+  { name: 'Servers', icon: Server },
+  { name: 'Storage', icon: HardDrive },
+  { name: 'Networking', icon: Network },
+]
+
+const models = ['On-site', 'IaaS', 'PaaS', 'SaaS'] as const
+type Model = (typeof models)[number]
+
+const responsibilities: ModelResponsibilities = {
+  'On-site': {
+    Applications: 'you',
+    Data: 'you',
+    Runtime: 'you',
+    Middleware: 'you',
+    'O/S': 'you',
+    Virtualization: 'you',
+    Servers: 'you',
+    Storage: 'you',
+    Networking: 'you',
+  },
+  IaaS: {
+    Applications: 'you',
+    Data: 'you',
+    Runtime: 'you',
+    Middleware: 'you',
+    'O/S': 'you',
+    Virtualization: 'provider',
+    Servers: 'provider',
+    Storage: 'provider',
+    Networking: 'provider',
+  },
+  PaaS: {
+    Applications: 'you',
+    Data: 'you',
+    Runtime: 'provider',
+    Middleware: 'provider',
+    'O/S': 'provider',
+    Virtualization: 'provider',
+    Servers: 'provider',
+    Storage: 'provider',
+    Networking: 'provider',
+  },
+  SaaS: {
+    Applications: 'provider',
+    Data: 'provider',
+    Runtime: 'provider',
+    Middleware: 'provider',
+    'O/S': 'provider',
+    Virtualization: 'provider',
+    Servers: 'provider',
+    Storage: 'provider',
+    Networking: 'provider',
+  },
+}
+
+export default function EnhancedCloudModule() {
   const [activeTab, setActiveTab] = useState('introduccion')
 
   return (
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
+        <Card className="mb-8 bg-gradient-to-r from-blue-500 to-purple-600">
           <CardHeader>
-            <CardTitle className="text-4xl font-bold flex items-center text-blue-600 dark:text-blue-400">
-              <Cloud className="mr-4 h-8 w-8" />
-              Introducción a la computación en la nube
+            <CardTitle className="text-4xl font-bold flex items-center text-white">
+              <Cloud className="mr-4 h-12 w-12" />
+              Computación en la nube: Fundamentos y Estrategias
             </CardTitle>
-            <CardDescription className="text-lg text-gray-600 dark:text-gray-300">
-            Descubre los conceptos esenciales, modelos y estrategias en la
-            computación en la nube moderna.
+            <CardDescription className="text-lg text-white dark:text-white">
+              Descubre los conceptos esenciales, modelos y estrategias en la
+              computación en la nube moderna.
             </CardDescription>
-        </CardHeader>
+          </CardHeader>
+        </Card>
       </motion.div>
 
       <Tabs
@@ -62,34 +167,51 @@ export default function FundamentosComputacionNube() {
         className="space-y-8"
       >
         <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 gap-4">
-          <TabsTrigger value="introduccion">Introducción</TabsTrigger>
-          <TabsTrigger value="modelos">Modelos de servicio</TabsTrigger>
-          <TabsTrigger value="implementacion">
-            Modelos de implementación
-          </TabsTrigger>
-          <TabsTrigger value="migracion">Migración a la nube</TabsTrigger>
-          <TabsTrigger value="adopcion">Adopción de la nube</TabsTrigger>
+          {[
+            'introduccion',
+            'modelos',
+            'implementacion',
+            'migracion',
+            'adopcion',
+          ].map((tab) => (
+            <TabsTrigger
+              key={tab}
+              value={tab}
+              className="px-4 py-2 rounded-full transition-all duration-200 ease-in-out hover:bg-blue-100 dark:hover:bg-blue-900"
+            >
+              {tab.charAt(0).toUpperCase() + tab.slice(1)}
+            </TabsTrigger>
+          ))}
         </TabsList>
 
-        <TabsContent value="introduccion">
-          <IntroduccionComputacionNube />
-        </TabsContent>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <TabsContent value="introduccion">
+              <IntroduccionComputacionNube />
+            </TabsContent>
 
-        <TabsContent value="modelos">
-          <ModelosServicioNube />
-        </TabsContent>
+            <TabsContent value="modelos">
+              <ModelosServicioNube />
+            </TabsContent>
 
-        <TabsContent value="implementacion">
-          <ModelosImplementacionNube />
-        </TabsContent>
+            <TabsContent value="implementacion">
+              <ModelosImplementacionNube />
+            </TabsContent>
 
-        <TabsContent value="migracion">
-          <MigracionNube />
-        </TabsContent>
+            <TabsContent value="migracion">
+              <MigracionNube />
+            </TabsContent>
 
-        <TabsContent value="adopcion">
-          <AdopcionNube />
-        </TabsContent>
+            <TabsContent value="adopcion">
+              <AdopcionNube />
+            </TabsContent>
+          </motion.div>
+        </AnimatePresence>
       </Tabs>
     </main>
   )
@@ -104,7 +226,7 @@ function IntroduccionComputacionNube() {
       className="space-y-8"
     >
       <motion.div variants={itemVariants}>
-        <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+        <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm overflow-hidden">
           <CardHeader>
             <CardTitle className="text-2xl font-bold flex items-center text-blue-600 dark:text-blue-400">
               <Cloud className="mr-2 h-6 w-6" />
@@ -167,11 +289,12 @@ function IntroduccionComputacionNube() {
               ].map((item, index) => (
                 <li
                   key={index}
-                  className="flex items-start space-x-3 text-gray-700 dark:text-gray-300"
+                  className="flex items-start space-x-3 text-gray-700 dark:text-gray-300 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg"
                 >
-                  <item.icon className="h-5 w-5 text-blue-500 mt-1 flex-shrink-0" />
+                  <item.icon className="h-6 w-6 text-blue-500 mt-1 flex-shrink-0" />
                   <div>
-                    <strong>{item.text}:</strong> {item.description}
+                    <strong className="block mb-1">{item.text}</strong>
+                    <span className="text-sm">{item.description}</span>
                   </div>
                 </li>
               ))}
@@ -180,43 +303,61 @@ function IntroduccionComputacionNube() {
         </Card>
       </motion.div>
 
-      <motion.div variants={itemVariants}>
+      <motion.div variants={itemVariants} className="mt-8">
         <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-              On-premise vs Nube
+              Comparación: On-premise vs Nube
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="text-lg font-semibold mb-2 flex items-center">
-                  <Server className="mr-2 h-5 w-5 text-blue-500" />
-                  On-premise
-                </h3>
-                <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                  <li>Control total sobre hardware y software</li>
-                  <li>Costos iniciales más altos</li>
-                  <li>Requiere experiencia en TI interna</li>
-                  <li>Escalabilidad limitada</li>
-                  <li>Responsable de la seguridad y el mantenimiento</li>
-                  <li>Sin dependencia de internet</li>
-                  <li>Mayor personalización</li>
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 text-xl font-semibold">
+                  <Server className="h-6 w-6 text-blue-500" />
+                  <h3>On-premise</h3>
+                </div>
+                <ul className="space-y-3">
+                  {[
+                    'Control total sobre hardware y software',
+                    'Costos iniciales más altos',
+                    'Requiere experiencia en TI interna',
+                    'Escalabilidad ilimitada',
+                    'Responsable de la seguridad y el mantenimiento',
+                    'Sin dependencia de internet',
+                    'Mayor personalización',
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <div className="h-2 w-2 mt-2 rounded-full bg-blue-500" />
+                      <span className="text-gray-700 dark:text-gray-300">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
                 </ul>
               </div>
-              <div>
-                <h3 className="text-lg font-semibold mb-2 flex items-center">
-                  <Cloud className="mr-2 h-5 w-5 text-blue-500" />
-                  Nube
-                </h3>
-                <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                  <li>Modelo de pago por uso</li>
-                  <li>Escalable y flexible</li>
-                  <li>Mantenimiento de TI reducido</li>
-                  <li>Acceso desde cualquier lugar</li>
-                  <li>Actualizaciones y parches de seguridad automáticos</li>
-                  <li>Dependencia de la conectividad a internet</li>
-                  <li>Posibles problemas de seguridad y privacidad</li>
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 text-xl font-semibold">
+                  <Cloud className="h-6 w-6 text-blue-500" />
+                  <h3>Nube</h3>
+                </div>
+                <ul className="space-y-3">
+                  {[
+                    'Modelo de pago por uso',
+                    'Escalable y flexible',
+                    'Mantenimiento de TI reducido',
+                    'Acceso desde cualquier lugar',
+                    'Actualizaciones y parches de seguridad automáticos',
+                    'Dependencia de la conectividad a internet',
+                    'Posibles problemas de seguridad y privacidad',
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <div className="h-2 w-2 mt-2 rounded-full bg-blue-500" />
+                      <span className="text-gray-700 dark:text-gray-300">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -303,7 +444,7 @@ function ModelosServicioNube() {
         },
       ].map((model, index) => (
         <motion.div key={index} variants={itemVariants}>
-          <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+          <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm overflow-hidden">
             <CardHeader>
               <CardTitle className="text-2xl font-bold flex items-center text-blue-600 dark:text-blue-400">
                 <model.icon className="mr-2 h-6 w-6" />
@@ -317,28 +458,51 @@ function ModelosServicioNube() {
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <h4 className="font-semibold mb-2">Ejemplos:</h4>
-                  <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
+                  <ul className="space-y-2">
                     {model.examples.map((example, i) => (
-                      <li key={i}>{example}</li>
+                      <motion.li
+                        key={i}
+                        className="flex items-center space-x-2 text-gray-700 dark:text-gray-300"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.1 }}
+                      >
+                        <ChevronRight className="h-4 w-4 text-blue-500" />
+                        <span>{example}</span>
+                      </motion.li>
                     ))}
                   </ul>
                 </div>
                 <div>
                   <h4 className="font-semibold mb-2">Casos de Uso:</h4>
-                  <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
+                  <ul className="space-y-2">
                     {model.use_cases.map((use_case, i) => (
-                      <li key={i}>{use_case}</li>
+                      <motion.li
+                        key={i}
+                        className="flex items-center space-x-2 text-gray-700 dark:text-gray-300"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.1 }}
+                      >
+                        <ChevronRight className="h-4 w-4 text-blue-500" />
+                        <span>{use_case}</span>
+                      </motion.li>
                     ))}
                   </ul>
                 </div>
               </div>
               <div className="mt-4">
                 <h4 className="font-semibold mb-2">Componentes clave:</h4>
-                <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
+                <div className="grid grid-cols-2 gap-2">
                   {model.components.map((component, i) => (
-                    <li key={i}>{component}</li>
+                    <div
+                      key={i}
+                      className="bg-gray-100 dark:bg-gray-700 p-2 rounded-md text-sm text-gray-700 dark:text-gray-300"
+                    >
+                      {component}
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -399,7 +563,7 @@ function ModelosImplementacionNube() {
         },
       ].map((model, index) => (
         <motion.div key={index} variants={itemVariants}>
-          <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+          <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm overflow-hidden">
             <CardHeader>
               <CardTitle className="text-2xl font-bold flex items-center text-blue-600 dark:text-blue-400">
                 <model.icon className="mr-2 h-6 w-6" />
@@ -415,9 +579,18 @@ function ModelosImplementacionNube() {
                   <h4 className="font-semibold mb-2 text-green-600 dark:text-green-400">
                     Ventajas:
                   </h4>
-                  <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
+                  <ul className="space-y-2">
                     {model.pros.map((pro, i) => (
-                      <li key={i}>{pro}</li>
+                      <motion.li
+                        key={i}
+                        className="flex items-center space-x-2 text-gray-700 dark:text-gray-300"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.1 }}
+                      >
+                        <ChevronUp className="h-4 w-4 text-green-500" />
+                        <span>{pro}</span>
+                      </motion.li>
                     ))}
                   </ul>
                 </div>
@@ -425,9 +598,18 @@ function ModelosImplementacionNube() {
                   <h4 className="font-semibold mb-2 text-red-600 dark:text-red-400">
                     Desventajas:
                   </h4>
-                  <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
+                  <ul className="space-y-2">
                     {model.cons.map((con, i) => (
-                      <li key={i}>{con}</li>
+                      <motion.li
+                        key={i}
+                        className="flex items-center space-x-2 text-gray-700 dark:text-gray-300"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.1 }}
+                      >
+                        <ChevronDown className="h-4 w-4 text-red-500" />
+                        <span>{con}</span>
+                      </motion.li>
                     ))}
                   </ul>
                 </div>
@@ -449,60 +631,93 @@ function MigracionNube() {
       className="space-y-8"
     >
       <motion.div variants={itemVariants}>
-        <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+        <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm overflow-hidden">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-blue-600 dark:text-blue-400">
               Proceso de migración a la nube
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <ol className="list-decimal list-inside space-y-4 text-gray-700 dark:text-gray-300">
-              <li>
-                <strong>Evaluación y planificación:</strong> Evaluar la
-                infraestructura, aplicaciones y datos actuales. Determinar qué
-                cargas de trabajo migrar y en qué orden.
-              </li>
-              <li>
-                <strong>Elección de un proveedor de nube:</strong> Seleccionar
-                un proveedor de nube que mejor se adapte a sus necesidades (por
-                ejemplo, AWS, Azure, Google Cloud).
-              </li>
-              <li>
-                <strong>Preparación del entorno de destino:</strong> Configurar
-                el entorno en la nube, incluyendo redes, seguridad y controles
-                de acceso.
-              </li>
-              <li>
-                <strong>Migración de datos:</strong> Transferir datos a la nube,
-                asegurando la integridad y seguridad durante todo el proceso.
-              </li>
-              <li>
-                <strong>Migración de aplicaciones:</strong> Mover aplicaciones a
-                la nube, potencialmente refactorizándolas para aprovechar las
-                características nativas de la nube.
-              </li>
-              <li>
-                <strong>Pruebas y validación:</strong> Probar exhaustivamente
-                las aplicaciones y datos migrados para asegurar que todo
-                funcione como se espera.
-              </li>
-              <li>
-                <strong>Cambio y puesta en marcha:</strong> Cambiar de la
-                infraestructura local a la infraestructura en la nube, a menudo
-                realizado en fases para minimizar la interrupción.
-              </li>
-              <li>
-                <strong>Optimización:</strong> Monitorear y optimizar
-                continuamente los recursos en la nube para el rendimiento y la
-                eficiencia de costos.
-              </li>
+            <ol className="ml-6 relative border-l border-gray-200 dark:border-gray-700">
+              {[
+                {
+                  title: 'Evaluación y planificación',
+                  description:
+                    'Evaluar la infraestructura, aplicaciones y datos actuales. Determinar qué cargas de trabajo migrar y en qué orden.',
+                },
+                {
+                  title: 'Elección de un proveedor de nube',
+                  description:
+                    'Seleccionar un proveedor de nube que mejor se adapte a sus necesidades (por ejemplo, AWS, Azure, Google Cloud).',
+                },
+                {
+                  title: 'Preparación del entorno de destino',
+                  description:
+                    'Configurar el entorno en la nube, incluyendo redes, seguridad y controles de acceso.',
+                },
+                {
+                  title: 'Migración de datos',
+                  description:
+                    'Transferir datos a la nube, asegurando la integridad y seguridad durante todo el proceso.',
+                },
+                {
+                  title: 'Migración de aplicaciones',
+                  description:
+                    'Mover aplicaciones a la nube, potencialmente refactorizándolas para aprovechar las características nativas de la nube.',
+                },
+                {
+                  title: 'Pruebas y validación',
+                  description:
+                    'Probar exhaustivamente las aplicaciones y datos migrados para asegurar que todo funcione como se espera.',
+                },
+                {
+                  title: 'Cambio y puesta en marcha',
+                  description:
+                    'Cambiar de la infraestructura local a la infraestructura en la nube, a menudo realizado en fases para minimizar la interrupción.',
+                },
+                {
+                  title: 'Optimización',
+                  description:
+                    'Monitorear y optimizar continuamente los recursos en la nube para el rendimiento y la eficiencia de costos.',
+                },
+              ].map((step, index) => (
+                <motion.li
+                  key={index}
+                  className="mb-8 ml-8"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <span className="absolute flex items-center justify-center w-8 h-8 bg-blue-100 rounded-full -left-4 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
+                    <svg
+                      aria-hidden="true"
+                      className="w-5 h-5 text-blue-800 dark:text-blue-300"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      ></path>
+                    </svg>
+                  </span>
+                  <h3 className="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">
+                    {step.title}
+                  </h3>
+                  <p className="text-base font-normal text-gray-500 dark:text-gray-400">
+                    {step.description}
+                  </p>
+                </motion.li>
+              ))}
             </ol>
           </CardContent>
         </Card>
       </motion.div>
 
       <motion.div variants={itemVariants}>
-        <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+        <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm overflow-hidden">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-blue-600 dark:text-blue-400">
               Estrategias de Migración
@@ -510,50 +725,52 @@ function MigracionNube() {
           </CardHeader>
           <CardContent>
             <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="rehost">
-                <AccordionTrigger>Realojar (Lift and Shift)</AccordionTrigger>
-                <AccordionContent>
-                  Mover aplicaciones y datos a la nube tal como están, sin
-                  cambios significativos. Este es el método más rápido pero no
-                  aprovecha al máximo las capacidades de la nube.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="refactor">
-                <AccordionTrigger>
-                  Refactorizar (Lift, Tinker, and Shift)
-                </AccordionTrigger>
-                <AccordionContent>
-                  Realizar algunas optimizaciones para aprovechar las
-                  capacidades de la nube, pero manteniendo la arquitectura
-                  central igual. Modificar aplicaciones para aprovechar mejor
-                  las características nativas de la nube.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="revise">
-                <AccordionTrigger>Revisar</AccordionTrigger>
-                <AccordionContent>
-                  Modificar o extender la base de código existente para soportar
-                  los requisitos de modernización heredados, luego usar las
-                  opciones de realojar o refactorizar para implementar en la
-                  nube.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="rebuild">
-                <AccordionTrigger>Reconstruir</AccordionTrigger>
-                <AccordionContent>
-                  Rediseñar la aplicación desde cero utilizando características
-                  nativas de la nube. Este es el método más largo pero permite
-                  el mejor uso de las capacidades nativas de la nube.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="replace">
-                <AccordionTrigger>Reemplazar</AccordionTrigger>
-                <AccordionContent>
-                  Descartar la aplicación antigua por completo y cambiar a una
-                  oferta SaaS ya construida que proporcione una funcionalidad
-                  similar.
-                </AccordionContent>
-              </AccordionItem>
+              {[
+                {
+                  value: 'rehost',
+                  title: 'Realojar (Lift and Shift)',
+                  content:
+                    'Mover aplicaciones y datos a la nube tal como están, sin cambios significativos. Este es el método más rápido pero no aprovecha al máximo las capacidades de la nube.',
+                },
+                {
+                  value: 'refactor',
+                  title: 'Refactorizar (Lift, Tinker, and Shift)',
+                  content:
+                    'Realizar algunas optimizaciones para aprovechar las capacidades de la nube, pero manteniendo la arquitectura central igual. Modificar aplicaciones para aprovechar mejor las características nativas de la nube.',
+                },
+                {
+                  value: 'revise',
+                  title: 'Revisar',
+                  content:
+                    'Modificar o extender la base de código existente para soportar los requisitos de modernización heredados, luego usar las opciones de realojar o refactorizar para implementar en la nube.',
+                },
+                {
+                  value: 'rebuild',
+                  title: 'Reconstruir',
+                  content:
+                    'Rediseñar la aplicación desde cero utilizando características nativas de la nube. Este es el método más largo pero permite el mejor uso de las capacidades nativas de la nube.',
+                },
+                {
+                  value: 'replace',
+                  title: 'Reemplazar',
+                  content:
+                    'Descartar la aplicación antigua por completo y cambiar a una oferta SaaS ya construida que proporcione una funcionalidad similar.',
+                },
+              ].map((item, index) => (
+                <AccordionItem value={item.value} key={index}>
+                  <AccordionTrigger>{item.title}</AccordionTrigger>
+                  <AccordionContent>
+                    <motion.p
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 }}
+                      className="text-gray-700 dark:text-gray-300"
+                    >
+                      {item.content}
+                    </motion.p>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
             </Accordion>
           </CardContent>
         </Card>
@@ -571,7 +788,7 @@ function AdopcionNube() {
       className="space-y-8"
     >
       <motion.div variants={itemVariants}>
-        <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+        <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm overflow-hidden">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-blue-600 dark:text-blue-400">
               Marco de Adopción de la Nube (CAF)
@@ -590,27 +807,53 @@ function AdopcionNube() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <h4 className="font-semibold mb-2">Componentes Clave:</h4>
-                <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
-                  <li>Estrategia y Plan</li>
-                  <li>Preparación</li>
-                  <li>Adopción</li>
-                  <li>Gobernanza</li>
-                  <li>Gestión</li>
+                <ul className="space-y-2">
+                  {[
+                    'Estrategia y Plan',
+                    'Preparación',
+                    'Adopción',
+                    'Gobernanza',
+                    'Gestión',
+                  ].map((item, index) => (
+                    <motion.li
+                      key={index}
+                      className="flex items-center space-x-2 text-gray-700 dark:text-gray-300"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <ChevronRight className="h-4 w-4 text-blue-500" />
+                      <span>{item}</span>
+                    </motion.li>
+                  ))}
                 </ul>
               </div>
               <div>
                 <h4 className="font-semibold mb-2 text-green-600 dark:text-green-400">
                   Beneficios:
                 </h4>
-                <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
-                  <li>Acelera la adopción de la nube</li>
-                  <li>Alinea los objetivos de negocio y TI</li>
-                  <li>Proporciona una metodología consistente</li>
-                  <li>Mejora la excelencia operativa</li>
-                  <li>Identifica deficiencias en habilidades y procesos</li>
-                  <li>Ayuda a mitigar riesgos</li>
-                  <li>Gestiona costes</li>
-                  <li>Garantiza el cumplimiento normativo</li>
+                <ul className="space-y-2">
+                  {[
+                    'Acelera la adopción de la nube',
+                    'Alinea los objetivos de negocio y TI',
+                    'Proporciona una metodología consistente',
+                    'Mejora la excelencia operativa',
+                    'Identifica deficiencias en habilidades y procesos',
+                    'Ayuda a mitigar riesgos',
+                    'Gestiona costes',
+                    'Garantiza el cumplimiento normativo',
+                  ].map((item, index) => (
+                    <motion.li
+                      key={index}
+                      className="flex items-center space-x-2 text-gray-700 dark:text-gray-300"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <ChevronUp className="h-4 w-4 text-green-500" />
+                      <span>{item}</span>
+                    </motion.li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -619,7 +862,7 @@ function AdopcionNube() {
       </motion.div>
 
       <motion.div variants={itemVariants}>
-        <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+        <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm overflow-hidden">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-blue-600 dark:text-blue-400">
               Mejores prácticas para la adopción de la nube
@@ -627,69 +870,61 @@ function AdopcionNube() {
           </CardHeader>
           <CardContent>
             <ul className="space-y-4 text-gray-700 dark:text-gray-300">
-              <li className="flex items-start">
-                <ArrowRight className="h-5 w-5 text-blue-500 mr-2 mt-1" />
-                <span>
-                  <strong>Comenzar en pequeño:</strong> Empezar con cargas de
-                  trabajo no críticas para ganar experiencia y confianza.
-                </span>
-              </li>
-              <li className="flex items-start">
-                <ArrowRight className="h-5 w-5 text-blue-500 mr-2 mt-1" />
-                <span>
-                  <strong>Invertir en formación:</strong> Asegurar que su equipo
-                  tenga las habilidades necesarias para gestionar entornos en la
-                  nube.
-                </span>
-              </li>
-              <li className="flex items-start">
-                <ArrowRight className="h-5 w-5 text-blue-500 mr-2 mt-1" />
-                <span>
-                  <strong>Implementar medidas de seguridad sólidas:</strong>{' '}
-                  Utilizar encriptación, controles de acceso y auditorías de
-                  seguridad regulares.
-                </span>
-              </li>
-              <li className="flex items-start">
-                <ArrowRight className="h-5 w-5 text-blue-500 mr-2 mt-1" />
-                <span>
-                  <strong>Monitorear costos:</strong> Implementar herramientas
-                  de gestión de costos para evitar gastos inesperados.
-                </span>
-              </li>
-              <li className="flex items-start">
-                <ArrowRight className="h-5 w-5 text-blue-500 mr-2 mt-1" />
-                <span>
-                  <strong>Automatizar donde sea posible:</strong> Utilizar
-                  infraestructura como código y pipelines de despliegue
-                  automatizados.
-                </span>
-              </li>
-              <li className="flex items-start">
-                <ArrowRight className="h-5 w-5 text-blue-500 mr-2 mt-1" />
-                <span>
-                  <strong>
-                    Planificar para la recuperación ante desastres:
-                  </strong>{' '}
-                  Implementar estrategias robustas de respaldo y recuperación.
-                </span>
-              </li>
-              <li className="flex items-start">
-                <ArrowRight className="h-5 w-5 text-blue-500 mr-2 mt-1" />
-                <span>
-                  <strong>Evaluar la preparación:</strong> Revisar las
-                  capacidades tecnológicas, las necesidades del negocio y las
-                  habilidades del equipo antes de la migración.
-                </span>
-              </li>
-              <li className="flex items-start">
-                <ArrowRight className="h-5 w-5 text-blue-500 mr-2 mt-1" />
-                <span>
-                  <strong>Definir objetivos claros:</strong> Establecer metas
-                  específicas para la migración a la nube, como mejorar la
-                  agilidad o reducir costos.
-                </span>
-              </li>
+              {[
+                {
+                  title: 'Comenzar en pequeño',
+                  description:
+                    'Empezar con cargas de trabajo no críticas para ganar experiencia y confianza.',
+                },
+                {
+                  title: 'Invertir en formación',
+                  description:
+                    'Asegurar que su equipo tenga las habilidades necesarias para gestionar entornos en la nube.',
+                },
+                {
+                  title: 'Implementar medidas de seguridad sólidas',
+                  description:
+                    'Utilizar encriptación, controles de acceso y auditorías de seguridad regulares.',
+                },
+                {
+                  title: 'Monitorear costos',
+                  description:
+                    'Implementar herramientas de gestión de costos para evitar gastos inesperados.',
+                },
+                {
+                  title: 'Automatizar donde sea posible',
+                  description:
+                    'Utilizar infraestructura como código y pipelines de despliegue automatizados.',
+                },
+                {
+                  title: 'Planificar para la recuperación ante desastres',
+                  description:
+                    'Implementar estrategias robustas de respaldo y recuperación.',
+                },
+                {
+                  title: 'Evaluar la preparación',
+                  description:
+                    'Revisar las capacidades tecnológicas, las necesidades del negocio y las habilidades del equipo antes de la migración.',
+                },
+                {
+                  title: 'Definir objetivos claros',
+                  description:
+                    'Establecer metas específicas para la migración a la nube, como mejorar la agilidad o reducir costos.',
+                },
+              ].map((item, index) => (
+                <motion.li
+                  key={index}
+                  className="flex items-start space-x-2"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <ArrowRight className="h-5 w-5 text-blue-500 mt-1" />
+                  <div>
+                    <strong>{item.title}:</strong> {item.description}
+                  </div>
+                </motion.li>
+              ))}
             </ul>
           </CardContent>
         </Card>
@@ -699,108 +934,107 @@ function AdopcionNube() {
 }
 
 function ServiceModelComparison() {
-  const layers = [
-    { name: "Applications", icon: <Monitor className="w-4 h-4" /> },
-    { name: "Data", icon: <Database className="w-4 h-4" /> },
-    { name: "Runtime", icon: <Terminal className="w-4 h-4" /> },
-    { name: "Middleware", icon: <Package className="w-4 h-4" /> },
-    { name: "O/S", icon: <Layers className="w-4 h-4" /> },
-    { name: "Virtualization", icon: <Cloud className="w-4 h-4" /> },
-    { name: "Servers", icon: <Server className="w-4 h-4" /> },
-    { name: "Storage", icon: <HardDrive className="w-4 h-4" /> },
-    { name: "Networking", icon: <Network className="w-4 h-4" /> }
-  ]
+  const [selectedModels, setSelectedModels] = useState<Model[]>([
+    'On-site',
+    'IaaS',
+    'PaaS',
+    'SaaS',
+  ])
 
-  const models = ["On-site", "IaaS", "PaaS", "SaaS"]
-
-  const responsibilities: { [key: string]: { [key: string]: string } } = {
-    "On-site": {
-      "Applications": "you",
-      "Data": "you",
-      "Runtime": "you",
-      "Middleware": "you",
-      "O/S": "you",
-      "Virtualization": "you",
-      "Servers": "you",
-      "Storage": "you",
-      "Networking": "you"
-    },
-    "IaaS": {
-      "Applications": "you",
-      "Data": "you",
-      "Runtime": "you",
-      "Middleware": "you",
-      "O/S": "you",
-      "Virtualization": "provider",
-      "Servers": "provider",
-      "Storage": "provider",
-      "Networking": "provider"
-    },
-    "PaaS": {
-      "Applications": "you",
-      "Data": "you",
-      "Runtime": "provider",
-      "Middleware": "provider",
-      "O/S": "provider",
-      "Virtualization": "provider",
-      "Servers": "provider",
-      "Storage": "provider",
-      "Networking": "provider"
-    },
-    "SaaS": {
-      "Applications": "provider",
-      "Data": "provider",
-      "Runtime": "provider",
-      "Middleware": "provider",
-      "O/S": "provider",
-      "Virtualization": "provider",
-      "Servers": "provider",
-      "Storage": "provider",
-      "Networking": "provider"
-    }
+  const toggleModel = (model: Model) => {
+    setSelectedModels((prev) => {
+      if (prev.includes(model)) {
+        return prev.length === 1 ? prev : prev.filter((m) => m !== model)
+      }
+      return [...prev, model].sort(
+        (a, b) => models.indexOf(a) - models.indexOf(b),
+      )
+    })
   }
 
   return (
-      <Card className="p-6 w-full max-w-7xl mx-auto bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
-        <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-            Comparación de Modelos de Servicio en la Nube
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {models.map((model) => (
-              <div key={model} className="space-y-2">
-                <h3 className="text-lg font-semibold text-center mb-4">{model}</h3>
-                {layers.map((layer) => (
-                  <div
-                    key={`${model}-${layer.name}`}
-                    className={`p-2 rounded-md text-sm flex items-center justify-between ${
-                      responsibilities[model][layer.name] === "you"
-                        ? "bg-teal-500 dark:bg-teal-600 text-white"
-                        : "bg-red-500 dark:bg-red-600 text-white"
-                    }`}
-                  >
-                    <span className="flex items-center gap-2">
-                      {layer.icon}
-                      {layer.name}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            ))}
+    <Card className="bg-white dark:bg-gray-800/80 shadow-md dark:shadow-none overflow-hidden">
+      <CardHeader>
+        <CardTitle className="text-3xl font-bold text-blue-600 dark:text-blue-400">
+          Comparación de modelos de servicio en la nube
+        </CardTitle>
+        <CardDescription className="text-gray-600 dark:text-gray-400">
+          Seleccione los modelos para comparar sus responsabilidades
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        <div className="flex flex-wrap justify-center gap-2">
+          {models.map((model) => (
+            <Button
+              key={model}
+              onClick={() => toggleModel(model)}
+              variant={selectedModels.includes(model) ? 'default' : 'outline'}
+              className={`
+                px-4 py-2 rounded-lg
+                ${
+                  selectedModels.includes(model)
+                    ? 'bg-blue-100 text-blue-700 border-blue-300 dark:bg-blue-500/20 dark:text-blue-300 dark:border-blue-500/50 hover:bg-blue-200'
+                    : 'bg-gray-100 text-gray-700 border-gray-300 dark:bg-slate-800/50 dark:text-slate-400 dark:border-slate-700'
+                }
+              `}
+            >
+              {model}
+            </Button>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {models.map((model) => (
+            <motion.div
+              key={model}
+              initial={false}
+              animate={{
+                opacity: selectedModels.includes(model) ? 1 : 0.3,
+                scale: selectedModels.includes(model) ? 1 : 0.95,
+              }}
+              className="space-y-2"
+            >
+              <h3 className="text-center text-lg font-semibold">{model}</h3>
+              {layers.map((layer) => (
+                <motion.div
+                  key={`${model}-${layer.name}`}
+                  initial={false}
+                  animate={{
+                    opacity: selectedModels.includes(model) ? 1 : 0.5,
+                    scale: selectedModels.includes(model) ? 1 : 0.98,
+                  }}
+                  className={`
+                    flex items-center gap-2 p-3 rounded-lg
+                    ${
+                      responsibilities[model][layer.name] === 'you'
+                        ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300'
+                        : 'bg-red-100 text-red-700 dark:bg-red-500/20 dark:text-red-300'
+                    }
+                  `}
+                >
+                  <layer.icon className="w-4 h-4" aria-hidden="true" />
+                  <span className="text-sm">{layer.name}</span>
+                </motion.div>
+              ))}
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-emerald-100 dark:bg-emerald-500/20 rounded-sm border border-emerald-300 dark:border-emerald-500/30" />
+            <span className="text-emerald-700 dark:text-emerald-300">
+              Usted gestiona
+            </span>
           </div>
-          <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center text-sm">
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-teal-500 dark:bg-teal-600 rounded-sm" />
-              <span>Usted gestiona</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-red-500 dark:bg-red-600 rounded-sm" />
-              <span>El proveedor de servicios gestiona</span>
-            </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-red-100 dark:bg-red-500/20 rounded-sm border border-red-300 dark:border-red-500/30" />
+            <span className="text-red-700 dark:text-red-300">
+              El proveedor de servicios gestiona
+            </span>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </CardContent>
+    </Card>
   )
 }

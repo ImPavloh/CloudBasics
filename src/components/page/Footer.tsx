@@ -11,35 +11,43 @@ export default function Footer() {
           <div className="text-sm text-gray-600 dark:text-gray-400">
             © 2024 CloudBasics
           </div>
-          <div className="flex space-x-6">
-            <Link
-              href="https://github.com/impavloh"
-              className="text-gray-400 hover:text-gray-900 dark:hover:text-gray-300 transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="sr-only">GitHub</span>
-              <Github className="h-6 w-6" aria-hidden="true" />
-            </Link>
-            <Link
-              href="https://x.com/impavloh"
-              className="text-gray-400 hover:text-blue-500 dark:hover:text-gray-300 transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="sr-only">Twitter</span>
-              <Twitter className="h-6 w-6" aria-hidden="true" />
-            </Link>
-            <Link
-              href="https://linkedin.com/in/impavloh"
-              className="text-gray-400 hover:text-blue-700 dark:hover:text-gray-300 transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="sr-only">LinkedIn</span>
-              <Linkedin className="h-6 w-6" aria-hidden="true" />
-            </Link>
-          </div>
+          <nav aria-label="Redes sociales">
+            <ul className="flex space-x-6">
+              <li>
+                <Link
+                  href="https://github.com/impavloh"
+                  className="text-gray-400 hover:text-gray-900 dark:hover:text-gray-300 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="sr-only">GitHub</span>
+                  <Github className="h-6 w-6" aria-hidden="true" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://x.com/impavloh"
+                  className="text-gray-400 hover:text-blue-500 dark:hover:text-gray-300 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="sr-only">Twitter</span>
+                  <Twitter className="h-6 w-6" aria-hidden="true" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://linkedin.com/in/impavloh"
+                  className="text-gray-400 hover:text-blue-700 dark:hover:text-gray-300 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="sr-only">LinkedIn</span>
+                  <Linkedin className="h-6 w-6" aria-hidden="true" />
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </footer>

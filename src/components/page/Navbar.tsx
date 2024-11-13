@@ -87,7 +87,7 @@ function NavLink({
   mobile?: boolean
 }) {
   const baseClasses =
-    'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md text-sm font-medium'
+    'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white rounded-md text-sm font-medium transition-colors duration-300'
   const mobileClasses = mobile ? 'block px-3 py-2 text-base' : 'px-3 py-2'
 
   return (
@@ -104,7 +104,7 @@ function GithubLink({ mobile = false }: { mobile?: boolean }) {
     ? ''
     : 'px-4 py-2 border border-transparent shadow-sm text-white bg-blue-600 hover:bg-blue-700'
   const mobileClasses = mobile
-    ? 'text-gray-400 hover:text-black dark:hover:text-gray-300'
+    ? 'text-gray-400 hover:text-gray-900 dark:hover:text-white'
     : ''
 
   return (
