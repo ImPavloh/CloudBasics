@@ -4,7 +4,7 @@ import { Book, Wrench, Cloud, Compass, FileText } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import Footer from '../components/page/Footer'
+import Footer from '@/components/page/Footer'
 
 export default function Home() {
   const containerVariants = {

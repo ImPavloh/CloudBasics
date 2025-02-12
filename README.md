@@ -18,7 +18,7 @@
 - [x] Computación en la nube
 - [x] Economía y facturación
 - [x] Infraestructura de la nube
-- [ ] Seguridad (Próximamente)
+- [x] Seguridad
 - [ ] Redes (Próximamente)
 - [ ] Servicios de cómputo (Próximamente)
 - [ ] Almacenamiento (Próximamente)

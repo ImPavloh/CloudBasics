@@ -56,7 +56,7 @@ export const topics: Topic[] = [
     description: 'Seguridad y conformidad',
     category: 'Seguridad',
     component: SeguridadEnLaNube,
-    available: false,
+    available: true,
   },
   {
     id: 'networking',
