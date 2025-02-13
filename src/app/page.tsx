@@ -75,9 +75,9 @@ export default function Home() {
           <span className="block font-bold text-gray-900 dark:text-white text-xl mb-4">
             Cloud Basics
           </span>
-          <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
+          <h1 className="tracking-tight font-extrabold text-gray-900 dark:text-white">
             <motion.span
-              className="block"
+              className="block text-2xl sm:text-3xl md:text-4xl"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
@@ -85,7 +85,7 @@ export default function Home() {
               Fundamentos de
             </motion.span>
             <motion.span
-              className="block text-blue-600 dark:text-blue-400"
+              className="block text-blue-600 dark:text-blue-400 text-4xl sm:text-5xl md:text-6xl"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}

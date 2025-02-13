@@ -9,16 +9,9 @@ import {
   Globe,
   Shield,
   Lock,
-  Layers,
   Terminal,
-  Package,
   HardDrive,
   Network,
-  Monitor,
-  ChevronRight,
-  ChevronDown,
-  ChevronUp,
-  LucideIcon,
 } from 'lucide-react'
 import {
   Card,
@@ -27,14 +20,7 @@ import {
   CardTitle,
   CardDescription,
 } from '@/components/ui/card'
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Button } from '@/components/ui/button'
 
 const containerVariants = {
   hidden: { opacity: 0 },

@@ -2,7 +2,6 @@
 
 import * as React from 'react'
 import * as TabsPrimitive from '@radix-ui/react-tabs'
-
 import { cn } from '@/lib/utils'
 
 const Tabs = TabsPrimitive.Root
@@ -11,15 +10,18 @@ const TabsList = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.List>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
 >(({ className, ...props }, ref) => (
-  <TabsPrimitive.List
-    ref={ref}
-    className={cn(
-      'flex flex-wrap justify-start items-center rounded-full bg-neutral-100 p-1 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400 border dark:border-neutral-600',
-      'max-w-full overflow-hidden',
-      className,
-    )}
-    {...props}
-  />
+  <div className="relative overflow-hidden">
+    <TabsPrimitive.List
+      ref={ref}
+      className={cn(
+        'inline-flex w-full gap-1 overflow-x-auto pb-3',
+        'hide-scrollbar',
+        'rounded-lg bg-neutral-100 p-1.5 dark:bg-neutral-900',
+        className
+      )}
+      {...props}
+    />
+  </div>
 ))
 TabsList.displayName = TabsPrimitive.List.displayName
 
@@ -30,9 +32,17 @@ const TabsTrigger = React.forwardRef<
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      'inline-flex items-center justify-center whitespace-nowrap rounded-lg px-3 py-1.5 text-sm font-medium ring-offset-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white dark:hover:bg-blue-600/50 data-[state=active]:dark:hover:bg-blue-600/80',
-      'flex-shrink-0 m-0.5',
-      className,
+      'relative flex-shrink-0 truncate rounded-lg px-4 py-2 text-sm font-medium',
+      'transition-colors duration-200 ease-in-out',
+      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400',
+      'hover:bg-neutral-200/60 dark:hover:bg-neutral-800',
+      'data-[state=active]:bg-white data-[state=active]:shadow-sm',
+      'data-[state=active]:text-neutral-900 dark:data-[state=active]:bg-neutral-800',
+      'dark:data-[state=active]:text-neutral-100 dark:data-[state=active]:shadow-neutral-700',
+      'min-w-[100px] text-center',
+      'border border-transparent data-[state=active]:border-neutral-300',
+      'dark:border-neutral-700 dark:data-[state=active]:border-neutral-600',
+      className
     )}
     {...props}
   />
@@ -46,8 +56,9 @@ const TabsContent = React.forwardRef<
   <TabsPrimitive.Content
     ref={ref}
     className={cn(
-      'mt-2 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 dark:ring-offset-neutral-950 dark:focus-visible:ring-neutral-300',
-      className,
+      'mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400',
+      'animate-in fade-in duration-300',
+      className
     )}
     {...props}
   />

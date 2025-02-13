@@ -9,40 +9,40 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
           <div className="text-sm text-gray-600 dark:text-gray-400">
-            © 2024 CloudBasics
+            © 2025 CloudBasics
           </div>
           <nav aria-label="Redes sociales">
             <ul className="flex space-x-6">
               <li>
                 <Link
                   href="https://github.com/impavloh"
-                  className="text-gray-400 hover:text-gray-900 dark:hover:text-gray-300 transition-colors"
+                  className="text-gray-400 hover:text-gray-900 dark:hover:text-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="GitHub"
                 >
-                  <span className="sr-only">GitHub</span>
                   <Github className="h-6 w-6" aria-hidden="true" />
                 </Link>
               </li>
               <li>
                 <Link
                   href="https://x.com/impavloh"
-                  className="text-gray-400 hover:text-blue-500 dark:hover:text-gray-300 transition-colors"
+                  className="text-gray-400 hover:text-blue-500 dark:hover:text-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Twitter"
                 >
-                  <span className="sr-only">Twitter</span>
                   <Twitter className="h-6 w-6" aria-hidden="true" />
                 </Link>
               </li>
               <li>
                 <Link
                   href="https://linkedin.com/in/impavloh"
-                  className="text-gray-400 hover:text-blue-700 dark:hover:text-gray-300 transition-colors"
+                  className="text-gray-400 hover:text-blue-700 dark:hover:text-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-700"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="LinkedIn"
                 >
-                  <span className="sr-only">LinkedIn</span>
                   <Linkedin className="h-6 w-6" aria-hidden="true" />
                 </Link>
               </li>

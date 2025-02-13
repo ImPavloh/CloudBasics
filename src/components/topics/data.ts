@@ -65,7 +65,7 @@ export const topics: Topic[] = [
     description: 'Nube privada virtual',
     category: 'Técnico',
     component: RedesEnLaNube,
-    available: false,
+    available: true,
   },
   {
     id: 'compute',
@@ -74,7 +74,7 @@ export const topics: Topic[] = [
     description: 'Casos de uso',
     category: 'Servicios',
     component: ServiciosDeComputacion,
-    available: false,
+    available: true,
   },
   {
     id: 'storage',

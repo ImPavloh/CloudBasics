@@ -6,15 +6,14 @@ interface TemaProps {
   params: { id: string }
 }
 
-export default async function Tema({ params }: TemaProps) {
-  const { id } = params
-  const topic = topics.find((t) => t.id === id)
+export default function Tema({ params }: TemaProps) {
+  const topic = topics.find((t) => t.id === params.id)
 
   if (!topic) {
-    return notFound() // tal vez crear un page nuevo para informar que aún no está disponible
+    notFound() // tal vez crear un page nuevo para informar que aún no está disponible
   }
 
-  return <Explorador initialTopicId={id} />
+  return <Explorador initialTopicId={params.id} />
 }
 
 export async function generateStaticParams() {

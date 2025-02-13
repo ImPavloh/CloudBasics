@@ -41,7 +41,6 @@ export default function Temas() {
   return (
     <div className="min-h-screen">
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8">
-        <Header />
         <CategoryFilter
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
@@ -52,27 +51,6 @@ export default function Temas() {
         <TopicGrid topics={filteredTopics} />
       </main>
     </div>
-  )
-}
-
-function Header() {
-  return (
-    <motion.div
-      className="text-center mb-8 sm:mb-10"
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-    >
-      <h1 className="text-base text-blue-600 dark:text-blue-400 font-semibold tracking-wide uppercase">
-        Temas
-      </h1>
-      <p className="mt-2 text-2xl sm:text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white">
-        Cloud Computing
-      </p>
-      <p className="mt-4 max-w-2xl text-lg sm:text-xl text-gray-600 dark:text-gray-300 mx-auto">
-        Explora los conceptos fundamentales del Cloud Computing.
-      </p>
-    </motion.div>
   )
 }
 

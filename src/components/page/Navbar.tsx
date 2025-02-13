@@ -10,7 +10,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <nav className="fixed top-4 w-11/12 max-w-7xl rounded-lg z-50 bg-white dark:bg-gray-800 shadow-lg shadow-black/50 border border-gray-700 inset-x-0 mx-auto">
+    <nav className="fixed top-4 w-11/12 max-w-7xl rounded-lg z-50 bg-white dark:bg-gray-800 shadow-md shadow-black/40 border border-gray-700 inset-x-0 mx-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
@@ -42,6 +42,7 @@ export default function Navbar() {
               className="bg-gray-100 dark:bg-gray-700 inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
               aria-controls="mobile-menu"
               aria-expanded={isOpen}
+              aria-label="Abrir menú principal"
             >
               <span className="sr-only">Abrir menú principal</span>
               {isOpen ? (
