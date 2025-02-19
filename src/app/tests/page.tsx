@@ -1,432 +1,648 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import Head from 'next/head'
-import { tests, Question } from '../data/tests'
+import { tests } from '../data/tests'
+import {
+  AlertCircle,
+  Clock,
+  Award,
+  BarChart,
+  ChevronLeft,
+  ChevronRight,
+  Eye,
+  RotateCcw,
+  Home,
+} from 'lucide-react'
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from '@/components/ui/card'
+import { Alert, AlertDescription } from '@/components/ui/alert'
+import { Label } from '@/components/ui/label'
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from '@/components/ui/select'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Button } from '@/components/ui/button'
+
+type TimerType = 'stopwatch' | 'countdown'
+type QuestionState = 'correct' | 'incorrect' | 'unanswered' | 'skipped'
+type QuizMode = 'practice' | 'exam'
+
+interface Question {
+  question: string
+  options: string[]
+  correctAnswer: string
+  explanation?: string
+}
+
+interface QuizState {
+  answer: string | null
+  state: QuestionState
+  timeSpent?: number
+}
+
+interface QuizConfig {
+  testType: string
+  questionCount: number
+  timerType: TimerType
+  countdownTime: number
+  quizMode: QuizMode
+  showExplanations: boolean
+  allowSkip: boolean
+  shuffleQuestions: boolean
+  showTimer: boolean
+}
+
+const DEFAULT_COUNTDOWN = 300
+const DEFAULT_CONFIG: QuizConfig = {
+  testType: 'seguridad',
+  questionCount: 10,
+  timerType: 'stopwatch',
+  countdownTime: DEFAULT_COUNTDOWN,
+  quizMode: 'practice',
+  shuffleQuestions: true,
+  showExplanations: false,
+  allowSkip: true,
+  showTimer: true,
+}
+
+type Stage = 'config' | 'quiz' | 'review' | 'result'
 
 const QuizApp = () => {
-  const [selectedTest, setSelectedTest] = useState<string>('seguridad')
-  const [questionCount, setQuestionCount] = useState<number>(10)
-  const [timerType, setTimerType] = useState<'stopwatch' | 'countdown'>(
-    'stopwatch',
-  )
-  const [countdownTime, setCountdownTime] = useState<number>(300)
-
-  const [quizStarted, setQuizStarted] = useState<boolean>(false)
+  const [stage, setStage] = useState<Stage>('config')
+  const [config, setConfig] = useState<QuizConfig>(DEFAULT_CONFIG)
   const [questions, setQuestions] = useState<Question[]>([])
+  const [quizStates, setQuizStates] = useState<QuizState[]>([])
   const [currentQuestion, setCurrentQuestion] = useState<number>(0)
-  const [userAnswers, setUserAnswers] = useState<(string | null)[]>([])
-  const [questionStates, setQuestionStates] = useState<
-    ('correct' | 'incorrect' | 'unanswered')[]
-  >([])
   const [startTime, setStartTime] = useState<number>(0)
-  const [timerDisplay, setTimerDisplay] = useState<string>('Tiempo: 0:00')
-  const [timerInterval, setTimerInterval] = useState<NodeJS.Timeout | null>(
-    null,
-  )
-  const [isReviewMode, setIsReviewMode] = useState<boolean>(false)
+  const [endTime, setEndTime] = useState<number>(0)
+  const [timerDisplay, setTimerDisplay] = useState<string>('00:00')
+  const timerRef = useRef<number | null>(null)
 
-  const loadQuestions = (test: string) => {
-    const testQuestions = tests[test] || []
-    const shuffled = testQuestions
-      .sort(() => Math.random() - 0.5)
-      .slice(0, questionCount)
-    setQuestions(shuffled)
-    setUserAnswers(Array(shuffled.length).fill(null))
-    setQuestionStates(Array(shuffled.length).fill('unanswered'))
+  const initializeQuiz = useCallback(() => {
+    const testQuestions = tests[config.testType] || []
+    const selectedQuestions = config.shuffleQuestions
+      ? [...testQuestions].sort(() => Math.random() - 0.5)
+      : testQuestions
+
+    const finalQuestions = selectedQuestions.slice(
+      0,
+      Math.min(config.questionCount, selectedQuestions.length),
+    )
+
+    setQuestions(finalQuestions)
+    setQuizStates(
+      finalQuestions.map(() => ({
+        answer: null,
+        state: 'unanswered' as QuestionState,
+        timeSpent: 0,
+      })),
+    )
     setCurrentQuestion(0)
     setStartTime(Date.now())
-    if (timerInterval) clearInterval(timerInterval)
-  }
 
-  useEffect(() => {
-    loadQuestions(selectedTest)
-  }, [selectedTest, questionCount, timerType])
+    if (config.timerType === 'countdown') {
+      setEndTime(Date.now() + config.countdownTime * 1000)
+    }
+  }, [config])
 
-  useEffect(() => {
-    if (quizStarted) {
-      if (timerInterval) clearInterval(timerInterval)
-      if (timerType === 'countdown') {
-        let timeLeft = countdownTime
-        const interval = setInterval(() => {
-          timeLeft -= 1
-          if (timeLeft < 0) {
-            clearInterval(interval)
-            showSummary()
-          } else {
-            setTimerDisplay(
-              `Tiempo: ${Math.floor(timeLeft / 60)}:${String(
-                timeLeft % 60,
-              ).padStart(2, '0')}`,
-            )
-          }
-        }, 1000)
-        setTimerInterval(interval)
-      } else {
-        const interval = setInterval(() => {
-          const seconds = Math.floor((Date.now() - startTime) / 1000)
-          setTimerDisplay(
-            `Tiempo: ${Math.floor(seconds / 60)}:${String(
-              seconds % 60,
-            ).padStart(2, '0')}`,
-          )
-        }, 1000)
-        setTimerInterval(interval)
+  const calculateTime = useCallback(() => {
+    if (config.timerType === 'stopwatch') {
+      const seconds = Math.floor((Date.now() - startTime) / 1000)
+      return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(
+        2,
+        '0',
+      )}`
+    }
+
+    if (config.timerType === 'countdown') {
+      const remaining = Math.max(0, Math.floor((endTime - Date.now()) / 1000))
+      if (remaining <= 0 && stage === 'quiz') {
+        finishTest()
+        return '0:00'
       }
+      return `${Math.floor(remaining / 60)}:${String(remaining % 60).padStart(
+        2,
+        '0',
+      )}`
     }
+
+    return '00:00'
+  }, [startTime, endTime, config.timerType, stage])
+
+  useEffect(() => {
+    if (stage !== 'quiz') return
+
+    const interval = window.setInterval(() => {
+      setTimerDisplay(calculateTime())
+    }, 1000)
+    timerRef.current = interval
+
     return () => {
-      if (timerInterval) clearInterval(timerInterval)
+      if (timerRef.current) clearInterval(timerRef.current)
     }
-  }, [quizStarted, timerType, countdownTime, startTime])
+  }, [stage, calculateTime, config.timerType])
 
   const startTest = () => {
-    setQuizStarted(true)
-    setIsReviewMode(false)
-    setStartTime(Date.now())
-    loadQuestions(selectedTest)
+    initializeQuiz()
+    setStage('quiz')
   }
 
-  const selectAnswer = (answer: string) => {
-    if (isReviewMode) return
-    const newUserAnswers = [...userAnswers]
-    newUserAnswers[currentQuestion] = answer
-    setUserAnswers(newUserAnswers)
+  const finishTest = () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current)
+      timerRef.current = null
+    }
+    setStage('result')
+  }
+
+  const handleAnswerSelection = (answer: string) => {
+    if (stage !== 'quiz') return
+
+    const newStates = [...quizStates]
     const currentQ = questions[currentQuestion]
-    const newStates = [...questionStates]
-    newStates[currentQuestion] =
-      answer === currentQ.correctAnswer ? 'correct' : 'incorrect'
-    setQuestionStates(newStates)
-    setTimeout(() => {
-      if (currentQuestion < questions.length - 1) {
-        setCurrentQuestion(currentQuestion + 1)
-      }
-    }, 500)
+    const isCorrect = answer === currentQ.correctAnswer
+
+    newStates[currentQuestion] = {
+      answer,
+      state: isCorrect ? 'correct' : 'incorrect',
+      timeSpent: Math.floor((Date.now() - startTime) / 1000),
+    }
+    setQuizStates(newStates)
   }
 
-  const nextQuestion = () => {
+  const handleSkipQuestion = () => {
+    if (stage !== 'quiz' || !config.allowSkip) return
+
+    const newStates = [...quizStates]
+    newStates[currentQuestion] = {
+      ...newStates[currentQuestion],
+      state: 'skipped',
+    }
+    setQuizStates(newStates)
+
     if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1)
-    } else if (!isReviewMode) {
-      showSummary()
+      setCurrentQuestion((prev) => prev + 1)
     }
   }
 
-  const previousQuestion = () => {
-    if (currentQuestion > 0) setCurrentQuestion(currentQuestion - 1)
+  const stats = {
+    correct: quizStates.filter((s) => s.state === 'correct').length,
+    incorrect: quizStates.filter((s) => s.state === 'incorrect').length,
+    skipped: quizStates.filter((s) => s.state === 'skipped').length,
+    unanswered: quizStates.filter((s) => s.state === 'unanswered').length,
+    progress:
+      (quizStates.filter((s) => s.state !== 'unanswered').length /
+        (questions.length || 1)) *
+        100 || 0,
   }
 
-  const skipQuestion = () => {
-    const newStates = [...questionStates]
-    newStates[currentQuestion] = 'unanswered'
-    setQuestionStates(newStates)
-    const newUserAnswers = [...userAnswers]
-    newUserAnswers[currentQuestion] = null
-    setUserAnswers(newUserAnswers)
-    nextQuestion()
+  const reviewTest = () => {
+    setStage('review')
   }
 
-  const showSummary = () => {
-    if (timerInterval) clearInterval(timerInterval)
-    setQuizStarted(false)
-  }
-
-  const reviewAnswers = () => {
-    setIsReviewMode(true)
-    setCurrentQuestion(0)
-  }
-
-  const restartTest = () => {
-    setQuizStarted(false)
-    loadQuestions(selectedTest)
-    startTest()
+  const repeatTest = () => {
+    initializeQuiz()
+    setStage('quiz')
   }
 
   const newTest = () => {
-    setQuizStarted(false)
+    setConfig(DEFAULT_CONFIG)
+    setQuestions([])
+    setQuizStates([])
+    setCurrentQuestion(0)
+    setStartTime(0)
+    setEndTime(0)
+    setTimerDisplay('00:00')
+    setStage('config')
   }
 
-  return (
-    <div className="mt-24 flex flex-col lg:flex-row p-8 gap-8">
-      <aside className="w-full max-w-sm bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
-        <div className="mb-4">
-          <label
-            htmlFor="test-select"
-            className="font-semibold text-gray-700 dark:text-gray-200"
-          >
-            Seleccionar RA:
-          </label>
-          <select
-            id="test-select"
-            value={selectedTest}
-            onChange={(e) => setSelectedTest(e.target.value)}
-            className="mt-2 w-full p-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200"
-          >
-            <option value="seguridad">Seguridad</option>
-            <option value="redes">Redes</option>
-            <option value="servicios">Servicios</option>
-          </select>
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="questions-count"
-            className="font-semibold text-gray-700 dark:text-gray-200"
-          >
-            Número de preguntas:
-          </label>
-          <select
-            id="questions-count"
-            value={questionCount}
-            onChange={(e) => setQuestionCount(parseInt(e.target.value, 10))}
-            className="mt-2 w-full p-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200"
-          >
-            <option value={10}>10 preguntas</option>
-            <option value={25}>25 preguntas</option>
-            <option value={50}>50 preguntas</option>
-          </select>
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="timer-type"
-            className="font-semibold text-gray-700 dark:text-gray-200"
-          >
-            Tipo de temporizador:
-          </label>
-          <select
-            id="timer-type"
-            value={timerType}
-            onChange={(e) =>
-              setTimerType(e.target.value as 'stopwatch' | 'countdown')
-            }
-            className="mt-2 w-full p-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200"
-          >
-            <option value="stopwatch">Cronómetro</option>
-            <option value="countdown">Cuenta atrás</option>
-          </select>
-        </div>
-        {timerType === 'countdown' && (
-          <div className="mb-4">
-            <label
-              htmlFor="countdown-time"
-              className="font-semibold text-gray-700 dark:text-gray-200"
-            >
-              Tiempo de cuenta atrás:
-            </label>
-            <select
-              id="countdown-time"
-              value={countdownTime}
-              onChange={(e) => setCountdownTime(parseInt(e.target.value, 10))}
-              className="mt-2 w-full p-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200"
-            >
-              <option value={300}>5 minutos</option>
-              <option value={600}>10 minutos</option>
-              <option value={900}>15 minutos</option>
-              <option value={1800}>30 minutos</option>
-              <option value={3600}>1 hora</option>
-            </select>
-          </div>
-        )}
-        {!quizStarted && (
-          <button
-            onClick={startTest}
-            className="w-full py-2 bg-blue-600 text-white rounded-md mt-4 hover:bg-blue-700"
-          >
-            Comenzar test
-          </button>
-        )}
-        {quizStarted && (
-          <>
-            <div className="mt-6 grid grid-cols-5 gap-2">
-              {questions.map((_, idx) => (
-                <button
-                  key={idx}
-                  className={`py-1 rounded-md text-sm ${
-                    idx === currentQuestion
-                      ? 'bg-blue-600 text-white'
-                      : questionStates[idx] === 'correct'
-                      ? 'bg-green-500 text-white'
-                      : questionStates[idx] === 'incorrect'
-                      ? 'bg-red-500 text-white'
-                      : 'bg-yellow-500 text-white'
-                  }`}
-                  onClick={() => setCurrentQuestion(idx)}
+  if (stage === 'config') {
+    return (
+      <div className="mt-16 p-4 md:p-8">
+        <div className="max-w-7xl mx-auto">
+          <Card className="h-full flex flex-col bg-white dark:bg-gray-800 rounded-lg px-4 sm:px-6 py-6 sm:py-8 shadow-lg hover:shadow-xl transition-shadow duration-300 max-w-2xl mx-auto">
+            <CardHeader>
+              <CardTitle className="text-center text-2xl font-bold">
+                Configuración
+              </CardTitle>
+              <CardDescription className="text-center text-sm text-muted-foreground">
+                Personaliza las opciones antes de comenzar el test
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div>
+                <Label htmlFor="testType">Tema del test:</Label>
+                <Select
+                  value={config.testType}
+                  onValueChange={(value) =>
+                    setConfig((prev) => ({ ...prev, testType: value }))
+                  }
                 >
-                  {idx + 1}
-                </button>
-              ))}
-            </div>
-            <div className="mt-4 flex justify-between">
-              <button
-                onClick={showSummary}
-                className="py-2 px-4 bg-gray-600 text-white rounded-md hover:bg-gray-700"
-              >
-                Finalizar
-              </button>
-              <button
-                onClick={restartTest}
-                className="py-2 px-4 bg-gray-600 text-white rounded-md hover:bg-gray-700"
-              >
-                Reiniciar
-              </button>
-            </div>
-          </>
-        )}
-      </aside>
-
-      <section className="flex-1 bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
-        {quizStarted ? (
-          <div>
-            <div className="mb-4 text-center text-xl font-semibold" id="timer">
-              {timerDisplay}
-            </div>
-            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-6">
-              <div
-                className="bg-blue-600 h-2 rounded-full"
-                style={{
-                  width:
-                    questions.length > 0
-                      ? `${((currentQuestion + 1) / questions.length) * 100}%`
-                      : '0%',
-                }}
-              ></div>
-            </div>
-            <div id="question-container">
-              <div className="mb-4">
-                <h2 className="text-2xl font-bold" id="question-number">
-                  Pregunta {currentQuestion + 1} de {questions.length}
-                </h2>
-                <p className="mt-2 text-lg" id="question-text">
-                  {questions[currentQuestion]?.question}
-                </p>
+                  <SelectTrigger id="testType" className="w-full">
+                    <SelectValue placeholder="Selecciona un tema" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="seguridad">Seguridad</SelectItem>
+                    <SelectItem value="redes">Redes</SelectItem>
+                    <SelectItem value="servicios">Servicios</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
+
+              <div>
+                <Label htmlFor="quizMode">Modo:</Label>
+                <Select
+                  value={config.quizMode}
+                  onValueChange={(value) =>
+                    setConfig((prev) => ({
+                      ...prev,
+                      quizMode: value as QuizMode,
+                    }))
+                  }
+                >
+                  <SelectTrigger id="quizMode" className="w-full">
+                    <SelectValue placeholder="Selecciona un modo" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="practice">Práctica</SelectItem>
+                    <SelectItem value="exam">Examen</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <Label htmlFor="questionCount">Número de preguntas:</Label>
+                <Select
+                  value={String(config.questionCount)}
+                  onValueChange={(value: string) =>
+                    setConfig((prev: QuizConfig) => ({
+                      ...prev,
+                      questionCount: Number(value),
+                    }))
+                  }
+                >
+                  <SelectTrigger id="questionCount" className="w-full">
+                    <SelectValue placeholder="Selecciona un número" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="10">10</SelectItem>
+                    <SelectItem value="25">25</SelectItem>
+                    <SelectItem value="50">50</SelectItem>
+                    <SelectItem value="100">100</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <Label htmlFor="timerType">Tipo de temporizador:</Label>
+                <Select
+                  value={config.timerType}
+                  onValueChange={(value) =>
+                    setConfig((prev) => ({
+                      ...prev,
+                      timerType: value as TimerType,
+                    }))
+                  }
+                >
+                  <SelectTrigger id="timerType" className="w-full">
+                    <SelectValue placeholder="Selecciona un tipo" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="stopwatch">Cronómetro</SelectItem>
+                    <SelectItem value="countdown">Cuenta atrás</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {config.timerType === 'countdown' && (
+                <div>
+                  <Label htmlFor="countdownTime">Tiempo Límite:</Label>
+                  <Select
+                    value={config.countdownTime}
+                    onValueChange={(value) =>
+                      setConfig((prev) => ({
+                        ...prev,
+                        countdownTime: Number(value),
+                      }))
+                    }
+                  >
+                    <SelectTrigger id="countdownTime" className="w-full">
+                      <SelectValue placeholder="Selecciona un tiempo" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="300">5 minutos</SelectItem>
+                      <SelectItem value="600">10 minutos</SelectItem>
+                      <SelectItem value="900">15 minutos</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
+
               <div className="space-y-4">
-                {questions[currentQuestion]?.options.map((option) => (
-                  <label
-                    key={option}
-                    className={`block p-4 border-2 rounded-md cursor-pointer ${
-                      userAnswers[currentQuestion] === option
-                        ? 'bg-blue-600 text-white border-blue-600'
-                        : questionStates[currentQuestion] === 'correct' &&
-                          option === questions[currentQuestion]?.correctAnswer
-                        ? 'bg-green-500 text-white border-green-500'
-                        : questionStates[currentQuestion] === 'incorrect' &&
-                          userAnswers[currentQuestion] === option
-                        ? 'bg-red-500 text-white border-red-500'
-                        : 'bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 border-gray-300 dark:border-gray-700'
+                <h3 className="text-sm font-medium">Opciones adicionales:</h3>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <Checkbox
+                      id="shuffleQuestions"
+                      checked={config.shuffleQuestions}
+                      onCheckedChange={(checked) =>
+                        setConfig((prev) => ({
+                          ...prev,
+                          shuffleQuestions: !!checked,
+                        }))
+                      }
+                    />
+                    <Label htmlFor="shuffleQuestions">
+                      Mezclar preguntas (recomendado)
+                    </Label>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Checkbox
+                      id="allowSkip"
+                      checked={config.allowSkip}
+                      onCheckedChange={(checked: boolean | 'indeterminate') =>
+                        setConfig((prev: QuizConfig) => ({
+                          ...prev,
+                          allowSkip: !!checked,
+                        }))
+                      }
+                    />
+                    <Label htmlFor="allowSkip">Permitir saltar preguntas</Label>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Checkbox
+                      id="showExplanations"
+                      checked={config.showExplanations}
+                      onCheckedChange={(checked) =>
+                        setConfig((prev) => ({
+                          ...prev,
+                          showExplanations: !!checked,
+                        }))
+                      }
+                    />
+                    <Label htmlFor="showExplanations">
+                      Mostrar respuestas al fallar
+                    </Label>
+                  </div>
+                </div>
+              </div>
+
+              <Button onClick={startTest} className="w-full">
+                Comenzar test
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    )
+  }
+
+  if (stage === 'quiz' || stage === 'review') {
+    return (
+      <div className="mt-16 p-4 md:p-8">
+        <div className="max-w-7xl mx-auto">
+          <Card className="h-full flex flex-col bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <CardContent className="pt-6 space-y-6">
+              {stage === 'quiz' && config.showTimer && (
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-5 h-5" />
+                    <span className="text-xl font-semibold">
+                      {timerDisplay}
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div
+                  className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                  style={{ width: `${stats.progress}%` }}
+                />
+              </div>
+
+              <div className="flex gap-2 flex-wrap">
+                {questions.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentQuestion(index)}
+                    className={`w-10 h-10 rounded-md flex items-center justify-center ${
+                      currentQuestion === index
+                        ? 'bg-blue-600 text-white'
+                        : quizStates[index].state === 'correct'
+                        ? 'bg-green-500 text-white'
+                        : quizStates[index].state === 'incorrect'
+                        ? 'bg-red-500 text-white'
+                        : quizStates[index].state === 'skipped'
+                        ? 'bg-yellow-500 text-white'
+                        : 'bg-gray-200 dark:bg-gray-700'
                     }`}
                   >
-                    <input
-                      type="radio"
-                      name="option"
-                      value={option}
-                      checked={userAnswers[currentQuestion] === option}
-                      onChange={() => selectAnswer(option)}
-                      disabled={!!userAnswers[currentQuestion]}
-                      className="mr-2"
-                    />
-                    {option}
-                  </label>
+                    {index + 1}
+                  </button>
                 ))}
               </div>
-              <div className="mt-6 flex justify-between">
-                <button
-                  onClick={previousQuestion}
-                  disabled={currentQuestion === 0}
-                  className="py-2 px-4 bg-gray-600 text-white rounded-md hover:bg-gray-700 disabled:opacity-50"
-                >
-                  Anterior
-                </button>
-                <button
-                  onClick={skipQuestion}
-                  className="py-2 px-4 bg-red-600 text-white rounded-md hover:bg-red-700"
-                >
-                  Saltar
-                </button>
-                <button
-                  onClick={nextQuestion}
-                  disabled={
-                    currentQuestion === questions.length - 1 && !isReviewMode
-                  }
-                  className="py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
-                >
-                  {isReviewMode && currentQuestion === questions.length - 1
-                    ? 'Finalizar revisión'
-                    : 'Siguiente'}
-                </button>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className="text-center">
-            <h2 className="text-3xl font-bold mb-6">Resultados del test</h2>
-            <div className="grid grid-cols-2 gap-4 max-w-md mx-auto mb-6">
-              <div className="p-4 bg-green-100 dark:bg-green-900 rounded-md">
-                <h3 className="font-semibold text-green-700 dark:text-green-300">
-                  Correctas
-                </h3>
-                <p className="text-2xl font-bold">
-                  {questionStates.filter((s) => s === 'correct').length}
+
+              <div className="space-y-4">
+                <h2 className="text-xl font-bold">
+                  Pregunta {currentQuestion + 1} de {questions.length}
+                </h2>
+
+                <p className="text-lg">
+                  {questions[currentQuestion]?.question}
                 </p>
+
+                <div className="space-y-3">
+                  {questions[currentQuestion]?.options.map((option: string) => (
+                    <button
+                      key={option}
+                      onClick={() => handleAnswerSelection(option)}
+                      disabled={stage === 'review'}
+                      className={`w-full text-left p-4 rounded-md transition-colors ${
+                        quizStates[currentQuestion].answer === option
+                          ? 'bg-blue-600 text-white hover:bg-blue-700'
+                          : 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="flex justify-between pt-4">
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() =>
+                        setCurrentQuestion((prev) => Math.max(prev - 1, 0))
+                      }
+                      disabled={currentQuestion === 0}
+                      className="flex items-center gap-2 py-2 px-4 bg-gray-600 text-white rounded-md hover:bg-gray-700 disabled:opacity-50"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                      Anterior
+                    </button>
+
+                    {stage === 'quiz' && config.allowSkip && (
+                      <button
+                        onClick={handleSkipQuestion}
+                        className="flex items-center gap-2 py-2 px-4 bg-yellow-600 text-white rounded-md hover:bg-yellow-700"
+                      >
+                        Saltar
+                      </button>
+                    )}
+                  </div>
+
+                  <button
+                    onClick={() =>
+                      setCurrentQuestion((prev) =>
+                        Math.min(prev + 1, questions.length - 1),
+                      )
+                    }
+                    disabled={currentQuestion === questions.length - 1}
+                    className="flex items-center gap-2 py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
+                  >
+                    Siguiente
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+
+                {config.showExplanations &&
+                  quizStates[currentQuestion].state === 'incorrect' && (
+                    <Alert className="mt-4">
+                      <AlertCircle className="h-5 w-5" />
+                      <AlertDescription>
+                        {questions[currentQuestion].explanation ||
+                          'La respuesta correcta es: ' +
+                            questions[currentQuestion].correctAnswer}
+                      </AlertDescription>
+                    </Alert>
+                  )}
               </div>
-              <div className="p-4 bg-red-100 dark:bg-red-900 rounded-md">
-                <h3 className="font-semibold text-red-700 dark:text-red-300">
-                  Incorrectas
-                </h3>
-                <p className="text-2xl font-bold">
-                  {questionStates.filter((s) => s === 'incorrect').length}
-                </p>
+
+              <div className="mt-8 flex justify-center">
+                <button
+                  onClick={finishTest}
+                  className="py-2 px-6 bg-red-600 text-white rounded-md hover:bg-red-700"
+                >
+                  Finalizar Test
+                </button>
               </div>
-              <div className="p-4 bg-blue-100 dark:bg-blue-900 rounded-md">
-                <h3 className="font-semibold text-blue-700 dark:text-blue-300">
-                  Tiempo
-                </h3>
-                <p className="text-2xl font-bold">{timerDisplay}</p>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    )
+  }
+
+  if (stage === 'result') {
+    return (
+      <div className="mt-16 p-4 md:p-8">
+        <div className="max-w-7xl mx-auto">
+          <Card className="h-full flex flex-col bg-white dark:bg-gray-800 rounded-lg px-4 sm:px-6 py-6 sm:py-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <CardHeader>
+              <CardTitle className="text-center">Resultados del test</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-8">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="p-4 bg-green-100 dark:bg-green-900 rounded-lg text-center">
+                    <Award className="w-6 h-6 mx-auto mb-2" />
+                    <h3 className="font-semibold">Correctas</h3>
+                    <p className="text-2xl font-bold">{stats.correct}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                      {questions.length
+                        ? ((stats.correct / questions.length) * 100).toFixed(1)
+                        : 0}
+                      %
+                    </p>
+                  </div>
+
+                  <div className="p-4 bg-red-100 dark:bg-red-900 rounded-lg text-center">
+                    <AlertCircle className="w-6 h-6 mx-auto mb-2" />
+                    <h3 className="font-semibold">Incorrectas</h3>
+                    <p className="text-2xl font-bold">{stats.incorrect}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                      {questions.length
+                        ? ((stats.incorrect / questions.length) * 100).toFixed(
+                            1,
+                          )
+                        : 0}
+                      %
+                    </p>
+                  </div>
+
+                  <div className="p-4 bg-blue-100 dark:bg-blue-900 rounded-lg text-center">
+                    <Clock className="w-6 h-6 mx-auto mb-2" />
+                    <h3 className="font-semibold">Tiempo total</h3>
+                    <p className="text-2xl font-bold">{timerDisplay}</p>
+                  </div>
+
+                  <div className="p-4 bg-yellow-100 dark:bg-yellow-900 rounded-lg text-center">
+                    <BarChart className="w-6 h-6 mx-auto mb-2" />
+                    <h3 className="font-semibold">Saltadas</h3>
+                    <p className="text-2xl font-bold">{stats.skipped}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                      {stats.unanswered} sin responder
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <button
+                    onClick={reviewTest}
+                    className="flex items-center justify-center gap-2 py-3 px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+                  >
+                    <Eye className="w-5 h-5" />
+                    Revisar respuestas
+                  </button>
+
+                  <button
+                    onClick={repeatTest}
+                    className="flex items-center justify-center gap-2 py-3 px-6 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+                  >
+                    <RotateCcw className="w-5 h-5" />
+                    Repetir test
+                  </button>
+
+                  <button
+                    onClick={newTest}
+                    className="flex items-center justify-center gap-2 py-3 px-6 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+                  >
+                    <Home className="w-5 h-5" />
+                    Nuevo test
+                  </button>
+                </div>
               </div>
-              <div className="p-4 bg-yellow-100 dark:bg-yellow-900 rounded-md">
-                <h3 className="font-semibold text-yellow-700 dark:text-yellow-300">
-                  Saltadas
-                </h3>
-                <p className="text-2xl font-bold">
-                  {questionStates.filter((s) => s === 'unanswered').length}
-                </p>
-              </div>
-            </div>
-            <div className="flex justify-center gap-4">
-              <button
-                onClick={reviewAnswers}
-                className="py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-              >
-                Revisar respuestas
-              </button>
-              <button
-                onClick={restartTest}
-                className="py-2 px-4 bg-gray-600 text-white rounded-md hover:bg-gray-700"
-              >
-                Reiniciar test
-              </button>
-              <button
-                onClick={newTest}
-                className="py-2 px-4 bg-red-600 text-white rounded-md hover:bg-red-700"
-              >
-                Hacer otro
-              </button>
-            </div>
-          </div>
-        )}
-      </section>
-    </div>
-  )
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    )
+  }
+
+  return null
 }
 
 export default function TestPage() {
   return (
     <>
       <Head>
-        <title>Tests de Computación en la Nube</title>
-        <meta name="description" content="Tests Computación en la Nube" />
+        <meta
+          name="description"
+          content="Tests interactivos de Computación en la Nube con modos práctica y examen"
+        />
       </Head>
-      <main className="min-h-screen container mx-auto">
-        <QuizApp />
-      </main>
+      <QuizApp />
     </>
   )
 }

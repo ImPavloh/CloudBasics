@@ -12,14 +12,14 @@ const buttonVariants = cva(
         default:
           'bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-600 dark:text-white dark:hover:bg-blue-700',
         destructive:
-          'bg-red-500 text-white hover:bg-red-600 dark:bg-red-600 dark:text-white dark:hover:bg-red-700',
+          'bg-red-600 text-white hover:bg-red-700 dark:bg-red-600 dark:text-white dark:hover:bg-red-700',
         outline:
           'border border-blue-600 text-blue-600 bg-white hover:bg-blue-50 dark:border-blue-500 dark:text-blue-400 dark:bg-neutral-950 dark:hover:bg-neutral-800',
         secondary:
-          'bg-blue-100 text-blue-800 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800',
+          'bg-blue-200 text-blue-800 hover:bg-blue-300 dark:bg-blue-800 dark:text-blue-100 dark:hover:bg-blue-700',
         ghost:
-          'hover:bg-blue-100 text-blue-600 dark:hover:bg-blue-700 dark:text-blue-400',
-        link: 'text-blue-600 underline-offset-4 hover:underline dark:text-blue-400',
+          'hover:bg-blue-200 text-blue-700 dark:hover:bg-blue-800 dark:text-blue-300',
+        link: 'text-blue-700 underline-offset-4 hover:underline dark:text-blue-300',
       },
       size: {
         default: 'h-10 px-4 py-2',
