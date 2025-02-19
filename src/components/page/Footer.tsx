@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Github, Twitter, Linkedin } from 'lucide-react'
+import { Github, Twitter, Linkedin, Globe } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -15,8 +15,19 @@ export default function Footer() {
             <ul className="flex space-x-6">
               <li>
                 <Link
+                  href="https://pavloh.com"
+                  className="text-gray-400 hover:text-green-600 dark:hover:text-gray-300 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Web"
+                >
+                  <Globe className="h-6 w-6" aria-hidden="true" />
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="https://github.com/impavloh"
-                  className="text-gray-400 hover:text-gray-900 dark:hover:text-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
+                  className="text-gray-400 hover:text-gray-900 dark:hover:text-gray-300 transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub"
@@ -27,7 +38,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="https://x.com/impavloh"
-                  className="text-gray-400 hover:text-blue-500 dark:hover:text-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="text-gray-400 hover:text-blue-500 dark:hover:text-gray-300 transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Twitter"
@@ -38,7 +49,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="https://linkedin.com/in/impavloh"
-                  className="text-gray-400 hover:text-blue-700 dark:hover:text-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-700"
+                  className="text-gray-400 hover:text-blue-700 dark:hover:text-gray-300 transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"

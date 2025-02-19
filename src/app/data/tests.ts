@@ -2485,7 +2485,7 @@ export const tests: Record<string, Question[]> = {
     },
     {
       question:
-        "¿Qué concepto diferencia la Computación sin Servidor (Serverless Computing) de otros modelos en la nube,?",
+        "¿Qué concepto diferencia la Computación sin Servidor (Serverless Computing) de otros modelos en la nube?",
       options: [
         "Los desarrolladores se enfocan en el código sin gestionar servidores, y el proveedor asigna recursos automáticamente",
         "Requiere la administración manual de cada servidor físico",
@@ -2553,7 +2553,7 @@ export const tests: Record<string, Question[]> = {
     },
     {
       question:
-        "¿Qué ventaja ofrece el uso de servicios de contenedores en un clúster administrado,?",
+        "¿Qué ventaja ofrece el uso de servicios de contenedores en un clúster administrado?",
       options: [
         "Facilitan la orquestación, escalado y administración de contenedores sin gestionar la infraestructura subyacente",
         "Obligan al usuario a configurar manualmente cada contenedor",
@@ -2811,7 +2811,7 @@ export const tests: Record<string, Question[]> = {
     },
     {
       question:
-        "¿Qué elemento es fundamental para la optimización de costes en máquinas virtuales,?",
+        "¿Qué elemento es fundamental para la optimización de costes en máquinas virtuales?",
       options: [
         "La monitorización y ajuste continuo de recursos en función del consumo real",
         "El incremento constante de la capacidad sin análisis de demanda",

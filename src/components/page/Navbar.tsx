@@ -68,6 +68,9 @@ export default function Navbar() {
             <NavLink href="/recursos" mobile>
               Recursos
             </NavLink>
+            <NavLink href="/tests" mobile>
+              Tests
+            </NavLink>
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between px-4">
             <ThemeToggle />
