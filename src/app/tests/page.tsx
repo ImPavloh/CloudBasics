@@ -262,14 +262,14 @@ const QuizApp = () => {
         transition={{ duration: 0.5 }}
         className="mt-20 md:mt-16 p-4 md:p-8"
       >
-        <Card className="h-full flex flex-col bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 max-w-2xl mx-auto">
+        <Card className="h-full flex flex-col bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 max-w-md md:max-w-2xl mx-auto">
           <CardHeader>
-            <CardTitle className="text-center text-2xl md:text-3xl font-bold flex items-center justify-center gap-2">
-              <Settings className="w-6 h-6" />
+            <CardTitle className="text-center text-xl md:text-2xl font-bold flex items-center justify-center gap-2">
+              <Settings className="w-5 h-5 md:w-6 md:h-6" />
               Configuración
             </CardTitle>
             <CardDescription className="text-center">
-              Personaliza las opciones antes de comenzar el test
+              Personaliza las opciones antes de comenzar
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -546,8 +546,8 @@ const QuizApp = () => {
         transition={{ duration: 0.5 }}
         className="mt-20 md:mt-16 p-4 md:p-8"
       >
-        <Card className="h-full flex flex-col bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 max-w-7xl mx-auto">
-          <CardContent className="p-6 space-y-6">
+        <Card className="h-full flex flex-col bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 max-w-md md:max-w-7xl mx-auto">
+          <CardContent className="p-4 md:p-6 space-y-6">
             {stage === 'quiz' && config.showTimer && (
               <motion.div
                 className="flex justify-between items-center"
@@ -555,25 +555,27 @@ const QuizApp = () => {
                 animate={{ opacity: 1, y: 0 }}
               >
                 <div className="flex items-center gap-2">
-                  <Timer className="w-5 h-5" />
-                  <span className="text-xl font-semibold">{timerDisplay}</span>
+                  <Timer className="w-4 h-4 md:w-5 md:h-5" />
+                  <span className="text-lg md:text-xl font-semibold">
+                    {timerDisplay}
+                  </span>
                 </div>
               </motion.div>
             )}
 
             <motion.div
-              className="w-full bg-gray-200 rounded-full h-2"
+              className="w-full bg-gray-200 rounded-full h-1 md:h-2"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 0.5 }}
             >
               <motion.div
-                className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                className="bg-blue-600 h-1 md:h-2 rounded-full transition-all duration-300"
                 style={{ width: `${stats.progress}%` }}
               />
             </motion.div>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1 md:gap-2">
               {questions.map((_, index) => (
                 <motion.button
                   key={index}
@@ -581,7 +583,7 @@ const QuizApp = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className={cn(
-                    'w-10 h-10 rounded-md flex items-center justify-center text-sm font-medium transition-colors',
+                    'w-8 h-8 md:w-10 md:h-10 rounded-md flex items-center justify-center text-xs md:text-sm font-medium transition-colors',
                     currentQuestion === index
                       ? 'bg-blue-600 text-white'
                       : quizStates[index].state === 'correct'
@@ -598,9 +600,9 @@ const QuizApp = () => {
               ))}
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2 md:space-y-4">
               <motion.h2
-                className="text-xl font-bold"
+                className="text-lg md:text-xl font-bold"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
               >
@@ -608,7 +610,7 @@ const QuizApp = () => {
               </motion.h2>
 
               <motion.p
-                className="text-lg"
+                className="text-base md:text-lg"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
@@ -619,7 +621,7 @@ const QuizApp = () => {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentQuestion}
-                  className="space-y-3"
+                  className="space-y-2 md:space-y-3"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
@@ -631,7 +633,7 @@ const QuizApp = () => {
                       onClick={() => handleAnswerSelection(option)}
                       disabled={stage === 'review'}
                       className={cn(
-                        'w-full text-left p-4 rounded-md transition-all duration-200',
+                        'w-full text-left p-3 md:p-4 rounded-md transition-all duration-200',
                         stage === 'review'
                           ? option === questions[currentQuestion].correctAnswer
                             ? 'bg-green-100 dark:bg-green-900 border-2 border-green-500'
@@ -651,9 +653,9 @@ const QuizApp = () => {
                         {stage === 'review' &&
                           (option ===
                           questions[currentQuestion].correctAnswer ? (
-                            <CheckCircle className="w-5 h-5 text-green-500" />
+                            <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-green-500" />
                           ) : quizStates[currentQuestion].answer === option ? (
-                            <XCircle className="w-5 h-5 text-red-500" />
+                            <XCircle className="w-4 h-4 md:w-5 md:h-5 text-red-500" />
                           ) : null)}
                         <span>{option}</span>
                       </div>
@@ -662,30 +664,30 @@ const QuizApp = () => {
                 </motion.div>
               </AnimatePresence>
 
-              <div className="flex justify-between pt-4">
-                <div className="flex gap-2">
+              <div className="flex justify-between">
+                <div className="flex gap-1 md:gap-2">
                   <motion.button
                     onClick={() =>
                       setCurrentQuestion((prev) => Math.max(prev - 1, 0))
                     }
                     disabled={currentQuestion === 0}
-                    className="flex items-center gap-2 py-2 px-4 bg-gray-600 text-white rounded-md hover:bg-gray-700 disabled:opacity-50 transition-colors"
+                    className="flex items-center gap-1 md:gap-2 py-2 px-3 md:py-2 md:px-4 bg-gray-600 text-white rounded-md hover:bg-gray-700 disabled:opacity-50 transition-colors"
                     whileHover={{ scale: currentQuestion !== 0 ? 1.05 : 1 }}
                     whileTap={{ scale: currentQuestion !== 0 ? 0.95 : 1 }}
                   >
-                    <ChevronLeft className="w-4 h-4" />
-                    Anterior
+                    <ChevronLeft className="w-3 h-3 md:w-4 md:h-4" />
+                    <span className="hidden sm:inline">Anterior</span>
                   </motion.button>
 
                   {stage === 'quiz' && config.allowSkip && (
                     <motion.button
                       onClick={handleSkipQuestion}
-                      className="flex items-center gap-2 py-2 px-4 bg-yellow-600 text-white rounded-md hover:bg-yellow-700 transition-colors"
+                      className="flex items-center gap-1 md:gap-2 py-2 px-3 md:py-2 md:px-4 bg-yellow-600 text-white rounded-md hover:bg-yellow-700 transition-colors"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <SkipForward className="w-4 h-4" />
-                      Saltar
+                      <SkipForward className="w-3 h-3 md:w-4 md:h-4" />
+                      <span className="hidden sm:inline">Saltar</span>
                     </motion.button>
                   )}
                 </div>
@@ -697,7 +699,7 @@ const QuizApp = () => {
                     )
                   }
                   disabled={currentQuestion === questions.length - 1}
-                  className="flex items-center gap-2 py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 transition-colors"
+                  className="flex items-center gap-1 md:gap-2 py-2 px-3 md:py-2 md:px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 transition-colors"
                   whileHover={{
                     scale: currentQuestion !== questions.length - 1 ? 1.05 : 1,
                   }}
@@ -705,8 +707,8 @@ const QuizApp = () => {
                     scale: currentQuestion !== questions.length - 1 ? 0.95 : 1,
                   }}
                 >
-                  Siguiente
-                  <ChevronRight className="w-4 h-4" />
+                  <span className="hidden sm:inline">Siguiente</span>
+                  <ChevronRight className="w-3 h-3 md:w-4 md:h-4" />
                 </motion.button>
               </div>
 
@@ -717,8 +719,8 @@ const QuizApp = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
                   >
-                    <Alert className="mt-4">
-                      <AlertCircle className="h-5 w-5" />
+                    <Alert className="mt-2 md:mt-4">
+                      <AlertCircle className="h-4 w-4 md:h-5 md:w-5" />
                       <AlertDescription>
                         {questions[currentQuestion].explanation ||
                           'La respuesta correcta es: ' +
@@ -730,14 +732,14 @@ const QuizApp = () => {
             </div>
 
             <motion.div
-              className="mt-8 flex justify-center"
+              className="mt-2 md:mt-4 flex justify-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
               <motion.button
                 onClick={finishTest}
-                className="py-2 px-6 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+                className="py-2 px-4 md:py-2 md:px-6 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -758,25 +760,27 @@ const QuizApp = () => {
         transition={{ duration: 0.5 }}
         className="mt-20 md:mt-16 p-4 md:p-8"
       >
-        <Card className="h-full flex flex-col bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 max-w-2xl mx-auto">
+        <Card className="h-full flex flex-col bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 max-w-md md:max-w-2xl mx-auto">
           <CardHeader>
-            <CardTitle className="text-center text-2xl md:text-3xl">
+            <CardTitle className="text-center text-xl md:text-2xl">
               Resultados del test
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-8">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="space-y-6 md:space-y-8">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
                 <motion.div
-                  className="p-4 bg-green-100 dark:bg-green-900 rounded-lg text-center"
+                  className="p-3 md:p-4 bg-green-100 dark:bg-green-900 rounded-lg text-center"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.1 }}
                 >
-                  <Award className="w-6 h-6 mx-auto mb-2" />
+                  <Award className="w-5 h-5 md:w-6 md:h-6 mx-auto mb-1 md:mb-2" />
                   <h3 className="font-semibold">Correctas</h3>
-                  <p className="text-2xl font-bold">{stats.correct}</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                  <p className="text-xl md:text-2xl font-bold">
+                    {stats.correct}
+                  </p>
+                  <p className="text-sm md:text-base text-gray-600 dark:text-gray-300">
                     {questions.length
                       ? ((stats.correct / questions.length) * 100).toFixed(1)
                       : 0}
@@ -785,15 +789,17 @@ const QuizApp = () => {
                 </motion.div>
 
                 <motion.div
-                  className="p-4 bg-red-100 dark:bg-red-900 rounded-lg text-center"
+                  className="p-3 md:p-4 bg-red-100 dark:bg-red-900 rounded-lg text-center"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2 }}
                 >
-                  <AlertCircle className="w-6 h-6 mx-auto mb-2" />
+                  <AlertCircle className="w-5 h-5 md:w-6 md:h-6 mx-auto mb-1 md:mb-2" />
                   <h3 className="font-semibold">Incorrectas</h3>
-                  <p className="text-2xl font-bold">{stats.incorrect}</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                  <p className="text-xl md:text-2xl font-bold">
+                    {stats.incorrect}
+                  </p>
+                  <p className="text-sm md:text-base text-gray-600 dark:text-gray-300">
                     {questions.length
                       ? ((stats.incorrect / questions.length) * 100).toFixed(1)
                       : 0}
@@ -802,64 +808,68 @@ const QuizApp = () => {
                 </motion.div>
 
                 <motion.div
-                  className="p-4 bg-blue-100 dark:bg-blue-900 rounded-lg text-center"
+                  className="p-3 md:p-4 bg-blue-100 dark:bg-blue-900 rounded-lg text-center"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3 }}
                 >
-                  <Clock className="w-6 h-6 mx-auto mb-2" />
+                  <Clock className="w-5 h-5 md:w-6 md:h-6 mx-auto mb-1 md:mb-2" />
                   <h3 className="font-semibold">Tiempo total</h3>
-                  <p className="text-2xl font-bold">{timerDisplay}</p>
+                  <p className="text-xl md:text-2xl font-bold">
+                    {timerDisplay}
+                  </p>
                 </motion.div>
 
                 <motion.div
-                  className="p-4 bg-yellow-100 dark:bg-yellow-900 rounded-lg text-center"
+                  className="p-3 md:p-4 bg-yellow-100 dark:bg-yellow-900 rounded-lg text-center"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.4 }}
                 >
-                  <BarChart className="w-6 h-6 mx-auto mb-2" />
+                  <BarChart className="w-5 h-5 md:w-6 md:h-6 mx-auto mb-1 md:mb-2" />
                   <h3 className="font-semibold">Saltadas</h3>
-                  <p className="text-2xl font-bold">{stats.skipped}</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                  <p className="text-xl md:text-2xl font-bold">
+                    {stats.skipped}
+                  </p>
+                  <p className="text-sm md:text-base text-gray-600 dark:text-gray-300">
                     {stats.unanswered} sin responder
                   </p>
                 </motion.div>
               </div>
 
               <motion.div
-                className="flex flex-col sm:flex-row gap-4 justify-center"
+                className="flex flex-col md:flex-row gap-2 md:gap-4 justify-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
               >
                 <motion.button
                   onClick={reviewTest}
-                  className="flex items-center justify-center gap-2 py-3 px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl"
+                  className="flex items-center justify-center gap-1 md:gap-2 py-2 px-4 md:py-3 md:px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Eye className="w-5 h-5" />
+                  <Eye className="w-4 h-4 md:w-5 md:h-5" />
                   Revisar respuestas
                 </motion.button>
 
                 <motion.button
                   onClick={repeatTest}
-                  className="flex items-center justify-center gap-2 py-3 px-6 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors shadow-lg hover:shadow-xl"
+                  className="flex items-center justify-center gap-1 md:gap-2 py-2 px-4 md:py-3 md:px-6 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors shadow-lg hover:shadow-xl"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <RotateCcw className="w-5 h-5" />
+                  <RotateCcw className="w-4 h-4 md:w-5 md:h-5" />
                   Repetir test
                 </motion.button>
 
                 <motion.button
                   onClick={newTest}
-                  className="flex items-center justify-center gap-2 py-3 px-6 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl"
+                  className="flex items-center justify-center gap-1 md:gap-2 py-2 px-4 md:py-3 md:px-6 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Home className="w-5 h-5" />
+                  <Home className="w-4 h-4 md:w-5 md:h-5" />
                   Nuevo test
                 </motion.button>
               </motion.div>
