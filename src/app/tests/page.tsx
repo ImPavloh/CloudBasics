@@ -20,6 +20,7 @@ import {
   CheckCircle,
   XCircle,
   SkipForward,
+  GraduationCap,
 } from 'lucide-react'
 import {
   Card,
@@ -27,8 +28,9 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
+  CardFooter,
 } from '@/components/ui/card'
-import { Alert, AlertDescription } from '@/components/ui/alert'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Label } from '@/components/ui/label'
 import {
   Select,
@@ -49,12 +51,14 @@ interface Question {
   options: string[]
   correctAnswer: string
   explanation?: string
+  points?: number
 }
 
 interface QuizState {
   answer: string | null
   state: QuestionState
   timeSpent?: number
+  points?: number
 }
 
 interface QuizConfig {
@@ -77,7 +81,7 @@ const DEFAULT_CONFIG: QuizConfig = {
   countdownTime: DEFAULT_COUNTDOWN,
   quizMode: 'practice',
   shuffleQuestions: true,
-  showExplanations: false,
+  showExplanations: true,
   allowSkip: true,
   showTimer: true,
 }
@@ -93,6 +97,43 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   return newArray
 }
 
+const calculateGrade = (
+  questions: Question[],
+  quizStates: QuizState[],
+  quizMode: QuizMode,
+): { totalPoints: number; maxPoints: number; grade: number } => {
+  let totalPoints = 0
+  let maxPoints = 0
+
+  questions.forEach((question, index) => {
+    const points = question.points || 1
+    maxPoints += points
+
+    const state = quizStates[index]
+    if (state.state === 'correct') {
+      totalPoints += points
+    } else if (state.state === 'incorrect' && quizMode === 'exam') {
+      totalPoints -= points * 0.25
+    }
+  })
+
+  totalPoints = Math.max(0, totalPoints)
+  const grade = (totalPoints / maxPoints) * 10
+
+  return {
+    totalPoints,
+    maxPoints,
+    grade,
+  }
+}
+
+const getGradeColor = (grade: number): string => {
+  if (grade >= 9) return 'text-green-500'
+  if (grade >= 7) return 'text-blue-500'
+  if (grade >= 5) return 'text-yellow-500'
+  return 'text-red-500'
+}
+
 const QuizApp = () => {
   const [stage, setStage] = useState<Stage>('config')
   const [config, setConfig] = useState<QuizConfig>(DEFAULT_CONFIG)
@@ -101,8 +142,13 @@ const QuizApp = () => {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0)
   const [startTime, setStartTime] = useState<number>(0)
   const [endTime, setEndTime] = useState<number>(0)
-  const [timerDisplay, setTimerDisplay] = useState<string>('00:00')
+  const [timerDisplay, setTimerDisplay] = useState<string>('0:00')
   const [shuffledOptions, setShuffledOptions] = useState<string[][]>([])
+  const [examGrade, setExamGrade] = useState<{
+    totalPoints: number
+    maxPoints: number
+    grade: number
+  } | null>(null)
   const timerRef = useRef<number | null>(null)
 
   const initializeQuiz = useCallback(() => {
@@ -116,21 +162,28 @@ const QuizApp = () => {
       Math.min(config.questionCount, selectedQuestions.length),
     )
 
-    const shuffledOpts = finalQuestions.map((question) =>
+    const questionsWithPoints = finalQuestions.map((q) => ({
+      ...q,
+      points: 1,
+    }))
+
+    const shuffledOpts = questionsWithPoints.map((question) =>
       shuffleArray(question.options),
     )
     setShuffledOptions(shuffledOpts)
 
-    setQuestions(finalQuestions)
+    setQuestions(questionsWithPoints)
     setQuizStates(
-      finalQuestions.map(() => ({
+      questionsWithPoints.map(() => ({
         answer: null,
         state: 'unanswered' as QuestionState,
         timeSpent: 0,
+        points: 0,
       })),
     )
     setCurrentQuestion(0)
     setStartTime(Date.now())
+    setExamGrade(null)
 
     if (config.timerType === 'countdown') {
       setEndTime(Date.now() + config.countdownTime * 1000)
@@ -158,33 +211,81 @@ const QuizApp = () => {
       )}`
     }
 
-    return '00:00'
+    return '0:00'
   }, [startTime, endTime, config.timerType, stage])
 
   useEffect(() => {
     if (stage !== 'quiz') return
 
-    const interval = window.setInterval(() => {
-      setTimerDisplay(calculateTime())
-    }, 1000)
-    timerRef.current = interval
+    if (config.quizMode === 'exam' && !config.showTimer) {
+      const interval = window.setInterval(() => {
+        const timeStr = calculateTime()
+        setTimerDisplay(timeStr)
+
+        if (config.timerType === 'countdown' && timeStr === '0:00') {
+          finishTest()
+        }
+      }, 1000)
+      timerRef.current = interval
+    } else if (config.showTimer) {
+      const interval = window.setInterval(() => {
+        setTimerDisplay(calculateTime())
+      }, 1000)
+      timerRef.current = interval
+    }
 
     return () => {
-      if (timerRef.current) clearInterval(timerRef.current)
+      if (timerRef.current) {
+        clearInterval(timerRef.current)
+        timerRef.current = null
+      }
     }
-  }, [stage, calculateTime, config.timerType])
+  }, [
+    stage,
+    calculateTime,
+    config.timerType,
+    config.showTimer,
+    config.quizMode,
+  ])
 
-  const startTest = () => {
-    initializeQuiz()
-    setStage('quiz')
-  }
+  const updateQuestionTime = useCallback(() => {
+    if (stage !== 'quiz') return
 
-  const finishTest = () => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current)
-      timerRef.current = null
+    setQuizStates((prevStates) => {
+      const newStates = [...prevStates]
+      newStates[currentQuestion] = {
+        ...newStates[currentQuestion],
+        timeSpent: Math.floor((Date.now() - startTime) / 1000),
+      }
+      return newStates
+    })
+  }, [currentQuestion, startTime, stage])
+
+  useEffect(() => {
+    if (stage !== 'quiz') return
+
+    const interval = setInterval(updateQuestionTime, 1000)
+    return () => clearInterval(interval)
+  }, [updateQuestionTime, stage])
+
+  useEffect(() => {
+    updateQuestionTime()
+  }, [currentQuestion, updateQuestionTime])
+
+  const handleSkipQuestion = () => {
+    if (stage !== 'quiz' || !config.allowSkip) return
+
+    const newStates = [...quizStates]
+    newStates[currentQuestion] = {
+      ...newStates[currentQuestion],
+      state: 'skipped',
+      timeSpent: Math.floor((Date.now() - startTime) / 1000),
     }
-    setStage('result')
+    setQuizStates(newStates)
+
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion((prev) => prev + 1)
+    }
   }
 
   const handleAnswerSelection = (answer: string) => {
@@ -198,28 +299,25 @@ const QuizApp = () => {
       answer,
       state: isCorrect ? 'correct' : 'incorrect',
       timeSpent: Math.floor((Date.now() - startTime) / 1000),
+      points: isCorrect ? currentQ.points ?? 1 : -(currentQ.points ?? 1) * 0.25,
     }
     setQuizStates(newStates)
 
-    if (currentQuestion < questions.length - 1) {
-      setTimeout(() => {
-        setCurrentQuestion((prev) => prev + 1)
-      }, 3000)
-    }
-  }
-
-  const handleSkipQuestion = () => {
-    if (stage !== 'quiz' || !config.allowSkip) return
-
-    const newStates = [...quizStates]
-    newStates[currentQuestion] = {
-      ...newStates[currentQuestion],
-      state: 'skipped',
-    }
-    setQuizStates(newStates)
-
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion((prev) => prev + 1)
+    if (config.quizMode === 'exam') {
+      if (currentQuestion < questions.length - 1) {
+        setTimeout(() => {
+          setCurrentQuestion((prev) => prev + 1)
+        }, 300)
+      }
+    } else {
+      if (currentQuestion < questions.length - 1) {
+        setTimeout(
+          () => {
+            setCurrentQuestion((prev) => prev + 1)
+          },
+          isCorrect ? 500 : 3000,
+        )
+      }
     }
   }
 
@@ -232,6 +330,18 @@ const QuizApp = () => {
       (quizStates.filter((s) => s.state !== 'unanswered').length /
         (questions.length || 1)) *
         100 || 0,
+  }
+
+  const finishTest = () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current)
+      timerRef.current = null
+    }
+
+    const grade = calculateGrade(questions, quizStates, config.quizMode)
+    setExamGrade(grade)
+
+    setStage('result')
   }
 
   const reviewTest = () => {
@@ -250,8 +360,13 @@ const QuizApp = () => {
     setCurrentQuestion(0)
     setStartTime(0)
     setEndTime(0)
-    setTimerDisplay('00:00')
+    setTimerDisplay('0:00')
     setStage('config')
+  }
+
+  const startTest = () => {
+    initializeQuiz()
+    setStage('quiz')
   }
 
   if (stage === 'config') {
@@ -269,7 +384,7 @@ const QuizApp = () => {
               Configuración
             </CardTitle>
             <CardDescription className="text-center">
-              Personaliza las opciones antes de comenzar
+              Personaliza el test antes de comenzar
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -763,8 +878,26 @@ const QuizApp = () => {
         <Card className="h-full flex flex-col bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 max-w-md md:max-w-2xl mx-auto">
           <CardHeader>
             <CardTitle className="text-center text-xl md:text-2xl">
-              Resultados del test
+              {config.quizMode === 'exam'
+                ? 'Resultados del examen'
+                : 'Resultados de la práctica'}
             </CardTitle>
+            {examGrade && (
+              <div className="text-center mt-4">
+                <div
+                  className={cn(
+                    'text-4xl font-bold',
+                    getGradeColor(examGrade.grade),
+                  )}
+                >
+                  {examGrade.grade.toFixed(2)}
+                </div>
+                <div className="text-sm text-gray-500 mt-1">
+                  Puntuación: {examGrade.totalPoints.toFixed(2)} /{' '}
+                  {examGrade.maxPoints} puntos
+                </div>
+              </div>
+            )}
           </CardHeader>
           <CardContent>
             <div className="space-y-6 md:space-y-8">
@@ -781,10 +914,7 @@ const QuizApp = () => {
                     {stats.correct}
                   </p>
                   <p className="text-sm md:text-base text-gray-600 dark:text-gray-300">
-                    {questions.length
-                      ? ((stats.correct / questions.length) * 100).toFixed(1)
-                      : 0}
-                    %
+                    {((stats.correct / questions.length) * 100).toFixed(1)}%
                   </p>
                 </motion.div>
 
@@ -800,10 +930,7 @@ const QuizApp = () => {
                     {stats.incorrect}
                   </p>
                   <p className="text-sm md:text-base text-gray-600 dark:text-gray-300">
-                    {questions.length
-                      ? ((stats.incorrect / questions.length) * 100).toFixed(1)
-                      : 0}
-                    %
+                    {((stats.incorrect / questions.length) * 100).toFixed(1)}%
                   </p>
                 </motion.div>
 
@@ -836,6 +963,18 @@ const QuizApp = () => {
                   </p>
                 </motion.div>
               </div>
+
+              {config.quizMode === 'exam' && (
+                <Alert className="mt-4">
+                  <GraduationCap className="h-4 w-4" />
+                  <AlertTitle>Sistema de puntuación</AlertTitle>
+                  <AlertDescription>
+                    Cada pregunta correcta suma 1 punto. Las preguntas
+                    incorrectas restan 0.25 puntos. Las preguntas sin responder
+                    no suman ni restan.
+                  </AlertDescription>
+                </Alert>
+              )}
 
               <motion.div
                 className="flex flex-col md:flex-row gap-2 md:gap-4 justify-center"
@@ -873,8 +1012,51 @@ const QuizApp = () => {
                   Nuevo test
                 </motion.button>
               </motion.div>
+
+              {config.quizMode === 'exam' && (
+                <div className="mt-6 space-y-4">
+                  <h3 className="text-lg font-semibold text-center">
+                    Desglose de puntuación
+                  </h3>
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center text-sm">
+                      <span>Preguntas correctas:</span>
+                      <span className="text-green-500">
+                        +{stats.correct} puntos
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center text-sm">
+                      <span>Penalización por incorrectas:</span>
+                      <span className="text-red-500">
+                        -{(stats.incorrect * 0.25).toFixed(2)} puntos
+                      </span>
+                    </div>
+                    <div className="border-t pt-2 flex justify-between items-center font-semibold">
+                      <span>Puntuación final:</span>
+                      <span className={getGradeColor(examGrade?.grade || 0)}>
+                        {examGrade?.totalPoints.toFixed(2)} /{' '}
+                        {examGrade?.maxPoints} puntos
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </CardContent>
+          <CardFooter className="text-center text-sm text-gray-500">
+            {config.quizMode === 'exam' ? (
+              <p>
+                La nota final se calcula sobre 10 puntos. Cada respuesta
+                correcta suma un punto y cada respuesta incorrecta resta 0.25
+                puntos.
+              </p>
+            ) : (
+              <p>
+                Modo práctica: Las respuestas incorrectas no penalizan. ¡Sigue
+                practicando para mejorar!
+              </p>
+            )}
+          </CardFooter>
         </Card>
       </motion.div>
     )
