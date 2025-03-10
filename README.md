@@ -13,14 +13,15 @@
 1. **Conceptos básicos:** Explicación de los fundamentos, los modelos de servicio (IaaS, PaaS, SaaS), y las características de la computación en la nube.
 2. **Temas avanzados:** Exploración de la seguridad en la nube, arquitecturas escalables, estrategias de migración, y mejores prácticas.
 3. **Guías y herramientas:** Acceso a guías prácticas, herramientas de simulación y ejercicios que permiten aplicar los conceptos en entornos reales o de prueba.
+4. **AWS Hub:** Colección de recursos y herramientas para aprender y practicar con AWS, incluyendo cursos, certificaciones, y laboratorios prácticos.
 
 ### ✔️ Progreso de los contenidos
 - [x] Computación en la nube
 - [x] Economía y facturación
 - [x] Infraestructura de la nube
 - [x] Seguridad
-- [ ] Redes (Próximamente)
-- [ ] Servicios de cómputo (Próximamente)
+- [x] Redes
+- [x] Servicios de cómputo
 - [ ] Almacenamiento (Próximamente)
 - [ ] Bases de datos (Próximamente)
 - [ ] Principios arquitectónicos (Próximamente)

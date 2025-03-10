@@ -5,7 +5,7 @@ export type Question = {
 }
 
 export const tests: Record<string, Question[]> = {
-  seguridad: [
+  seguridad_old: [
     {
       question:
         '¿Cuáles son los tres principios fundamentales del Triángulo de la Seguridad?',
@@ -1831,7 +1831,7 @@ export const tests: Record<string, Question[]> = {
       correctAnswer: "Una WPAN conecta dispositivos personales dentro de un área reducida utilizando tecnologías como Bluetooth"
     }
   ],
-  servicios: [
+  servicios_old: [
     {
       question:
         "¿Cuál es la característica principal del modelo de cómputo en la nube 'pay-as-you-go'?",
@@ -2906,4 +2906,942 @@ export const tests: Record<string, Question[]> = {
         "La dependencia del proveedor de servicios y la posible incompatibilidad con sistemas heredados",
     },
   ],
+  seguridad: [
+    {
+      question: 'El "free cooling" es:',
+      options: [
+        'Ninguna opción es correcta.',
+        'Una técnica avanzada de refrigeración que reduce la temperatura del CPD por debajo de los 10ºC.',
+        'Una técnica avanzada de refrigeración que utiliza refrigeración líquida.',
+        'Una técnica avanzada de refrigeración que reduce la temperatura del CPD por debajo de los 15ºC.',
+        'Una técnica avanzada de refrigeración que reduce la temperatura del CPD por debajo de los 2ºC.',
+      ],
+      correctAnswer: 'Ninguna opción es correcta.',
+    },
+    {
+      question: 'Uno de los inconvenientes que presenta la criptografía de clave asimétrica es:',
+      options: [
+        'Vulnerabilidad a ataques de colisión.',
+        'Puede ser ineficiente para cifrar grandes volúmenes de datos.',
+        'Vulnerabilidad si la clave compartida es interceptada.',
+        'Dificultad en la distribución segura de la clave compartida.',
+        'No protege la confidencialidad de los datos que ya solo verifica su integridad.',
+      ],
+      correctAnswer: 'Puede ser ineficiente para cifrar grandes volúmenes de datos.',
+    },
+    {
+      question: 'La infraestructura crítica que proporciona un espacio seguro y eficiente para almacenar, procesar y gestionar grandes volúmenes de datos se denomina:',
+      options: [
+        'Switch',
+        'Firewall',
+        'CPD',
+        'Router',
+        'Rack',
+      ],
+      correctAnswer: 'CPD',
+    },
+    {
+      question: 'En un CPD, el rango de humedad relativo ideal está entre el:',
+      options: [
+        '70% y 80%',
+        '0% y 20%.',
+        '10% y 30%.',
+        'Ninguna opción es correcta.',
+        '85% y 95%',
+      ],
+      correctAnswer: 'Ninguna opción es correcta.',
+    },
+    {
+      question: 'En un CPD, la extinción de incendios se lleva a cabo mediante:',
+      options: [
+        'Sistemas automáticos que expulsan gases inertes que sofocan el fuego.',
+        'Sistemas automáticos de espuma que dejan residuo en los aparatos electrónicos.',
+        'Sistemas automáticos de aumento de oxígeno en la sala y aumento de la ventilación.',
+        'Ninguna opción es correcta.',
+        'Sistemas automáticos de expulsión de chorros de agua que realizan un apagado inmediato.',
+      ],
+      correctAnswer: 'Sistemas automáticos que expulsan gases inertes que sofocan el fuego.',
+    },
+    {
+      question: 'Riesgo:',
+      options: [
+        '"Toda posibilidad de que se produzca un impacto en nuestros sistemas o empresa".',
+        '"Proceso continuo de proteger sistemas, redes y datos frente a ciberataques, accesos no autorizados y otras amenazas".',
+        '"Debilidad o fallo en un sistema de información que pone en riesgo la seguridad de la información".',
+        '"Toda acción que aprovecha una vulnerabilidad para atentar contra la seguridad de un sistema de información".',
+        '"Toda consecuencia negativa producida por un ataque o amenaza".',
+      ],
+      correctAnswer: '"Toda posibilidad de que se produzca un impacto en nuestros sistemas o empresa".',
+    },
+    {
+      question: 'Disponibilidad:',
+      options: [
+        'Determina los permisos y niveles de acceso que un usuario tiene dentro de un sistema o aplicación en la nube. Esto asegura que los usuarios solo puedan acceder a los recursos que les corresponden.',
+        'Proceso de verificar la identidad de un usuario o sistema. En la nube, esto se realiza a través de contraseñas, claves, autenticación multifactor (MFA) y certificados digitales.',
+        'Los datos y sistemas deben estar disponibles cuando los usuarios autorizados los necesiten. Medidas como copias de seguridad, redundancia de sistemas y protección contra ataques DDoS contribuyen a asegurar la disponibilidad.',
+        'Solo las personas autorizadas pueden acceder a la información. Esto implica el uso de mecanismos como contraseñas seguras, cifrado y controles de acceso para garantizar que los datos permanezcan privados.',
+        'Asegura que los datos no han sido alterados o manipulados de manera no autorizada. Los sistemas de detección de cambios y las firmas digitales son ejemplos de mecanismos que garantizan la integridad.',
+      ],
+      correctAnswer: 'Los datos y sistemas deben estar disponibles cuando los usuarios autorizados los necesiten. Medidas como copias de seguridad, redundancia de sistemas y protección contra ataques DDoS contribuyen a asegurar la disponibilidad.',
+    },
+    {
+      question: 'En un CPD se permite un mejor flujo de aire y una gestión más eficiente del cableado y de los conductos de refrigeración gracias a:',
+      options: [
+        'Los racks.',
+        'Los techos altos.',
+        'Los Switches.',
+        'La técnica de free colling.',
+        'La humedad.',
+      ],
+      correctAnswer: 'Los techos altos.',
+    },
+    {
+      question: 'Uno de los inconvenientes que presenta la criptografía de clave asimétrica es:',
+      options: [
+        'Se utilizan claves de mayor tamaño que en la criptografía simétrica.',
+        'No protege la confidencialidad de los datos que ya solo verifica su integridad.',
+        'Dificultad en la distribución segura de la clave compartida.',
+        'Vulnerabilidad si la clave compartida es interceptada.',
+        'Vulnerabilidad a ataques de colisión.',
+      ],
+      correctAnswer: 'Se utilizan claves de mayor tamaño que en la criptografía simétrica.',
+    },
+    {
+      question: 'En el modelo de seguridad de responsabilidad compartida en servicios PaaS:',
+      options: [
+        'El cliente es responsable de la seguridad del código.',
+        'El cliente es responsable de configurar las reglas de seguridad del firewall de la red.',
+        'El cliente es responsable del sistema operativo.',
+        'El cliente es responsable de la configuración de la red.',
+        'El cliente es responsable de las actualizaciones y parches de seguridad del sistema operativo.',
+      ],
+      correctAnswer: 'El cliente es responsable de la seguridad del código.',
+    },
+    {
+      question: 'En un CPD se permite un mejor flujo de aire y una gestión más eficiente del cableado y de los conductos de refrigeración gracias a:',
+      options: [
+        'Ninguna opción es correcta.',
+        'La técnica de free colling.',
+        'La humedad.',
+        'Los Switches.',
+        'Los racks.',
+      ],
+      correctAnswer: 'Ninguna opción es correcta.',
+    },
+    {
+      question: 'Ataque:',
+      options: [
+        '"Toda acción que aprovecha una vulnerabilidad para atentar contra la seguridad de un sistema de información".',
+        '"Toda posibilidad de que se produzca un impacto en nuestros sistemas o empresa".',
+        '"Toda consecuencia negativa producida por un ataque o amenaza".',
+        '"Proceso continuo de proteger sistemas, redes y datos frente a ciberataques, accesos no autorizados y otras amenazas".',
+        '"Debilidad o fallo en un sistema de información que pone en riesgo la seguridad de la información".',
+      ],
+      correctAnswer: '"Toda acción que aprovecha una vulnerabilidad para atentar contra la seguridad de un sistema de información".',
+    },
+    {
+      question: 'En un CPD, los servidores y dispositivos de almacenamiento se organizan en:',
+      options: [
+        'Firewalls.',
+        'Ninguna opción es correcta.',
+        'TIER I.',
+        'Packs.',
+        'Racks.',
+      ],
+      correctAnswer: 'Racks.',
+    },
+    {
+      question: 'En la nube el cifrado en tránsito:',
+      options: [
+        'Define qué usuarios pueden acceder a qué datos.',
+        'Ninguna opción es correcta.',
+        'Protege los datos almacenados en discos y bases de datos.',
+        'Asegura los datos que se transfieren a través de redes.',
+        'Permite restaurar los datos en caso de pérdida o ataque.',
+      ],
+      correctAnswer: 'Asegura los datos que se transfieren a través de redes.',
+    },
+    {
+      question: 'En el modelo de responsabilidad compartida:',
+      options: [
+        'El proveedor de la nube es responsable de los datos que sube el cliente a la nube.',
+        'El proveedor de la nube es responsable del método de autenticación de los usuarios en la nube.',
+        'El proveedor de la nube es responsable de la gestión de usuarios de acceso a la nube.',
+        'El proveedor de la nube es responsable de la seguridad física de los centros de datos de la nube.',
+        'El proveedor de la nube es responsable de las configuraciones que realice el cliente en el sistema de la nube.',
+      ],
+      correctAnswer: 'El proveedor de la nube es responsable de la seguridad física de los centros de datos de la nube.',
+    },
+    {
+      question: 'Criptografía híbrida:',
+      options: [
+        'Ninguna opción es correcta.',
+        'Genera una huella digital o resumen de datos de una longitud fija, y permite verificar la integridad de la información.',
+        'Utiliza una clave pública para cifrar la clave que ha cifrado el mensaje y una clave privada que descifra la clave que descifra el mensaje.',
+        'Utiliza un par de claves, una clave pública para cifrar el mensaje y una clave privada para descifrarlo.',
+        'Utiliza una misma clave para cifrar y descifrar un mensaje. En esta técnica, el emisor tiene que enviar tanto el mensaje cifrado como la clave.',
+      ],
+      correctAnswer: 'Utiliza una clave pública para cifrar la clave que ha cifrado el mensaje y una clave privada que descifra la clave que descifra el mensaje.',
+    },
+    {
+      question: 'En un CPD:',
+      options: [
+        'El aire proviene del pasillo de las instalaciones ya que en la sala no hay ventanas.',
+        'El aire proviene de las ventanas que hay en la sala, que hay que abrirlas de vez en cuando para ventilar.',
+        'El aire proviene del exterior pero previamente filtrado para eliminar las micropartículas de arena y polvo.',
+        'El aire proviene del interior de la sala que se va reciclando.',
+        'Ninguna opción es correcta.',
+      ],
+      correctAnswer: 'El aire proviene del exterior pero previamente filtrado para eliminar las micropartículas de arena y polvo.',
+    },
+    {
+      question: 'La técnica criptográfica utilizada en SSL/TLS es:',
+      options: [
+        'La criptografía simétrica.',
+        'La esteganografía.',
+        'La criptografía asimétrica.',
+        'La función hash.',
+        'La criptografía híbrida.',
+      ],
+      correctAnswer: 'La criptografía híbrida.',
+    },
+    {
+      question: 'En el modelo de seguridad de responsabilidad compartida en servicios SaaS:',
+      options: [
+        'El cliente es responsable de la gestión de usuarios y contraseñas.',
+        'El cliente es responsable de configurar las reglas de seguridad del firewall de la red.',
+        'El cliente es responsable de la seguridad del código.',
+        'El cliente es responsable de la configuración de la red.',
+        'El cliente es responsable del sistema operativo.',
+      ],
+      correctAnswer: 'El cliente es responsable de la gestión de usuarios y contraseñas.',
+    },
+    {
+      question: 'Los sistemas de refrigeración líquida:',
+      options: [
+        'aprovechan el aire frío exterior para reducir el consumo energético.',
+        'son especialmente útiles donde los servidores están ubicados en espacios muy amplios.',
+        'utilizan una técnica avanzada de refrigeración llamada "free cooling".',
+        'Ninguna opción es correcta.',
+        'son particularmente útiles en áreas donde el coste de la energía es muy bajo.',
+      ],
+      correctAnswer: 'Ninguna opción es correcta.',
+    },
+    {
+      question: 'Selecciona la opción FALSA:',
+      options: [
+        'En IAM, se pueden establecer reglas como restringir el acceso según la ubicación geográfica.',
+        'En IAM, las políticas explícitas de denegación tienen la menor prioridad.',
+        'En IAM, se evalúan primero las políticas explícitas de denegación y luego se evalúan las políticas basadas en identidad y las basadas en recursos.',
+        'En IAM, si una acción está permitida en alguna política, se concede acceso (salvo que esté denegada explícitamente).',
+        'En IAM, si una acción está denegada explícitamente en alguna política, se niega el acceso (aunque otra política la permita).',
+      ],
+      correctAnswer: 'En IAM, las políticas explícitas de denegación tienen la menor prioridad.',
+    },
+    {
+      question: 'En un CPD, el rango de humedad relativo ideal está entre el:',
+      options: [
+        '10% y 30%.',
+        '0% y 20%.',
+        '70% y 80%',
+        '40% y el 60%.',
+        '85% y 95%',
+      ],
+      correctAnswer: '40% y el 60%.',
+    },
+    {
+      question: 'Autorización:',
+      options: [
+        'Determina los permisos y niveles de acceso que un usuario tiene dentro de un sistema o aplicación en la nube. Esto asegura que los usuarios solo puedan acceder a los recursos que les corresponden.',
+        'Permite a los usuarios acceder a múltiples sistemas o servicios utilizando una única identidad. Esto se logra mediante protocolos como SAML o OAuth, eliminando la necesidad de gestionar múltiples cuentas.',
+        'Proceso de verificar la identidad de un usuario o sistema. En la nube, esto se realiza a través de contraseñas, claves, autenticación multifactor (MFA) y certificados digitales.',
+        'Ninguna opción es correcta.',
+        'Servicio esencial en la computación en la nube que permite gestionar quién puede acceder a los recursos, qué pueden hacer con ellos y bajo qué condiciones.',
+      ],
+      correctAnswer: 'Determina los permisos y niveles de acceso que un usuario tiene dentro de un sistema o aplicación en la nube. Esto asegura que los usuarios solo puedan acceder a los recursos que les corresponden.',
+    },
+    {
+      question: 'Federación:',
+      options: [
+        'Permite a los usuarios acceder a múltiples sistemas o servicios utilizando una única identidad. Esto se logra mediante protocolos como SAML o OAuth, eliminando la necesidad de gestionar múltiples cuentas.',
+        'Determina los permisos y niveles de acceso que un usuario tiene dentro de un sistema o aplicación en la nube. Esto asegura que los usuarios solo puedan acceder a los recursos que les corresponden.',
+        'Proceso de verificar la identidad de un usuario o sistema. En la nube, esto se realiza a través de contraseñas, claves, autenticación multifactor (MFA) y certificados digitales.',
+        'Servicio esencial en la computación en la nube que permite gestionar quién puede acceder a los recursos, qué pueden hacer con ellos y bajo qué condiciones.',
+        'Ninguna opción es correcta.',
+      ],
+      correctAnswer: 'Permite a los usuarios acceder a múltiples sistemas o servicios utilizando una única identidad. Esto se logra mediante protocolos como SAML o OAuth, eliminando la necesidad de gestionar múltiples cuentas.',
+    },
+    {
+      question: 'Uno de los inconvenientes que presenta la criptografía de clave híbrida es:',
+      options: [
+        'Adecuado para sesiones de comunicación en tiempo real.',
+        'Todas las opciones son correctas.',
+        'No protege la confidencialidad de los datos que ya solo verifica su integridad.',
+        'Complejidad en la implementación debido al uso de dos tipos de criptografía.',
+        'Vulnerabilidad a ataques de colisión.',
+      ],
+      correctAnswer: 'Complejidad en la implementación debido al uso de dos tipos de criptografía.',
+    },
+    {
+      question: 'El "free cooling" es:',
+      options: [
+        'Una técnica avanzada de refrigeración que utiliza refrigeración líquida.',
+        'Una técnica avanzada de refrigeración que reduce la temperatura del CPD por debajo de los 10ºC.',
+        'Una técnica avanzada de refrigeración que reduce la temperatura del CPD por debajo de los 15ºC.',
+        'Una técnica avanzada de refrigeración que aprovecha el aire frío exterior para reducir el consumo energético.',
+        'Una técnica avanzada de refrigeración que reduce la temperatura del CPD por debajo de los 2ºC.',
+      ],
+      correctAnswer: 'Una técnica avanzada de refrigeración que aprovecha el aire frío exterior para reducir el consumo energético.',
+    },
+    {
+      question: 'Integridad:',
+      options: [
+        'Asegura que los datos no han sido alterados o manipulados de manera no autorizada. Los sistemas de detección de cambios y las firmas digitales son ejemplos de mecanismos que garantizan la integridad.',
+        'Determina los permisos y niveles de acceso que un usuario tiene dentro de un sistema o aplicación en la nube. Esto asegura que los usuarios solo puedan acceder a los recursos que les corresponden.',
+        'Solo las personas autorizadas pueden acceder a la información. Esto implica el uso de mecanismos como contraseñas seguras, cifrado y controles de acceso para garantizar que los datos permanezcan privados.',
+        'Los datos y sistemas deben estar disponibles cuando los usuarios autorizados los necesiten. Medidas como copias de seguridad, redundancia de sistemas y protección contra ataques DDoS contribuyen a asegurar la disponibilidad.',
+        'Proceso de verificar la identidad de un usuario o sistema. En la nube, esto se realiza a través de contraseñas, claves, autenticación multifactor (MFA) y certificados digitales.',
+      ],
+      correctAnswer: 'Asegura que los datos no han sido alterados o manipulados de manera no autorizada. Los sistemas de detección de cambios y las firmas digitales son ejemplos de mecanismos que garantizan la integridad.',
+    },
+    {
+      question: 'Una de las ventajas que presenta la criptografía de clave asimétrica es:',
+      options: [
+        'Adecuado para proteger grandes volúmenes de datos.',
+        'Su uso para sesiones de comunicación en tiempo real.',
+        'Todas las opciones son correctas.',
+        'Rapidez y eficiencia en el cifrado y descifrado.',
+        'Mayor seguridad en la distribución de claves, ya que solo la clave privada debe mantenerse en secreto.',
+      ],
+      correctAnswer: 'Mayor seguridad en la distribución de claves, ya que solo la clave privada debe mantenerse en secreto.',
+    },
+    {
+      question: '"El conjunto de técnicas y procedimientos que permiten proteger la información y las comunicaciones para que solo los usuarios autorizados puedan acceder a los datos" se denomina:',
+      options: [
+        'Criptografía.',
+        'Protocolo de estado de certificación en línea.',
+        'Listas de revocación de certificados.',
+        'Criptoanálisis.',
+        'Ninguna opción es correcta.',
+      ],
+      correctAnswer: 'Criptografía.',
+    },
+    {
+      question: 'Criptografía asimétrica:',
+      options: [
+        'Utiliza una misma clave para cifrar y descifrar un mensaje. En esta técnica, el emisor tiene que enviar tanto el mensaje cifrado como la clave.',
+        'Genera una huella digital o resumen de datos de una longitud fija, y permite verificar la integridad de la información.',
+        'Utiliza una clave pública para cifrar la clave que ha cifrado el mensaje y una clave privada que descifra la clave que descifra el mensaje.',
+        'Utiliza un par de claves, una clave pública para cifrar el mensaje y una clave privada para descifrarlo.',
+        'Ninguna opción es correcta.',
+      ],
+      correctAnswer: 'Utiliza un par de claves, una clave pública para cifrar el mensaje y una clave privada para descifrarlo.',
+    },
+    {
+      question: 'Vulnerabilidad:',
+      options: [
+        '"Toda acción que aprovecha una vulnerabilidad para atentar contra la seguridad de un sistema de información".',
+        '"Toda consecuencia negativa producida por un ataque o amenaza".',
+        '"Debilidad o fallo en un sistema de información que pone en riesgo la seguridad de la información".',
+        '"Proceso continuo de proteger sistemas, redes y datos frente a ciberataques, accesos no autorizados y otras amenazas".',
+        '"Toda posibilidad de que se produzca un impacto en nuestros sistemas o empresa".',
+      ],
+      correctAnswer: '"Debilidad o fallo en un sistema de información que pone en riesgo la seguridad de la información".',
+    },
+    {
+      question: 'Una de las ventajas que presenta la criptografía de clave simétrica es:',
+      options: [
+        'Adecuado para proteger grandes volúmenes de datos.',
+        'Su uso para sesiones de comunicación en tiempo real.',
+        'Su uso para entornos donde el intercambio seguro de claves es difícil de garantizar.',
+        'Mayor seguridad en la distribución de claves, ya que solo la clave privada debe mantenerse en secreto.',
+        'Todas las opciones son correctas.',
+      ],
+      correctAnswer: 'Adecuado para proteger grandes volúmenes de datos.',
+    },
+    {
+      question: 'Entre las funciones clave de un CPD está:',
+      options: [
+        'El alojamiento de aplicaciones.',
+        'El almacenamiento de datos.',
+        'Todas las opciones son correctas.',
+        'La redundancia y recuperación ante desastres.',
+        'El procesamiento de datos.',
+      ],
+      correctAnswer: 'Todas las opciones son correctas.',
+    },
+    {
+      question: 'En el modelo de seguridad de responsabilidad compartida en servicios IaaS:',
+      options: [
+        'El cliente es responsable de los recambios físicos de los discos de almacenamiento en la nube.',
+        'El cliente es responsable de la infraestructura física de los centros de datos de la nube.',
+        'El cliente es responsable de la distribución de la nube en regiones, zonas de disponibilidad y zonas de borde.',
+        'El cliente es responsable de la instalación, configuración y mantenimiento del sistema operativo en las máquinas virtuales de la nube.',
+        'El cliente es responsable de las políticas de mantenimiento y sustitución de las máquinas físicas de la nube.',
+      ],
+      correctAnswer: 'El cliente es responsable de la instalación, configuración y mantenimiento del sistema operativo en las máquinas virtuales de la nube.',
+    },
+    {
+      question: 'En el modelo de responsabilidad compartida:',
+      options: [
+        'El cliente es responsable de la infraestructura de red de la nube.',
+        'El cliente es responsable del software de virtualización, su mantenimiento, actualizaciones y parches de seguridad.',
+        'El cliente es responsable de la gestión de usuarios y su sistema de autenticación.',
+        'El cliente es responsable de la infraestructura hardware de la nube.',
+        'El cliente es responsable de administrar la infraestructura de nube para cumplir con la normativa vigente.',
+      ],
+      correctAnswer: 'El cliente es responsable de la gestión de usuarios y su sistema de autenticación.',
+    },
+    {
+      question: 'Un Centro de Procesamiento de Datos (CPD) es:',
+      options: [
+        'Una instalación física diseñada para producir un ruido de 325db.',
+        'Una instalación física diseñada para mantener una temperatura entre los 30ºC y 40ºC.',
+        'Una instalación física diseñada para generar una humedad entre el 70% y el 90%.',
+        'Todas las opciones son correctas.',
+        'Una instalación física diseñada específicamente para albergar los sistemas informáticos y sus componentes asociados, como servidores, dispositivos de almacenamiento, equipos de red, y sistemas de telecomunicaciones.',
+      ],
+      correctAnswer: 'Una instalación física diseñada específicamente para albergar los sistemas informáticos y sus componentes asociados, como servidores, dispositivos de almacenamiento, equipos de red, y sistemas de telecomunicaciones.',
+    },
+    {
+      question: 'Una de las ventajas que presenta la criptografía de clave híbrida es:',
+      options: [
+        'Su uso para entornos donde el intercambio seguro de claves es difícil de garantizar.',
+        'Rapidez y eficiencia en el cifrado y descifrado.',
+        'Su uso para sesiones de comunicación en tiempo real.',
+        'Adecuado para proteger grandes volúmenes de datos.',
+        'Todas las opciones son correctas.',
+      ],
+      correctAnswer: 'Su uso para sesiones de comunicación en tiempo real.',
+    },
+    {
+      question: 'Confidencialidad:',
+      options: [
+        'Los datos y sistemas deben estar disponibles cuando los usuarios autorizados los necesiten. Medidas como copias de seguridad, redundancia de sistemas y protección contra ataques DDoS contribuyen a asegurar la disponibilidad.',
+        'Asegura que los datos no han sido alterados o manipulados de manera no autorizada. Los sistemas de detección de cambios y las firmas digitales son ejemplos de mecanismos que garantizan la integridad.',
+        'Solo las personas autorizadas pueden acceder a la información. Esto implica el uso de mecanismos como contraseñas seguras, cifrado y controles de acceso para garantizar que los datos permanezcan privados.',
+        'Determina los permisos y niveles de acceso que un usuario tiene dentro de un sistema o aplicación en la nube. Esto asegura que los usuarios solo puedan acceder a los recursos que les corresponden.',
+        'Proceso de verificar la identidad de un usuario o sistema. En la nube, esto se realiza a través de contraseñas, claves, autenticación multifactor (MFA) y certificados digitales.',
+      ],
+      correctAnswer: 'Solo las personas autorizadas pueden acceder a la información. Esto implica el uso de mecanismos como contraseñas seguras, cifrado y controles de acceso para garantizar que los datos permanezcan privados.',
+    },
+    {
+      question: 'Proceso de verificar la identidad de un usuario o sistema. En la nube, esto se realiza a través de contraseñas, claves, autenticación multifactor (MFA) y certificados digitales.',
+      options: [
+        'Ninguna opción es correcta.',
+        'Servicio esencial en la computación en la nube que permite gestionar quién puede acceder a los recursos, qué pueden hacer con ellos y bajo qué condiciones.',
+        'Permite a los usuarios acceder a múltiples sistemas o servicios utilizando una única identidad. Esto se logra mediante protocolos como SAML o OAuth, eliminando la necesidad de gestionar múltiples cuentas.',
+        'Proceso de verificar la identidad de un usuario o sistema. En la nube, esto se realiza a través de contraseñas, claves, autenticación multifactor (MFA) y certificados digitales.',
+        'Determina los permisos y niveles de acceso que un usuario tiene dentro de un sistema o aplicación en la nube. Esto asegura que los usuarios solo puedan acceder a los recursos que les corresponden.',
+      ],
+      correctAnswer: 'Proceso de verificar la identidad de un usuario o sistema. En la nube, esto se realiza a través de contraseñas, claves, autenticación multifactor (MFA) y certificados digitales.',
+    },
+    {
+      question: 'Los sistemas de refrigeración líquida:',
+      options: [
+        'son especialmente útiles donde los servidores están ubicados en espacios muy amplios.',
+        'utilizan una técnica avanzada de refrigeración llamada "free cooling".',
+        'aprovechan el aire frío exterior para reducir el consumo energético.',
+        'son particularmente útiles en áreas donde el coste de la energía es muy bajo.',
+        'extraen el calor de los servidores de manera más eficiente que el aire.',
+      ],
+      correctAnswer: 'extraen el calor de los servidores de manera más eficiente que el aire.',
+    },
+    {
+      question: 'SAN:',
+      options: [
+        'Sistema avanzado de almacenamiento en red.',
+        'Armario donde se guardan y organizan los servidores y sistemas de almacenamiento.',
+        'Sistema avanzado de extinción de incendios.',
+        'Dispositivo que proporciona energía eléctrica de respaldo a equipos críticos cuando ocurre un fallo en el suministro eléctrico.',
+        'Sistema de ventilación y refrigeración.',
+      ],
+      correctAnswer: 'Sistema avanzado de almacenamiento en red.',
+    },
+    {
+      question: 'En la nube el cifrado en reposo:',
+      options: [
+        'Asegura los datos que se transfieren a través de redes.',
+        'Protege los datos almacenados en discos y bases de datos.',
+        'Permite restaurar los datos en caso de pérdida o ataque.',
+        'Define qué usuarios pueden acceder a qué datos.',
+        'Ninguna opción es correcta.',
+      ],
+      correctAnswer: 'Protege los datos almacenados en discos y bases de datos.',
+    },
+    {
+      question: 'Uno de los inconvenientes que presenta la criptografía de clave híbrida es:',
+      options: [
+        'No protege la confidencialidad de los datos que ya solo verifica su integridad.',
+        'Todas las opciones son correctas.',
+        'Vulnerabilidad a ataques de colisión.',
+        'Puede requerir mayor potencia de procesamiento, especialmente en sistemas antiguos o limitados.',
+        'Adecuado para sesiones de comunicación en tiempo real.',
+      ],
+      correctAnswer: 'Puede requerir mayor potencia de procesamiento, especialmente en sistemas antiguos o limitados.',
+    },
+    {
+      question: 'En un CPD, un sistema automático que contribuye a la extinción de incendios es:',
+      options: [
+        'Aumento de oxígeno en la sala.',
+        'Ninguna opción es correcta.',
+        'Expulsión de agua nebulizada.',
+        'Expulsión de gases corrosivos.',
+        'Expulsión de chorros de agua.',
+      ],
+      correctAnswer: 'Expulsión de agua nebulizada.',
+    },
+    {
+      question: 'En un CPD:',
+      options: [
+        'debería haber un porcentaje de humedad en el ambiente muy alto.',
+        'si la humedad es demasiado baja se puede generar electricidad estática lo que representa un peligro para los circuitos y los componentes sensibles.',
+        'no debería haber humedad.',
+        'si la humedad es demasiado baja se incrementa el riesgo de corrosión de los metales.',
+        'Ninguna opción es correcta.',
+      ],
+      correctAnswer: 'si la humedad es demasiado baja se puede generar electricidad estática lo que representa un peligro para los circuitos y los componentes sensibles.',
+    },
+    {
+      question: 'En un CPD:',
+      options: [
+        'no debería haber humedad.',
+        'si la humedad es demasiado alta se incrementa el riesgo de corrosión de los metales.',
+        'Ninguna opción es correcta.',
+        'si la humedad es demasiado alta se puede generar electricidad estática lo que representa un peligro para los circuitos y los componentes sensibles.',
+        'debería haber un porcentaje de humedad en el ambiente muy alto.',
+      ],
+      correctAnswer: 'si la humedad es demasiado alta se incrementa el riesgo de corrosión de los metales.',
+    },
+    {
+      question: 'Una de las ventajas que presenta la criptografía de clave asimétrica es:',
+      options: [
+        'Su uso para entornos donde el intercambio seguro de claves es difícil de garantizar.',
+        'Su uso para sesiones de comunicación en tiempo real.',
+        'Adecuado para proteger grandes volúmenes de datos.',
+        'Rapidez y eficiencia en el cifrado y descifrado.',
+        'Todas las opciones son correctas.',
+      ],
+      correctAnswer: 'Su uso para entornos donde el intercambio seguro de claves es difícil de garantizar.',
+    },
+    {
+      question: 'Uno de los inconvenientes que presenta la criptografía de clave simétrica es:',
+      options: [
+        'Puede ser ineficiente para cifrar grandes volúmenes de datos.',
+        'El mensaje cifrado ocupa más espacio que el original.',
+        'Consume más recursos computacionales que la criptografía asimétrica.',
+        'Vulnerabilidad si la clave es interceptada.',
+        'Se utilizan claves de mayor tamaño que en la criptografía asimétrica.',
+      ],
+      correctAnswer: 'Vulnerabilidad si la clave es interceptada.',
+    },
+    {
+      question: 'Uno de los inconvenientes que presenta la criptografía de clave asimétrica es:',
+      options: [
+        'Vulnerabilidad si la clave compartida es interceptada.',
+        'Dificultad en la distribución segura de la clave compartida.',
+        'El mensaje cifrado ocupa más espacio que el original.',
+        'Vulnerabilidad a ataques de colisión.',
+        'No protege la confidencialidad de los datos que ya solo verifica su integridad.',
+      ],
+      correctAnswer: 'El mensaje cifrado ocupa más espacio que el original.',
+    },
+    {
+      question: 'Criptografía simétrica:',
+      options: [
+        'Ninguna opción es correcta.',
+        'Utiliza una misma clave para cifrar y descifrar un mensaje. En esta técnica, el emisor tiene que enviar tanto el mensaje cifrado como la clave.',
+        'Genera una huella digital o resumen de datos de una longitud fija, y permite verificar la integridad de la información.',
+        'Utiliza un par de claves, una clave pública para cifrar el mensaje y una clave privada para descifrarlo.',
+        'Utiliza una clave pública para cifrar la clave que ha cifrado el mensaje y una clave privada que descifra la clave que descifra el mensaje.',
+      ],
+      correctAnswer: 'Utiliza una misma clave para cifrar y descifrar un mensaje. En esta técnica, el emisor tiene que enviar tanto el mensaje cifrado como la clave.',
+    },
+    {
+      question: 'Un CPD está compuesto por:',
+      options: [
+        'Sistemas de climatización.',
+        'Sistemas de almacenamiento de datos.',
+        'Todas las opciones son correctas.',
+        'Sistemas de red.',
+        'Servidores.',
+      ],
+      correctAnswer: 'Todas las opciones son correctas.',
+    },
+    {
+      question: 'SAI:',
+      options: [
+        'Dispositivo que proporciona energía eléctrica de respaldo a equipos críticos cuando ocurre un fallo en el suministro eléctrico.',
+        'Sistema de ventilación y refrigeración.',
+        'Sistema avanzado de extinción de incendios.',
+        'Sistema avanzado de almacenamiento en red.',
+        'Armario donde se guardan y organizan los servidores y sistemas de almacenamiento.',
+      ],
+      correctAnswer: 'Dispositivo que proporciona energía eléctrica de respaldo a equipos críticos cuando ocurre un fallo en el suministro eléctrico.',
+    },
+    {
+      question: 'Impacto:',
+      options: [
+        '"Toda posibilidad de que se produzca un impacto en nuestros sistemas o empresa".',
+        '"Debilidad o fallo en un sistema de información que pone en riesgo la seguridad de la información".',
+        '"Toda consecuencia negativa producida por un ataque o amenaza".',
+        '"Toda acción que aprovecha una vulnerabilidad para atentar contra la seguridad de un sistema de información".',
+        '"Proceso continuo de proteger sistemas, redes y datos frente a ciberataques, accesos no autorizados y otras amenazas".',
+      ],
+      correctAnswer: '"Toda consecuencia negativa producida por un ataque o amenaza".',
+    },
+    {
+      question: 'Seguridad informática:',
+      options: [
+        '"Toda consecuencia negativa producida por un ataque o amenaza".',
+        '"Proceso continuo de proteger sistemas, redes y datos frente a ciberataques, accesos no autorizados y otras amenazas".',
+        '"Debilidad o fallo en un sistema de información que pone en riesgo la seguridad de la información".',
+        '"Toda posibilidad de que se produzca un impacto en nuestros sistemas o empresa".',
+        '"Toda acción que aprovecha una vulnerabilidad para atentar contra la seguridad de un sistema de información".',
+      ],
+      correctAnswer: '"Proceso continuo de proteger sistemas, redes y datos frente a ciberataques, accesos no autorizados y otras amenazas".',
+    },
+    {
+      question: 'Una de las ventajas que presenta la criptografía de clave simétrica es:',
+      options: [
+        'Adecuado para proteger grandes volúmenes de datos.',
+        'Su uso para sesiones de comunicación en tiempo real.',
+        'Mayor seguridad en la distribución de claves, ya que solo la clave privada debe mantenerse en secreto.',
+        'Su uso para entornos donde el intercambio seguro de claves es difícil de garantizar.',
+        'Rapidez y eficiencia en el cifrado y descifrado.',
+      ],
+      correctAnswer: 'Rapidez y eficiencia en el cifrado y descifrado.',
+    },
+    {
+      question: 'Los sistemas de control de acceso a un CPD se basan en:',
+      options: [
+        'únicamente en "algo que eres" como el reconocimiento facial o el reconocimiento de huella dactilar.',
+        'contraseñas de longitud baja y que contengan datos relacionados con cada usuario.',
+        'la combinación de "algo que sabes", "algo que tienes" y "algo que eres".',
+        'únicamente en "algo que sabes" como una contraseña o un pin.',
+        'únicamente en "algo que tienes" como una tarjeta de banda magnética o de RFID.',
+      ],
+      correctAnswer: 'la combinación de "algo que sabes", "algo que tienes" y "algo que eres".',
+    },
+    {
+      question: 'En un CPD:',
+      options: [
+        'hay ruido debido al funcionamiento continuo de los servidores, ventiladores y sistemas de refrigeración llegando a un promedio de 92db.',
+        'hay ruido debido al funcionamiento continuo de los servidores, ventiladores y sistemas de refrigeración llegando a un promedio de 72db.',
+        'hay ruido debido al funcionamiento continuo de los servidores, ventiladores y sistemas de refrigeración llegando a un promedio de 45db.',
+        'hay silencio absoluto debido al aislamiento de cada servidor y de la sala.',
+        'hay ruido debido al funcionamiento continuo de los servidores, ventiladores y sistemas de refrigeración llegando a un promedio de 5db.',
+      ],
+      correctAnswer: 'hay ruido debido al funcionamiento continuo de los servidores, ventiladores y sistemas de refrigeración llegando a un promedio de 92db.',
+    },
+    {
+      question: 'Uno de los inconvenientes que presenta la criptografía de clave asimétrica es:',
+      options: [
+        'Vulnerabilidad si la clave compartida es interceptada.',
+        'Dificultad en la distribución segura de la clave compartida.',
+        'Vulnerabilidad a ataques de colisión.',
+        'No protege la confidencialidad de los datos que ya solo verifica su integridad.',
+        'Consume más recursos computacionales que la criptografía simétrica.',
+      ],
+      correctAnswer: 'Consume más recursos computacionales que la criptografía simétrica.',
+    },
+    {
+      question: 'IAM (Identity and Access Management):',
+      options: [
+        'Proceso de verificar la identidad de un usuario o sistema. En la nube, esto se realiza a través de contraseñas, claves, autenticación multifactor (MFA) y certificados digitales.',
+        'Servicio esencial en la computación en la nube que permite gestionar quién puede acceder a los recursos, qué pueden hacer con ellos y bajo qué condiciones.',
+        'Permite a los usuarios acceder a múltiples sistemas o servicios utilizando una única identidad. Esto se logra mediante protocolos como SAML o OAuth, eliminando la necesidad de gestionar múltiples cuentas.',
+        'Determina los permisos y niveles de acceso que un usuario tiene dentro de un sistema o aplicación en la nube. Esto asegura que los usuarios solo puedan acceder a los recursos que les corresponden.',
+        'Ninguna opción es correcta.',
+      ],
+      correctAnswer: 'Servicio esencial en la computación en la nube que permite gestionar quién puede acceder a los recursos, qué pueden hacer con ellos y bajo qué condiciones.',
+    },
+    {
+      question: 'La temperatura ideal dentro de un CPD suele estar entre los:',
+      options: [
+        '28ºC y 35ºC.',
+        '2ºC y 5ºC.',
+        '18ºC y 27ºC.',
+        '11ºC y 17ºC',
+        '2ºC y 10ºC.',
+      ],
+      correctAnswer: '18ºC y 27ºC.',
+    }
+  ],
+  servicios: [
+    {
+      question: 'Infraestructura como Servicio (SaaS):',
+      options: [
+        'Entrega de recursos informáticos bajo demanda a través de Internet. En lugar de depender de servidores físicos locales, los usuarios pueden acceder a servicios alojados en centros de datos remotos administrados por proveedores de nube.',
+        'Modelo que proporciona entornos de desarrollo preconfigurados que incluyen sistemas operativos, bases de datos, herramientas de desarrollo y middleware. Los desarrolladores pueden centrarse en la creación de software sin preocuparse por la infraestructura subyacente.',
+        'Modelo en el que los proveedores de la nube ofrecen recursos de infraestructura virtualizados, como servidores, almacenamiento y redes, a través de Internet. Los usuarios tienen control sobre la configuración y administración de estos recursos, pero no sobre el hardware físico.',
+        'Modelo que permite a los usuarios acceder a aplicaciones completamente gestionadas a través de Internet. No requieren instalación ni mantenimiento, ya que el proveedor se encarga de su administración.',
+      ],
+      correctAnswer: 'Modelo que permite a los usuarios acceder a aplicaciones completamente gestionadas a través de Internet. No requieren instalación ni mantenimiento, ya que el proveedor se encarga de su administración.',
+    },
+    {
+      question: 'Microservicios:',
+      options: [
+        'Proceso de automatizar la implementación, escalado, administración y networking de contenedores en un entorno de producción. Dado que una aplicación moderna puede estar compuesta por múltiples contenedores, se requiere una solución de orquestación para garantizar la alta disponibilidad y la eficiencia operativa.',
+        'Unidad estándar de software que empaqueta código y todas sus dependencias para que una aplicación se ejecute de manera rápida y confiable en cualquier entorno.',
+        'Conjunto de servidores que trabajan juntos para ejecutar y gestionar contenedores de manera eficiente. Los proveedores de servicios en la nube ofrecen soluciones administradas que automatizan la orquestación, el escalado y la gestión de estos contenedores.',
+        'Arquitectura en la que una aplicación se divide en múltiples servicios independientes que pueden desarrollarse, implementarse y escalarse de manera autónoma.',
+        'Proceso mediante el cual se buscan estrategias para reducir el gasto en recursos computacionales sin comprometer el rendimiento, la seguridad o la disponibilidad de los servicios en la nube.',
+      ],
+      correctAnswer: 'Arquitectura en la que una aplicación se divide en múltiples servicios independientes que pueden desarrollarse, implementarse y escalarse de manera autónoma.',
+    },
+    {
+      question: 'Kubernetes:',
+      options: [
+        'Plataforma de orquestación de contenedores más utilizada en la actualidad. Permite la gestión automatizada de contenedores a través de un clúster de servidores. Facilita la escalabilidad automática, la recuperación ante fallos y la distribución eficiente de recursos.',
+        'Ninguna opción es correcta.',
+        'Plataforma líder en la creación y gestión de contenedores. Permite a los desarrolladores empaquetar aplicaciones en imágenes portables que pueden ejecutarse en cualquier sistema compatible con Docker.',
+        'Modelo en el que los proveedores de la nube ofrecen recursos de infraestructura virtualizados, como servidores, almacenamiento y redes, a través de Internet. Los usuarios tienen control sobre la configuración y administración de estos recursos, pero no sobre el hardware físico.',
+        'Plataformas en la nube que permiten el alojamiento, escalado y mantenimiento automático de aplicaciones sin que el usuario tenga que gestionar la infraestructura subyacente. Estos servicios proporcionan entornos de ejecución optimizados y herramientas para facilitar el desarrollo, la seguridad y la disponibilidad de las aplicaciones.',
+      ],
+      correctAnswer: 'Plataforma de orquestación de contenedores más utilizada en la actualidad. Permite la gestión automatizada de contenedores a través de un clúster de servidores. Facilita la escalabilidad automática, la recuperación ante fallos y la distribución eficiente de recursos.',
+    },
+    {
+      question: 'El hipervisor que se ejecuta sobre un sistema operativo existente, como cualquier otra aplicación, se denomina:',
+      options: [
+        'Hipervisor de tipo 4.',
+        'Hipervisor de tipo 2.',
+        'Hipervisor de tipo 5.',
+        'Hipervisor de tipo 3.',
+        'Hipervisor de tipo 1.',
+      ],
+      correctAnswer: 'Hipervisor de tipo 2.',
+    },
+    {
+      question: 'Cómputo en la nube:',
+      options: [
+        'Modelo en el que los proveedores de la nube ofrecen recursos de infraestructura virtualizados, como servidores, almacenamiento y redes, a través de Internet. Los usuarios tienen control sobre la configuración y administración de estos recursos, pero no sobre el hardware físico.',
+        'Modelo que proporciona entornos de desarrollo preconfigurados que incluyen sistemas operativos, bases de datos, herramientas de desarrollo y middleware. Los desarrolladores pueden centrarse en la creación de software sin preocuparse por la infraestructura subyacente.',
+        'Modelo que permite a los usuarios acceder a aplicaciones completamente gestionadas a través de Internet. No requieren instalación ni mantenimiento, ya que el proveedor se encarga de su administración.',
+        'Modelo de desarrollo y ejecución de aplicaciones en el que el proveedor de servicios en la nube gestiona la infraestructura de servidores y asigna recursos automáticamente. A pesar de su nombre, no significa que no se usen servidores, sino que estos son gestionados por el proveedor de la nube.',
+        'Entrega de recursos informáticos bajo demanda a través de Internet. En lugar de depender de servidores físicos locales, los usuarios pueden acceder a servicios alojados en centros de datos remotos administrados por proveedores de nube.',
+      ],
+      correctAnswer: 'Entrega de recursos informáticos bajo demanda a través de Internet. En lugar de depender de servidores físicos locales, los usuarios pueden acceder a servicios alojados en centros de datos remotos administrados por proveedores de nube.',
+    },
+    {
+      question: 'Elasticidad:',
+      options: [
+        'Capacidad de los servicios en la nube para interactuar con diferentes sistemas y aplicaciones.',
+        'Habilidad de un sistema para aumentar su capacidad de procesamiento de manera controlada y sostenida.',
+        'Tecnología clave en la computación en la nube que permite crear múltiples entornos de cómputo dentro de un mismo hardware físico.',
+        'Capacidad de un sistema para aumentar o reducir automáticamente los recursos de cómputo en función de la demanda.',
+        'Permite migrar servicios entre distintos proveedores sin grandes complicaciones.',
+      ],
+      correctAnswer: 'Capacidad de un sistema para aumentar o reducir automáticamente los recursos de cómputo en función de la demanda.',
+    },
+    {
+      question: 'Contenedor:',
+      options: [
+        'Conjunto de servidores que trabajan juntos para ejecutar y gestionar contenedores de manera eficiente. Los proveedores de servicios en la nube ofrecen soluciones administradas que automatizan la orquestación, el escalado y la gestión de estos contenedores.',
+        'Proceso mediante el cual se buscan estrategias para reducir el gasto en recursos computacionales sin comprometer el rendimiento, la seguridad o la disponibilidad de los servicios en la nube.',
+        'Unidad estándar de software que empaqueta código y todas sus dependencias para que una aplicación se ejecute de manera rápida y confiable en cualquier entorno.',
+        'Proceso de automatizar la implementación, escalado, administración y networking de contenedores en un entorno de producción. Dado que una aplicación moderna puede estar compuesta por múltiples contenedores, se requiere una solución de orquestación para garantizar la alta disponibilidad y la eficiencia operativa.',
+        'Arquitectura en la que una aplicación se divide en múltiples servicios independientes que pueden desarrollarse, implementarse y escalarse de manera autónoma.',
+      ],
+      correctAnswer: 'Unidad estándar de software que empaqueta código y todas sus dependencias para que una aplicación se ejecute de manera rápida y confiable en cualquier entorno.',
+    },
+    {
+      question: 'Clúster de servicios administrados de contenedores:',
+      options: [
+        'Proceso de automatizar la implementación, escalado, administración y networking de contenedores en un entorno de producción. Dado que una aplicación moderna puede estar compuesta por múltiples contenedores, se requiere una solución de orquestación para garantizar la alta disponibilidad y la eficiencia operativa.',
+        'Arquitectura en la que una aplicación se divide en múltiples servicios independientes que pueden desarrollarse, implementarse y escalarse de manera autónoma.',
+        'Unidad estándar de software que empaqueta código y todas sus dependencias para que una aplicación se ejecute de manera rápida y confiable en cualquier entorno.',
+        'Proceso mediante el cual se buscan estrategias para reducir el gasto en recursos computacionales sin comprometer el rendimiento, la seguridad o la disponibilidad de los servicios en la nube.',
+        'Conjunto de servidores que trabajan juntos para ejecutar y gestionar contenedores de manera eficiente. Los proveedores de servicios en la nube ofrecen soluciones administradas que automatizan la orquestación, el escalado y la gestión de estos contenedores.',
+      ],
+      correctAnswer: 'Conjunto de servidores que trabajan juntos para ejecutar y gestionar contenedores de manera eficiente. Los proveedores de servicios en la nube ofrecen soluciones administradas que automatizan la orquestación, el escalado y la gestión de estos contenedores.',
+    },
+    {
+      question: 'Máquinas virtuales:',
+      options: [
+        'Modelo de computación sin servidor en el que los desarrolladores ejecutan funciones independientes en respuesta a eventos específicos, pagando solo por la ejecución.',
+        'Instancias de software que emulan el hardware de un sistema informático, que se ejecuta sobre una infraestructura virtualizada en un entorno de nube, proporcionando la capacidad de ejecutar aplicaciones y servicios de forma similar a un servidor físico, pero con mayor flexibilidad y escalabilidad.',
+        'Modelo basado en contenedores permiten empaquetar aplicaciones con todas sus dependencias en entornos portables y ligeros. CaaS proporciona una plataforma administrada para ejecutar y escalar contenedores sin gestionar la infraestructura subyacente.',
+        'Plataformas en la nube que permiten el alojamiento, escalado y mantenimiento automático de aplicaciones sin que el usuario tenga que gestionar la infraestructura subyacente. Estos servicios proporcionan entornos de ejecución optimizados y herramientas para facilitar el desarrollo, la seguridad y la disponibilidad de las aplicaciones.',
+        'Ninguna opción es correcta.',
+      ],
+      correctAnswer: 'Instancias de software que emulan el hardware de un sistema informático, que se ejecuta sobre una infraestructura virtualizada en un entorno de nube, proporcionando la capacidad de ejecutar aplicaciones y servicios de forma similar a un servidor físico, pero con mayor flexibilidad y escalabilidad.',
+    },
+    {
+      question: 'Optimización de costes en máquinas virtuales:',
+      options: [
+        'Unidad estándar de software que empaqueta código y todas sus dependencias para que una aplicación se ejecute de manera rápida y confiable en cualquier entorno.',
+        'Arquitectura en la que una aplicación se divide en múltiples servicios independientes que pueden desarrollarse, implementarse y escalarse de manera autónoma.',
+        'Conjunto de servidores que trabajan juntos para ejecutar y gestionar contenedores de manera eficiente. Los proveedores de servicios en la nube ofrecen soluciones administradas que automatizan la orquestación, el escalado y la gestión de estos contenedores.',
+        'Proceso de automatizar la implementación, escalado, administración y networking de contenedores en un entorno de producción. Dado que una aplicación moderna puede estar compuesta por múltiples contenedores, se requiere una solución de orquestación para garantizar la alta disponibilidad y la eficiencia operativa.',
+        'Proceso mediante el cual se buscan estrategias para reducir el gasto en recursos computacionales sin comprometer el rendimiento, la seguridad o la disponibilidad de los servicios en la nube.',
+      ],
+      correctAnswer: 'Proceso mediante el cual se buscan estrategias para reducir el gasto en recursos computacionales sin comprometer el rendimiento, la seguridad o la disponibilidad de los servicios en la nube.',
+    },
+    {
+      question: 'Portabilidad:',
+      options: [
+        'Permite migrar servicios entre distintos proveedores sin grandes complicaciones.',
+        'Capacidad de un sistema para aumentar o reducir automáticamente los recursos de cómputo en función de la demanda.',
+        'Tecnología clave en la computación en la nube que permite crear múltiples entornos de cómputo dentro de un mismo hardware físico.',
+        'Capacidad de los servicios en la nube para interactuar con diferentes sistemas y aplicaciones.',
+        'Habilidad de un sistema para aumentar su capacidad de procesamiento de manera controlada y sostenida.',
+      ],
+      correctAnswer: 'Permite migrar servicios entre distintos proveedores sin grandes complicaciones.',
+    },
+    {
+      question: 'Contenedores como Servicio (CaaS):',
+      options: [
+        'Modelo basado en contenedores permiten empaquetar aplicaciones con todas sus dependencias en entornos portables y ligeros. CaaS proporciona una plataforma administrada para ejecutar y escalar contenedores sin gestionar la infraestructura subyacente.',
+        'Modelo de computación sin servidor en el que los desarrolladores ejecutan funciones independientes en respuesta a eventos específicos, pagando solo por la ejecución.',
+        'Plataformas en la nube que permiten el alojamiento, escalado y mantenimiento automático de aplicaciones sin que el usuario tenga que gestionar la infraestructura subyacente. Estos servicios proporcionan entornos de ejecución optimizados y herramientas para facilitar el desarrollo, la seguridad y la disponibilidad de las aplicaciones.',
+        'Instancias de software que emulan el hardware de un sistema informático, que se ejecuta sobre una infraestructura virtualizada en un entorno de nube, proporcionando la capacidad de ejecutar aplicaciones y servicios de forma similar a un servidor físico, pero con mayor flexibilidad y escalabilidad.',
+        'Ninguna opción es correcta.',
+      ],
+      correctAnswer: 'Modelo basado en contenedores permiten empaquetar aplicaciones con todas sus dependencias en entornos portables y ligeros. CaaS proporciona una plataforma administrada para ejecutar y escalar contenedores sin gestionar la infraestructura subyacente.',
+    },
+    {
+      question: 'Docker:',
+      options: [
+        'Modelo en el que los proveedores de la nube ofrecen recursos de infraestructura virtualizados, como servidores, almacenamiento y redes, a través de Internet. Los usuarios tienen control sobre la configuración y administración de estos recursos, pero no sobre el hardware físico.',
+        'Plataforma líder en la creación y gestión de contenedores. Permite a los desarrolladores empaquetar aplicaciones en imágenes portables que pueden ejecutarse en cualquier sistema compatible con Docker.',
+        'Ninguna opción es correcta.',
+        'Plataformas en la nube que permiten el alojamiento, escalado y mantenimiento automático de aplicaciones sin que el usuario tenga que gestionar la infraestructura subyacente. Estos servicios proporcionan entornos de ejecución optimizados y herramientas para facilitar el desarrollo, la seguridad y la disponibilidad de las aplicaciones.',
+        'Plataforma de orquestación de contenedores más utilizada en la actualidad. Permite la gestión automatizada de contenedores a través de un clúster de servidores. Facilita la escalabilidad automática, la recuperación ante fallos y la distribución eficiente de recursos.',
+      ],
+      correctAnswer: 'Plataforma líder en la creación y gestión de contenedores. Permite a los desarrolladores empaquetar aplicaciones en imágenes portables que pueden ejecutarse en cualquier sistema compatible con Docker.',
+    },
+    {
+      question: 'Pago por Uso (Pay-as-you-go):',
+      options: [
+        'Habilidad de un sistema para aumentar su capacidad de procesamiento de manera controlada y sostenida.',
+        'Implica que los usuarios solo pagan por los recursos que consumen, eliminando la necesidad de inversiones iniciales en infraestructura.',
+        'Capacidad de los servicios en la nube para interactuar con diferentes sistemas y aplicaciones.',
+        'Tecnología clave en la computación en la nube que permite crear múltiples entornos de cómputo dentro de un mismo hardware físico.',
+        'Capacidad de un sistema para aumentar o reducir automáticamente los recursos de cómputo en función de la demanda.',
+      ],
+      correctAnswer: 'Implica que los usuarios solo pagan por los recursos que consumen, eliminando la necesidad de inversiones iniciales en infraestructura.',
+    },
+    {
+      question: 'Orquestación de contenedores:',
+      options: [
+        'Unidad estándar de software que empaqueta código y todas sus dependencias para que una aplicación se ejecute de manera rápida y confiable en cualquier entorno.',
+        'Arquitectura en la que una aplicación se divide en múltiples servicios independientes que pueden desarrollarse, implementarse y escalarse de manera autónoma.',
+        'Proceso mediante el cual se buscan estrategias para reducir el gasto en recursos computacionales sin comprometer el rendimiento, la seguridad o la disponibilidad de los servicios en la nube.',
+        'Conjunto de servidores que trabajan juntos para ejecutar y gestionar contenedores de manera eficiente. Los proveedores de servicios en la nube ofrecen soluciones administradas que automatizan la orquestación, el escalado y la gestión de estos contenedores.',
+        'Proceso de automatizar la implementación, escalado, administración y networking de contenedores en un entorno de producción. Dado que una aplicación moderna puede estar compuesta por múltiples contenedores, se requiere una solución de orquestación para garantizar la alta disponibilidad y la eficiencia operativa.',
+      ],
+      correctAnswer: 'Proceso de automatizar la implementación, escalado, administración y networking de contenedores en un entorno de producción. Dado que una aplicación moderna puede estar compuesta por múltiples contenedores, se requiere una solución de orquestación para garantizar la alta disponibilidad y la eficiencia operativa.',
+    },
+    {
+      question: 'Virtualización:',
+      options: [
+        'Tecnología clave en la computación en la nube que permite crear múltiples entornos de cómputo dentro de un mismo hardware físico.',
+        'Permite migrar servicios entre distintos proveedores sin grandes complicaciones.',
+        'Habilidad de un sistema para aumentar su capacidad de procesamiento de manera controlada y sostenida.',
+        'Capacidad de un sistema para aumentar o reducir automáticamente los recursos de cómputo en función de la demanda.',
+        'Capacidad de los servicios en la nube para interactuar con diferentes sistemas y aplicaciones.',
+      ],
+      correctAnswer: 'Tecnología clave en la computación en la nube que permite crear múltiples entornos de cómputo dentro de un mismo hardware físico.',
+    },
+    {
+      question: 'Computación sin servidor:',
+      options: [
+        'Modelo de desarrollo y ejecución de aplicaciones en el que el proveedor de servicios en la nube gestiona la infraestructura de servidores y asigna recursos automáticamente. A pesar de su nombre, no significa que no se usen servidores, sino que estos son gestionados por el proveedor de la nube.',
+        'Modelo que permite a los usuarios acceder a aplicaciones completamente gestionadas a través de Internet. No requieren instalación ni mantenimiento, ya que el proveedor se encarga de su administración.',
+        'Modelo en el que los proveedores de la nube ofrecen recursos de infraestructura virtualizados, como servidores, almacenamiento y redes, a través de Internet. Los usuarios tienen control sobre la configuración y administración de estos recursos, pero no sobre el hardware físico.',
+        'Modelo que proporciona entornos de desarrollo preconfigurados que incluyen sistemas operativos, bases de datos, herramientas de desarrollo y middleware. Los desarrolladores pueden centrarse en la creación de software sin preocuparse por la infraestructura subyacente.',
+        'Entrega de recursos informáticos bajo demanda a través de Internet. En lugar de depender de servidores físicos locales, los usuarios pueden acceder a servicios alojados en centros de datos remotos administrados por proveedores de nube.',
+      ],
+      correctAnswer: 'Modelo de desarrollo y ejecución de aplicaciones en el que el proveedor de servicios en la nube gestiona la infraestructura de servidores y asigna recursos automáticamente. A pesar de su nombre, no significa que no se usen servidores, sino que estos son gestionados por el proveedor de la nube.',
+    },
+    {
+      question: 'Servicios administrados de despliegue de aplicaciones Web:',
+      options: [
+        'Modelo basado en contenedores permiten empaquetar aplicaciones con todas sus dependencias en entornos portables y ligeros. CaaS proporciona una plataforma administrada para ejecutar y escalar contenedores sin gestionar la infraestructura subyacente.',
+        'Instancias de software que emulan el hardware de un sistema informático, que se ejecuta sobre una infraestructura virtualizada en un entorno de nube, proporcionando la capacidad de ejecutar aplicaciones y servicios de forma similar a un servidor físico, pero con mayor flexibilidad y escalabilidad.',
+        'Plataformas en la nube que permiten el alojamiento, escalado y mantenimiento automático de aplicaciones sin que el usuario tenga que gestionar la infraestructura subyacente. Estos servicios proporcionan entornos de ejecución optimizados y herramientas para facilitar el desarrollo, la seguridad y la disponibilidad de las aplicaciones.',
+        'Modelo de computación sin servidor en el que los desarrolladores ejecutan funciones independientes en respuesta a eventos específicos, pagando solo por la ejecución.',
+        'Ninguna opción es correcta.',
+      ],
+      correctAnswer: 'Plataformas en la nube que permiten el alojamiento, escalado y mantenimiento automático de aplicaciones sin que el usuario tenga que gestionar la infraestructura subyacente. Estos servicios proporcionan entornos de ejecución optimizados y herramientas para facilitar el desarrollo, la seguridad y la disponibilidad de las aplicaciones.',
+    },
+    {
+      question: 'Funciones como Servicio (FaaS):',
+      options: [
+        'Plataformas en la nube que permiten el alojamiento, escalado y mantenimiento automático de aplicaciones sin que el usuario tenga que gestionar la infraestructura subyacente. Estos servicios proporcionan entornos de ejecución optimizados y herramientas para facilitar el desarrollo, la seguridad y la disponibilidad de las aplicaciones.',
+        'Modelo basado en contenedores permiten empaquetar aplicaciones con todas sus dependencias en entornos portables y ligeros. CaaS proporciona una plataforma administrada para ejecutar y escalar contenedores sin gestionar la infraestructura subyacente.',
+        'Instancias de software que emulan el hardware de un sistema informático, que se ejecuta sobre una infraestructura virtualizada en un entorno de nube, proporcionando la capacidad de ejecutar aplicaciones y servicios de forma similar a un servidor físico, pero con mayor flexibilidad y escalabilidad.',
+        'Modelo de computación sin servidor en el que los desarrolladores ejecutan funciones independientes en respuesta a eventos específicos, pagando solo por la ejecución.',
+        'Ninguna opción es correcta.',
+      ],
+      correctAnswer: 'Modelo de computación sin servidor en el que los desarrolladores ejecutan funciones independientes en respuesta a eventos específicos, pagando solo por la ejecución.',
+    },
+    {
+      question: 'Interoperabilidad:',
+      options: [
+        'Permite migrar servicios entre distintos proveedores sin grandes complicaciones.',
+        'Tecnología clave en la computación en la nube que permite crear múltiples entornos de cómputo dentro de un mismo hardware físico.',
+        'Capacidad de los servicios en la nube para interactuar con diferentes sistemas y aplicaciones.',
+        'Habilidad de un sistema para aumentar su capacidad de procesamiento de manera controlada y sostenida.',
+        'Capacidad de un sistema para aumentar o reducir automáticamente los recursos de cómputo en función de la demanda.',
+      ],
+      correctAnswer: 'Capacidad de los servicios en la nube para interactuar con diferentes sistemas y aplicaciones.',
+    },
+    {
+      question: 'Escalabilidad:',
+      options: [
+        'Tecnología clave en la computación en la nube que permite crear múltiples entornos de cómputo dentro de un mismo hardware físico.',
+        'Habilidad de un sistema para aumentar su capacidad de procesamiento de manera controlada y sostenida.',
+        'Capacidad de un sistema para aumentar o reducir automáticamente los recursos de cómputo en función de la demanda.',
+        'Permite migrar servicios entre distintos proveedores sin grandes complicaciones.',
+        'Capacidad de los servicios en la nube para interactuar con diferentes sistemas y aplicaciones.',
+      ],
+      correctAnswer: 'Habilidad de un sistema para aumentar su capacidad de procesamiento de manera controlada y sostenida.',
+    },
+    {
+      question: 'Infraestructura como Servicio (PaaS):',
+      options: [
+        'Modelo en el que los proveedores de la nube ofrecen recursos de infraestructura virtualizados, como servidores, almacenamiento y redes, a través de Internet. Los usuarios tienen control sobre la configuración y administración de estos recursos, pero no sobre el hardware físico.',
+        'Entrega de recursos informáticos bajo demanda a través de Internet. En lugar de depender de servidores físicos locales, los usuarios pueden acceder a servicios alojados en centros de datos remotos administrados por proveedores de nube.',
+        'Modelo que proporciona entornos de desarrollo preconfigurados que incluyen sistemas operativos, bases de datos, herramientas de desarrollo y middleware. Los desarrolladores pueden centrarse en la creación de software sin preocuparse por la infraestructura subyacente.',
+        'Modelo de desarrollo y ejecución de aplicaciones en el que el proveedor de servicios en la nube gestiona la infraestructura de servidores y asigna recursos automáticamente. A pesar de su nombre, no significa que no se usen servidores, sino que estos son gestionados por el proveedor de la nube.',
+        'Modelo que permite a los usuarios acceder a aplicaciones completamente gestionadas a través de Internet. No requieren instalación ni mantenimiento, ya que el proveedor se encarga de su administración.',
+      ],
+      correctAnswer: 'Modelo que proporciona entornos de desarrollo preconfigurados que incluyen sistemas operativos, bases de datos, herramientas de desarrollo y middleware. Los desarrolladores pueden centrarse en la creación de software sin preocuparse por la infraestructura subyacente.',
+    },
+    {
+      question: 'Infraestructura como Servicio (IaaS):',
+      options: [
+        'Modelo de desarrollo y ejecución de aplicaciones en el que el proveedor de servicios en la nube gestiona la infraestructura de servidores y asigna recursos automáticamente. A pesar de su nombre, no significa que no se usen servidores, sino que estos son gestionados por el proveedor de la nube.',
+        'Modelo que proporciona entornos de desarrollo preconfigurados que incluyen sistemas operativos, bases de datos, herramientas de desarrollo y middleware. Los desarrolladores pueden centrarse en la creación de software sin preocuparse por la infraestructura subyacente.',
+        'Modelo que permite a los usuarios acceder a aplicaciones completamente gestionadas a través de Internet. No requieren instalación ni mantenimiento, ya que el proveedor se encarga de su administración.',
+        'Entrega de recursos informáticos bajo demanda a través de Internet. En lugar de depender de servidores físicos locales, los usuarios pueden acceder a servicios alojados en centros de datos remotos administrados por proveedores de nube.',
+        'Modelo en el que los proveedores de la nube ofrecen recursos de infraestructura virtualizados, como servidores, almacenamiento y redes, a través de Internet. Los usuarios tienen control sobre la configuración y administración de estos recursos, pero no sobre el hardware físico.',
+      ],
+      correctAnswer: 'Modelo en el que los proveedores de la nube ofrecen recursos de infraestructura virtualizados, como servidores, almacenamiento y redes, a través de Internet. Los usuarios tienen control sobre la configuración y administración de estos recursos, pero no sobre el hardware físico.',
+    },
+    {
+      question: 'El hipervisor que se ejecuta directamente sobre el hardware físico del host, proporcionando un alto rendimiento y aislamiento, se denomina:',
+      options: [
+        'Hipervisor de tipo 4.',
+        'Hipervisor de tipo 2.',
+        'Hipervisor de tipo 5.',
+        'Hipervisor de tipo 3.',
+        'Hipervisor de tipo 1.',
+      ],
+      correctAnswer: 'Hipervisor de tipo 1.',
+    },
+    {
+      question: 'Servicios administrados de cómputo:',
+      options: [
+        'Arquitectura en la que una aplicación se divide en múltiples servicios independientes que pueden desarrollarse, implementarse y escalarse de manera autónoma.',
+        'Soluciones tecnológicas en las que un proveedor de nube se encarga de gestionar, mantener y optimizar la infraestructura de cómputo subyacente. Esto permite a las organizaciones centrarse en el desarrollo y ejecución de sus aplicaciones sin la complejidad de administrar servidores, almacenamiento, redes o sistemas operativos.',
+        'Unidad estándar de software que empaqueta código y todas sus dependencias para que una aplicación se ejecute de manera rápida y confiable en cualquier entorno.',
+        'Proceso mediante el cual se buscan estrategias para reducir el gasto en recursos computacionales sin comprometer el rendimiento, la seguridad o la disponibilidad de los servicios en la nube.',
+        'Conjunto de servidores que trabajan juntos para ejecutar y gestionar contenedores de manera eficiente. Los proveedores de servicios en la nube ofrecen soluciones administradas que automatizan la orquestación, el escalado y la gestión de estos contenedores.',
+      ],
+      correctAnswer: 'Soluciones tecnológicas en las que un proveedor de nube se encarga de gestionar, mantener y optimizar la infraestructura de cómputo subyacente. Esto permite a las organizaciones centrarse en el desarrollo y ejecución de sus aplicaciones sin la complejidad de administrar servidores, almacenamiento, redes o sistemas operativos.',
+    }
+  ]
 }
