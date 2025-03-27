@@ -1,150 +1,459 @@
+'use client'
+
+import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { Database } from 'lucide-react'
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion'
+import {
+  Database,
+  Table,
+  Folder,
+  HardDrive,
+  Wrench,
+  Network,
+  BarChart
+} from 'lucide-react'
 
-export default function BasesDeDatosEnLaNube() {
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: 'spring',
+      stiffness: 100,
+    },
+  },
+}
+
+export default function ServiciosBasesDatosNube() {
+  const [activeTab, setActiveTab] = useState('introduccion')
+
   return (
-    <Card className="w-full max-w-4xl mx-auto">
-      <CardHeader>
-        <CardTitle className="text-3xl font-bold flex items-center">
-          <Database className="mr-2" />
-          Bases de Datos en la Nube
-        </CardTitle>
-        <CardDescription>
-          Descripción, diferenciación y despliegue de bases de datos
-          administradas en la nube
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h3 className="text-xl font-semibold mb-4">
-            Bases de Datos Administradas en la Nube
-          </h3>
-          <p className="mb-4">
-            Las bases de datos administradas en la nube ofrecen soluciones
-            escalables y de alto rendimiento para almacenar, gestionar y
-            analizar datos, sin la necesidad de administrar la infraestructura
-            subyacente.
-          </p>
+    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <CardHeader>
+          <CardTitle className="text-4xl font-bold flex items-center text-blue-600 dark:text-blue-400">
+            <Database className="mr-4 h-8 w-8" />
+            Servicios de bases de datos en la nube
+          </CardTitle>
+          <CardDescription className="text-lg text-gray-600 dark:text-gray-300">
+            Explora los diferentes tipos de servicios de bases de datos en la nube y sus funcionalidades para optimizar la gestión de datos.
+          </CardDescription>
+        </CardHeader>
+      </motion.div>
 
-          <h4 className="text-lg font-semibold mb-2">
-            Tipos principales de bases de datos en la nube:
-          </h4>
-          <ol className="list-decimal list-inside mb-4">
-            <li className="mb-2">
-              <strong>Bases de datos relacionales:</strong> SQL Server, MySQL,
-              PostgreSQL, Oracle
-            </li>
-            <li className="mb-2">
-              <strong>Bases de datos NoSQL:</strong> MongoDB, Cassandra, Redis,
-              DynamoDB
-            </li>
-            <li className="mb-2">
-              <strong>Bases de datos en memoria:</strong> Redis, Memcached
-            </li>
-            <li className="mb-2">
-              <strong>Bases de datos de series temporales:</strong> InfluxDB,
-              TimescaleDB
-            </li>
-            <li className="mb-2">
-              <strong>Bases de datos de grafos:</strong> Neo4j, Amazon Neptune
-            </li>
-          </ol>
+      <Tabs
+        value={activeTab}
+        onValueChange={setActiveTab}
+        className="space-y-8"
+      >
+        <TabsList className="grid w-full grid-cols-2 lg:grid-cols-6 gap-4">
+          <TabsTrigger value="introduccion">Introducción</TabsTrigger>
+          <TabsTrigger value="relacionales">BBDD Relacionales</TabsTrigger>
+          <TabsTrigger value="nosql">BBDD NoSQL</TabsTrigger>
+          <TabsTrigger value="analiticas">BBDD Analíticas</TabsTrigger>
+          <TabsTrigger value="despliegue">Despliegue en AWS</TabsTrigger>
+          <TabsTrigger value="optimizacion">Optimización</TabsTrigger>
+        </TabsList>
 
-          <h4 className="text-lg font-semibold mb-2">
-            Características y diferencias:
-          </h4>
-          <ul className="list-disc list-inside mb-4">
-            <li>
-              <strong>Relacionales:</strong> ACID compliant, ideal para datos
-              estructurados y transacciones complejas.
-            </li>
-            <li>
-              <strong>NoSQL:</strong> Alta escalabilidad, flexibilidad en el
-              esquema, ideal para datos no estructurados o semiestructurados.
-            </li>
-            <li>
-              <strong>En memoria:</strong> Rendimiento extremadamente alto,
-              ideal para cachés y datos volátiles.
-            </li>
-            <li>
-              <strong>Series temporales:</strong> Optimizadas para datos con
-              marca de tiempo, ideal para métricas y análisis de tendencias.
-            </li>
-            <li>
-              <strong>Grafos:</strong> Eficientes para datos altamente
-              conectados, ideal para redes sociales y sistemas de recomendación.
-            </li>
-          </ul>
+        <TabsContent value="introduccion">
+          <IntroduccionBasesDatos />
+        </TabsContent>
 
-          <h4 className="text-lg font-semibold mb-2">
-            Ventajas de las bases de datos administradas en la nube:
-          </h4>
-          <ul className="list-disc list-inside mb-4">
-            <li>Escalabilidad automática</li>
-            <li>Alta disponibilidad y replicación</li>
-            <li>Backups y recuperación ante desastres</li>
-            <li>Parches y actualizaciones automáticas</li>
-            <li>Monitoreo y alertas integrados</li>
-            <li>Seguridad mejorada</li>
-          </ul>
+        <TabsContent value="relacionales">
+          <BasesDatosRelacionales />
+        </TabsContent>
 
-          <h4 className="text-lg font-semibold mb-2">
-            Pasos para desplegar una base de datos administrada:
-          </h4>
-          <ol className="list-decimal list-inside mb-4">
-            <li className="mb-2">
-              Seleccionar el tipo de base de datos adecuado para su caso de uso
-            </li>
-            <li className="mb-2">
-              Elegir el proveedor de nube y el servicio específico
-            </li>
-            <li className="mb-2">
-              Configurar las opciones de instancia (tamaño, región, versión)
-            </li>
-            <li className="mb-2">
-              Establecer la configuración de red y seguridad
-            </li>
-            <li className="mb-2">Crear la instancia de la base de datos</li>
-            <li className="mb-2">Configurar la conexión y los usuarios</li>
-            <li className="mb-2">Importar datos (si es necesario)</li>
-            <li className="mb-2">Configurar backups y monitoreo</li>
-          </ol>
+        <TabsContent value="nosql">
+          <BasesDatosNoSQL />
+        </TabsContent>
 
-          <h4 className="text-lg font-semibold mb-2">
-            Consideraciones al elegir una base de datos en la nube:
-          </h4>
-          <ul className="list-disc list-inside mb-4">
-            <li>Modelo de datos y requisitos de consulta</li>
-            <li>Escalabilidad y rendimiento necesarios</li>
-            <li>Consistencia vs disponibilidad (teorema CAP)</li>
-            <li>Costos (instancia, almacenamiento, transferencia de datos)</li>
-            <li>Compatibilidad con aplicaciones existentes</li>
-            <li>Requisitos de seguridad y cumplimiento normativo</li>
-            <li>Herramientas de gestión y monitoreo disponibles</li>
-          </ul>
+        <TabsContent value="analiticas">
+          <BasesDatosAnaliticas />
+        </TabsContent>
 
-          <p className="mb-4">
-            Las bases de datos administradas en la nube ofrecen una solución
-            poderosa y flexible para las necesidades de almacenamiento y gestión
-            de datos de las organizaciones modernas. Al comprender los
-            diferentes tipos de bases de datos, sus características y el proceso
-            de despliegue, los profesionales de TI pueden seleccionar e
-            implementar la solución más adecuada para sus aplicaciones y casos
-            de uso específicos.
-          </p>
-        </motion.div>
-      </CardContent>
-    </Card>
+        <TabsContent value="despliegue">
+          <DespliegueAWS />
+        </TabsContent>
+
+        <TabsContent value="optimizacion">
+          <OptimizacionBasesDatos />
+        </TabsContent>
+      </Tabs>
+    </main>
+  )
+}
+
+function IntroduccionBasesDatos() {
+  return (
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="space-y-8"
+    >
+      <motion.div variants={itemVariants}>
+        <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold flex items-center text-blue-600 dark:text-blue-400">
+              <HardDrive className="mr-2 h-6 w-6" />
+              Introducción a las bases de datos en la nube
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              Las bases de datos en la nube permiten almacenar y gestionar datos sin necesidad de configurar y mantener servidores físicos, ofreciendo ventajas como escalabilidad, alta disponibilidad y seguridad.
+            </p>
+            <h3 className="text-xl font-semibold mb-2 text-blue-600 dark:text-blue-400">
+              Beneficios clave:
+            </h3>
+            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+              <li>Escalabilidad: Ajustar capacidad según la demanda.</li>
+              <li>Alta disponibilidad: Redundancia y replicación de datos.</li>
+              <li>Seguridad mejorada: Cifrado y controles de acceso.</li>
+              <li>Reducción de costos: Eliminación de hardware especializado.</li>
+              <li>Gestión automatizada: Administración de parches y copias de seguridad.</li>
+              <li>Conectividad global: Acceso desde cualquier parte del mundo.</li>
+            </ul>
+            <p className="mt-4 text-gray-700 dark:text-gray-300">
+              <strong>Ejemplo práctico:</strong> Una tienda online utiliza bases de datos en la nube para gestionar inventarios y pedidos de manera eficiente.
+            </p>
+          </CardContent>
+        </Card>
+      </motion.div>
+    </motion.div>
+  )
+}
+
+function BasesDatosRelacionales() {
+  return (
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="space-y-8"
+    >
+      <motion.div variants={itemVariants}>
+        <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold flex items-center text-blue-600 dark:text-blue-400">
+              <Table className="mr-2 h-6 w-6" />
+              Bases de datos relacionales
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              Las bases de datos relacionales organizan los datos en tablas con filas y columnas, utilizando SQL para gestionar y manipular la información.
+            </p>
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="caracteristicas-relacionales">
+                <AccordionTrigger>Características principales</AccordionTrigger>
+                <AccordionContent>
+                  <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Estructura basada en tablas.</li>
+                    <li>Uso del lenguaje SQL.</li>
+                    <li>Integridad referencial.</li>
+                    <li>Escalabilidad vertical.</li>
+                    <li>Transaccionalidad con propiedades ACID.</li>
+                    <li>Seguridad y control de acceso.</li>
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="funcionalidades-relacionales">
+                <AccordionTrigger>Funcionalidades de servicios administrados</AccordionTrigger>
+                <AccordionContent>
+                  <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Escalabilidad automática.</li>
+                    <li>Alta disponibilidad.</li>
+                    <li>Seguridad avanzada.</li>
+                    <li>Optimización del rendimiento.</li>
+                    <li>Automatización del mantenimiento.</li>
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="despliegue-relacionales">
+                <AccordionTrigger>Despliegue en la nube</AccordionTrigger>
+                <AccordionContent>
+                  <ol className="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Elección del motor de base de datos.</li>
+                    <li>Configuración de la instancia.</li>
+                    <li>Configuración de la seguridad y accesibilidad.</li>
+                    <li>Definición de la estrategia de copias de seguridad.</li>
+                    <li>Implementación de la base de datos.</li>
+                  </ol>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </CardContent>
+        </Card>
+      </motion.div>
+    </motion.div>
+  )
+}
+
+function BasesDatosNoSQL() {
+  return (
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="space-y-8"
+    >
+      <motion.div variants={itemVariants}>
+        <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold flex items-center text-blue-600 dark:text-blue-400">
+              <Folder className="mr-2 h-6 w-6" />
+              Bases de datos NoSQL
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              Las bases de datos NoSQL son flexibles y están diseñadas para manejar grandes volúmenes de datos no estructurados o semiestructurados.
+            </p>
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="caracteristicas-nosql">
+                <AccordionTrigger>Características principales</AccordionTrigger>
+                <AccordionContent>
+                  <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Modelo de datos flexible.</li>
+                    <li>Escalabilidad horizontal.</li>
+                    <li>Alto rendimiento.</li>
+                    <li>Disponibilidad y tolerancia a fallos.</li>
+                    <li>Modelo de consistencia eventual.</li>
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="tipos-nosql">
+                <AccordionTrigger>Tipos de bases de datos NoSQL</AccordionTrigger>
+                <AccordionContent>
+                  <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Documentos: JSON o BSON.</li>
+                    <li>Clave-valor: Acceso ultrarrápido.</li>
+                    <li>Grafos: Relaciones complejas.</li>
+                    <li>Columnas anchas: Acceso rápido a grandes volúmenes.</li>
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="funcionalidades-nosql">
+                <AccordionTrigger>Funcionalidades de servicios administrados</AccordionTrigger>
+                <AccordionContent>
+                  <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Alta escalabilidad.</li>
+                    <li>Baja latencia.</li>
+                    <li>Alta disponibilidad.</li>
+                    <li>Flexibilidad en la estructura de datos.</li>
+                    <li>Administración simplificada.</li>
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </CardContent>
+        </Card>
+      </motion.div>
+    </motion.div>
+  )
+}
+
+function BasesDatosAnaliticas() {
+  return (
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="space-y-8"
+    >
+      <motion.div variants={itemVariants}>
+        <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold flex items-center text-blue-600 dark:text-blue-400">
+              <BarChart className="mr-2 h-6 w-6" />
+              Bases de datos analíticas
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              Las bases de datos analíticas están diseñadas para procesar grandes volúmenes de datos y proporcionar información útil a partir de ellos.
+            </p>
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="caracteristicas-analiticas">
+                <AccordionTrigger>Características principales</AccordionTrigger>
+                <AccordionContent>
+                  <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Optimización para consultas complejas.</li>
+                    <li>Estructura orientada a la lectura.</li>
+                    <li>Modelos de almacenamiento en columnas.</li>
+                    <li>Compatibilidad con grandes volúmenes de datos.</li>
+                    <li>Integración con herramientas de BI.</li>
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="tipos-analiticas">
+                <AccordionTrigger>Tipos de bases de datos analíticas</AccordionTrigger>
+                <AccordionContent>
+                  <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Almacenes de datos (Data Warehouses).</li>
+                    <li>Lagos de datos (Data Lakes).</li>
+                    <li>Bases de datos analíticas en tiempo real.</li>
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="funcionalidades-analiticas">
+                <AccordionTrigger>Funcionalidades de Servicios Administrados</AccordionTrigger>
+                <AccordionContent>
+                  <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Procesamiento de grandes volúmenes de datos.</li>
+                    <li>Optimización para consultas complejas.</li>
+                    <li>Escalabilidad automática.</li>
+                    <li>Integración con herramientas de análisis e inteligencia de negocios.</li>
+                    <li>Procesamiento distribuido.</li>
+                    <li>Seguridad y cumplimiento.</li>
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </CardContent>
+        </Card>
+      </motion.div>
+    </motion.div>
+  )
+}
+
+function DespliegueAWS() {
+  return (
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="space-y-8"
+    >
+      <motion.div variants={itemVariants}>
+        <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold flex items-center text-blue-600 dark:text-blue-400">
+              <Network className="mr-2 h-6 w-6" />
+              Despliegue de dases de datos en AWS
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              El despliegue de bases de datos en AWS implica la configuración de instancias y servicios específicos para cada tipo de base de datos.
+            </p>
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="relacionales-aws">
+                <AccordionTrigger>Bases de datos relacionales</AccordionTrigger>
+                <AccordionContent>
+                  <ol className="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Elección del motor de base de datos.</li>
+                    <li>Configuración de la instancia.</li>
+                    <li>Configuración de la seguridad y accesibilidad.</li>
+                    <li>Definición de la estrategia de copias de seguridad.</li>
+                    <li>Implementación de la base de datos.</li>
+                  </ol>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="nosql-aws">
+                <AccordionTrigger>Bases de datos NoSQL</AccordionTrigger>
+                <AccordionContent>
+                  <ol className="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Selección del tipo de base de datos NoSQL.</li>
+                    <li>Configuración del servicio AWS adecuado.</li>
+                    <li>Definición de políticas de acceso y seguridad.</li>
+                    <li>Optimización del rendimiento.</li>
+                    <li>Implementación y monitoreo.</li>
+                  </ol>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="analiticas-aws">
+                <AccordionTrigger>Bases de datos analíticas</AccordionTrigger>
+                <AccordionContent>
+                  <ol className="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Definición de necesidades de análisis.</li>
+                    <li>Selección del servicio AWS adecuado.</li>
+                    <li>Integración con fuentes de datos.</li>
+                    <li>Optimización del almacenamiento y consultas.</li>
+                    <li>Configuración de seguridad y acceso.</li>
+                    <li>Implementación de herramientas de visualización.</li>
+                  </ol>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </CardContent>
+        </Card>
+      </motion.div>
+    </motion.div>
+  )
+}
+
+function OptimizacionBasesDatos() {
+  return (
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="space-y-8"
+    >
+      <motion.div variants={itemVariants}>
+        <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold flex items-center text-blue-600 dark:text-blue-400">
+              <Wrench className="mr-2 h-6 w-6" />
+              Optimización de bases de datos en la nube
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              La optimización de bases de datos en la nube busca maximizar la eficiencia y minimizar los costos asociados con la gestión de datos.
+            </p>
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="estrategias-optimizacion">
+                <AccordionTrigger>Estrategias de optimización</AccordionTrigger>
+                <AccordionContent>
+                  <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Dimensionamiento correcto (Right-sizing).</li>
+                    <li>Uso de instancias reservadas y planes de ahorro.</li>
+                    <li>Implementación de políticas de apagado automático.</li>
+                    <li>Optimización de almacenamiento y transferencia de datos.</li>
+                    <li>Adopción de arquitecturas serverless.</li>
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="herramientas-optimizacion">
+                <AccordionTrigger>Herramientas para optimización</AccordionTrigger>
+                <AccordionContent>
+                  <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>AWS Trusted Advisor y AWS Cost Explorer.</li>
+                    <li>Azure Cost Management y Azure Advisor.</li>
+                    <li>Google Cloud's Recommender y Cost Management.</li>
+                    <li>Herramientas de terceros: CloudHealth, Cloudability.</li>
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </CardContent>
+        </Card>
+      </motion.div>
+    </motion.div>
   )
 }

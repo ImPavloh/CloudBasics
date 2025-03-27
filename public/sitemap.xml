@@ -4,36 +4,78 @@
     <loc>https://cloudbasics.vercel.app/</loc>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
-    <lastmod>2024-11-13</lastmod>
+    <lastmod>2025-03-27</lastmod>
   </url>
   <url>
     <loc>https://cloudbasics.vercel.app/temas</loc>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
-    <lastmod>2024-11-13</lastmod>
+    <lastmod>2025-03-27</lastmod>
   </url>
   <url>
     <loc>https://cloudbasics.vercel.app/tema/cloud</loc>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
-    <lastmod>2024-11-13</lastmod>
+    <lastmod>2025-03-27</lastmod>
   </url>
   <url>
     <loc>https://cloudbasics.vercel.app/tema/pricing</loc>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
-    <lastmod>2024-11-13</lastmod>
+    <lastmod>2025-03-27</lastmod>
   </url>
   <url>
     <loc>https://cloudbasics.vercel.app/tema/infra</loc>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
-    <lastmod>2024-11-13</lastmod>
+    <lastmod>2025-03-27</lastmod>
+  </url>
+  <url>
+    <loc>https://cloudbasics.vercel.app/tema/security</loc>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+    <lastmod>2025-03-27</lastmod>
+  </url>
+  <url>
+    <loc>https://cloudbasics.vercel.app/tema/networking</loc>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+    <lastmod>2025-03-27</lastmod>
+  </url>
+  <url>
+    <loc>https://cloudbasics.vercel.app/tema/compute</loc>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+    <lastmod>2025-03-27</lastmod>
+  </url>
+  <url>
+    <loc>https://cloudbasics.vercel.app/tema/storage</loc>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+    <lastmod>2025-03-27</lastmod>
+  </url>
+  <url>
+    <loc>https://cloudbasics.vercel.app/tema/databases</loc>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+    <lastmod>2025-03-27</lastmod>
+  </url>
+  <url>
+    <loc>https://cloudbasics.vercel.app/tema/architecture</loc>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+    <lastmod>2025-03-27</lastmod>
   </url>
   <url>
     <loc>https://cloudbasics.vercel.app/recursos</loc>
     <priority>0.7</priority>
     <changefreq>weekly</changefreq>
-    <lastmod>2024-11-13</lastmod>
+    <lastmod>2025-03-27</lastmod>
+  </url>
+  <url>
+    <loc>https://cloudbasics.vercel.app/aws</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+    <lastmod>2025-03-27</lastmod>
   </url>
 </urlset>

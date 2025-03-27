@@ -83,7 +83,7 @@ export const topics: Topic[] = [
     description: 'Servicios de almacenamiento',
     category: 'Servicios',
     component: AlmacenamientoEnLaNube,
-    available: false,
+    available: true,
   },
   {
     id: 'databases',
@@ -92,7 +92,7 @@ export const topics: Topic[] = [
     description: 'Bases de datos administradas',
     category: 'Servicios',
     component: BasesDeDatosEnLaNube,
-    available: false,
+    available: true,
   },
   {
     id: 'architecture',
@@ -101,7 +101,7 @@ export const topics: Topic[] = [
     description: 'Principios arquitectónicos',
     category: 'Diseño',
     component: PrincipiosArquitectonicosNube,
-    available: false,
+    available: true,
   },
   {
     id: 'elastic',
