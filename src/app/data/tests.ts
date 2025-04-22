@@ -3843,5 +3843,1721 @@ export const tests: Record<string, Question[]> = {
       ],
       correctAnswer: 'Soluciones tecnológicas en las que un proveedor de nube se encarga de gestionar, mantener y optimizar la infraestructura de cómputo subyacente. Esto permite a las organizaciones centrarse en el desarrollo y ejecución de sus aplicaciones sin la complejidad de administrar servidores, almacenamiento, redes o sistemas operativos.',
     }
-  ]
+  ],
+  almacenamiento: [
+    {
+      question: '¿Cuál es una de las características principales del almacenamiento en la nube?',
+      options: [
+        'Requiere mantenimiento de infraestructura física',
+        'Escalabilidad',
+        'Acceso limitado a datos',
+        'Baja disponibilidad',
+      ],
+      correctAnswer: 'Escalabilidad',
+    },
+    {
+      question: '¿Qué beneficio ofrece el almacenamiento en la nube?',
+      options: [
+        'Reducción de costos',
+        'Mayor complejidad de gestión',
+        'Necesidad de inversión en hardware',
+        'Menor accesibilidad remota',
+      ],
+      correctAnswer: 'Reducción de costos',
+    },
+    {
+      question: '¿Qué servicio de AWS está diseñado para almacenamiento de objetos?',
+      options: [
+        'Amazon EBS',
+        'Amazon EFS',
+        'Amazon S3',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon S3',
+    },
+    {
+      question: '¿Qué tipo de almacenamiento es ideal para bases de datos o aplicaciones de alto rendimiento?',
+      options: [
+        'Almacenamiento de objetos',
+        'Almacenamiento de archivos',
+        'Almacenamiento en bloque',
+        'Almacenamiento de datos',
+      ],
+      correctAnswer: 'Almacenamiento en bloque',
+    },
+    {
+      question: '¿Qué característica tiene el almacenamiento de objetos?',
+      options: [
+        'Estructura jerárquica de directorios',
+        'Escalabilidad prácticamente ilimitada',
+        'Baja latencia',
+        'Acceso directo a bloques específicos',
+      ],
+      correctAnswer: 'Escalabilidad prácticamente ilimitada',
+    },
+    {
+      question: '¿Qué protocolo es compatible con el almacenamiento de archivos en la nube?',
+      options: [
+        'HTTP',
+        'NFS',
+        'SMTP',
+        'FTP',
+      ],
+      correctAnswer: 'NFS',
+    },
+    {
+      question: '¿Qué servicio de AWS ofrece almacenamiento de archivos compartidos?',
+      options: [
+        'Amazon S3',
+        'Amazon EBS',
+        'Amazon EFS',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon EFS',
+    },
+    {
+      question: '¿Qué tipo de almacenamiento es adecuado para datos no estructurados como imágenes y vídeos?',
+      options: [
+        'Almacenamiento en bloque',
+        'Almacenamiento de objetos',
+        'Almacenamiento de archivos',
+        'Almacenamiento de datos',
+      ],
+      correctAnswer: 'Almacenamiento de objetos',
+    },
+    {
+      question: '¿Qué característica tiene el almacenamiento en bloques?',
+      options: [
+        'Baja latencia y alto rendimiento',
+        'Escalabilidad masiva',
+        'Acceso mediante API',
+        'Compatibilidad con protocolos NFS',
+      ],
+      correctAnswer: 'Baja latencia y alto rendimiento',
+    },
+    {
+      question: '¿Qué servicio de AWS proporciona almacenamiento persistente para instancias EC2?',
+      options: [
+        'Amazon S3',
+        'Amazon EBS',
+        'Amazon EFS',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon EBS',
+    },
+    {
+      question: '¿Qué tipo de almacenamiento se utiliza para sistemas que requieren acceso rápido a los datos?',
+      options: [
+        'Almacenamiento de objetos',
+        'Almacenamiento de archivos',
+        'Almacenamiento en bloque',
+        'Almacenamiento de datos',
+      ],
+      correctAnswer: 'Almacenamiento en bloque',
+    },
+    {
+      question: '¿Qué característica tiene el almacenamiento de datos en la nube?',
+      options: [
+        'Alta disponibilidad y redundancia',
+        'Estructura jerárquica',
+        'Acceso mediante API',
+        'Baja latencia',
+      ],
+      correctAnswer: 'Alta disponibilidad y redundancia',
+    },
+    {
+      question: '¿Qué servicio de AWS es una base de datos NoSQL de alto rendimiento?',
+      options: [
+        'Amazon S3',
+        'Amazon EBS',
+        'Amazon DynamoDB',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon DynamoDB',
+    },
+    {
+      question: '¿Qué tipo de almacenamiento es ideal para contenido multimedia y big data?',
+      options: [
+        'Almacenamiento en bloque',
+        'Almacenamiento de objetos',
+        'Almacenamiento de archivos',
+        'Almacenamiento de datos',
+      ],
+      correctAnswer: 'Almacenamiento de objetos',
+    },
+    {
+      question: '¿Qué característica tiene el almacenamiento de archivos en la nube?',
+      options: [
+        'Escalabilidad masiva',
+        'Compatibilidad con protocolos NFS',
+        'Acceso mediante API',
+        'Baja latencia',
+      ],
+      correctAnswer: 'Compatibilidad con protocolos NFS',
+    },
+    {
+      question: '¿Qué servicio de AWS ofrece almacenamiento de archivos escalable basado en NFS?',
+      options: [
+        'Amazon S3',
+        'Amazon EBS',
+        'Amazon EFS',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon EFS',
+    },
+    {
+      question: '¿Qué tipo de almacenamiento es adecuado para aplicaciones empresariales de alto rendimiento?',
+      options: [
+        'Almacenamiento de objetos',
+        'Almacenamiento de archivos',
+        'Almacenamiento en bloque',
+        'Almacenamiento de datos',
+      ],
+      correctAnswer: 'Almacenamiento en bloque',
+    },
+    {
+      question: '¿Qué característica tiene el almacenamiento de datos en la nube?',
+      options: [
+        'Escalabilidad automática',
+        'Estructura jerárquica',
+        'Acceso mediante API',
+        'Baja latencia',
+      ],
+      correctAnswer: 'Escalabilidad automática',
+    },
+    {
+      question: '¿Qué servicio de AWS es un almacén de datos en la nube diseñado para análisis a gran escala?',
+      options: [
+        'Amazon S3',
+        'Amazon EBS',
+        'Amazon Redshift',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon Redshift',
+    },
+    {
+      question: '¿Qué tipo de almacenamiento es ideal para datos estructurados en bases de datos relacionales?',
+      options: [
+        'Almacenamiento en bloque',
+        'Almacenamiento de objetos',
+        'Almacenamiento de archivos',
+        'Almacenamiento de datos',
+      ],
+      correctAnswer: 'Almacenamiento de datos',
+    },
+    {
+      question: '¿Qué característica tiene el almacenamiento de archivos en la nube?',
+      options: [
+        'Escalabilidad masiva',
+        'Compatibilidad con protocolos NFS',
+        'Acceso mediante API',
+        'Baja latencia',
+      ],
+      correctAnswer: 'Compatibilidad con protocolos NFS',
+    },
+    {
+      question: '¿Qué servicio de AWS ofrece almacenamiento de archivos escalable basado en NFS?',
+      options: [
+        'Amazon S3',
+        'Amazon EBS',
+        'Amazon EFS',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon EFS',
+    },
+    {
+      question: '¿Qué tipo de almacenamiento es adecuado para aplicaciones empresariales de alto rendimiento?',
+      options: [
+        'Almacenamiento de objetos',
+        'Almacenamiento de archivos',
+        'Almacenamiento en bloque',
+        'Almacenamiento de datos',
+      ],
+      correctAnswer: 'Almacenamiento en bloque',
+    },
+    {
+      question: '¿Qué característica tiene el almacenamiento de datos en la nube?',
+      options: [
+        'Escalabilidad automática',
+        'Estructura jerárquica',
+        'Acceso mediante API',
+        'Baja latencia',
+      ],
+      correctAnswer: 'Escalabilidad automática',
+    },
+    {
+      question: '¿Qué servicio de AWS es un almacén de datos en la nube diseñado para análisis a gran escala?',
+      options: [
+        'Amazon S3',
+        'Amazon EBS',
+        'Amazon Redshift',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon Redshift',
+    },
+    {
+      question: '¿Qué tipo de almacenamiento es ideal para datos estructurados en bases de datos relacionales?',
+      options: [
+        'Almacenamiento en bloque',
+        'Almacenamiento de objetos',
+        'Almacenamiento de archivos',
+        'Almacenamiento de datos',
+      ],
+      correctAnswer: 'Almacenamiento de datos',
+    },
+    {
+      question: '¿Qué característica tiene el almacenamiento de archivos en la nube?',
+      options: [
+        'Escalabilidad masiva',
+        'Compatibilidad con protocolos NFS',
+        'Acceso mediante API',
+        'Baja latencia',
+      ],
+      correctAnswer: 'Compatibilidad con protocolos NFS',
+    },
+    {
+      question: '¿Qué servicio de AWS ofrece almacenamiento de archivos escalable basado en NFS?',
+      options: [
+        'Amazon S3',
+        'Amazon EBS',
+        'Amazon EFS',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon EFS',
+    },
+    {
+      question: '¿Qué tipo de almacenamiento es adecuado para aplicaciones empresariales de alto rendimiento?',
+      options: [
+        'Almacenamiento de objetos',
+        'Almacenamiento de archivos',
+        'Almacenamiento en bloque',
+        'Almacenamiento de datos',
+      ],
+      correctAnswer: 'Almacenamiento en bloque',
+    },
+    {
+      question: '¿Qué característica tiene el almacenamiento de datos en la nube?',
+      options: [
+        'Escalabilidad automática',
+        'Estructura jerárquica',
+        'Acceso mediante API',
+        'Baja latencia',
+      ],
+      correctAnswer: 'Escalabilidad automática',
+    },
+    {
+      question: '¿Qué servicio de AWS es un almacén de datos en la nube diseñado para análisis a gran escala?',
+      options: [
+        'Amazon S3',
+        'Amazon EBS',
+        'Amazon Redshift',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon Redshift',
+    },
+    {
+      question: '¿Qué tipo de almacenamiento es ideal para datos estructurados en bases de datos relacionales?',
+      options: [
+        'Almacenamiento en bloque',
+        'Almacenamiento de objetos',
+        'Almacenamiento de archivos',
+        'Almacenamiento de datos',
+      ],
+      correctAnswer: 'Almacenamiento de datos',
+    },
+    {
+      question: '¿Qué característica tiene el almacenamiento de archivos en la nube?',
+      options: [
+        'Escalabilidad masiva',
+        'Compatibilidad con protocolos NFS',
+        'Acceso mediante API',
+        'Baja latencia',
+      ],
+      correctAnswer: 'Compatibilidad con protocolos NFS',
+    },
+    {
+      question: '¿Qué servicio de AWS ofrece almacenamiento de archivos escalable basado en NFS?',
+      options: [
+        'Amazon S3',
+        'Amazon EBS',
+        'Amazon EFS',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon EFS',
+    },
+    {
+      question: '¿Qué tipo de almacenamiento es adecuado para aplicaciones empresariales de alto rendimiento?',
+      options: [
+        'Almacenamiento de objetos',
+        'Almacenamiento de archivos',
+        'Almacenamiento en bloque',
+        'Almacenamiento de datos',
+      ],
+      correctAnswer: 'Almacenamiento en bloque',
+    },
+    {
+      question: '¿Qué característica tiene el almacenamiento de datos en la nube?',
+      options: [
+        'Escalabilidad automática',
+        'Estructura jerárquica',
+        'Acceso mediante API',
+        'Baja latencia',
+      ],
+      correctAnswer: 'Escalabilidad automática',
+    },
+    {
+      question: '¿Qué servicio de AWS es un almacén de datos en la nube diseñado para análisis a gran escala?',
+      options: [
+        'Amazon S3',
+        'Amazon EBS',
+        'Amazon Redshift',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon Redshift',
+    },
+    {
+      question: '¿Qué tipo de almacenamiento es ideal para datos estructurados en bases de datos relacionales?',
+      options: [
+        'Almacenamiento en bloque',
+        'Almacenamiento de objetos',
+        'Almacenamiento de archivos',
+        'Almacenamiento de datos',
+      ],
+      correctAnswer: 'Almacenamiento de datos',
+    },
+    {
+      question: '¿Qué característica tiene el almacenamiento de archivos en la nube?',
+      options: [
+        'Escalabilidad masiva',
+        'Compatibilidad con protocolos NFS',
+        'Acceso mediante API',
+        'Baja latencia',
+      ],
+      correctAnswer: 'Compatibilidad con protocolos NFS',
+    },
+    {
+      question: '¿Qué servicio de AWS ofrece almacenamiento de archivos escalable basado en NFS?',
+      options: [
+        'Amazon S3',
+        'Amazon EBS',
+        'Amazon EFS',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon EFS',
+    },
+    {
+      question: '¿Qué tipo de almacenamiento es adecuado para aplicaciones empresariales de alto rendimiento?',
+      options: [
+        'Almacenamiento de objetos',
+        'Almacenamiento de archivos',
+        'Almacenamiento en bloque',
+        'Almacenamiento de datos',
+      ],
+      correctAnswer: 'Almacenamiento en bloque',
+    },
+    {
+      question: '¿Qué característica tiene el almacenamiento de datos en la nube?',
+      options: [
+        'Escalabilidad automática',
+        'Estructura jerárquica',
+        'Acceso mediante API',
+        'Baja latencia',
+      ],
+      correctAnswer: 'Escalabilidad automática',
+    },
+    {
+      question: '¿Qué servicio de AWS es un almacén de datos en la nube diseñado para análisis a gran escala?',
+      options: [
+        'Amazon S3',
+        'Amazon EBS',
+        'Amazon Redshift',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon Redshift',
+    },
+    {
+      question: '¿Qué tipo de almacenamiento es ideal para datos estructurados en bases de datos relacionales?',
+      options: [
+        'Almacenamiento en bloque',
+        'Almacenamiento de objetos',
+        'Almacenamiento de archivos',
+        'Almacenamiento de datos',
+      ],
+      correctAnswer: 'Almacenamiento de datos',
+    },
+    {
+      question: '¿Qué característica tiene el almacenamiento de archivos en la nube?',
+      options: [
+        'Escalabilidad masiva',
+        'Compatibilidad con protocolos NFS',
+        'Acceso mediante API',
+        'Baja latencia',
+      ],
+      correctAnswer: 'Compatibilidad con protocolos NFS',
+    },
+    {
+      question: '¿Qué servicio de AWS ofrece almacenamiento de archivos escalable basado en NFS?',
+      options: [
+        'Amazon S3',
+        'Amazon EBS',
+        'Amazon EFS',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon EFS',
+    },
+    {
+      question: '¿Qué tipo de almacenamiento es adecuado para aplicaciones empresariales de alto rendimiento?',
+      options: [
+        'Almacenamiento de objetos',
+        'Almacenamiento de archivos',
+        'Almacenamiento en bloque',
+        'Almacenamiento de datos',
+      ],
+      correctAnswer: 'Almacenamiento en bloque',
+    },
+    {
+      question: '¿Qué característica tiene el almacenamiento de datos en la nube?',
+      options: [
+        'Escalabilidad automática',
+        'Estructura jerárquica',
+        'Acceso mediante API',
+        'Baja latencia',
+      ],
+      correctAnswer: 'Escalabilidad automática',
+    },
+    {
+      question: '¿Qué servicio de AWS es un almacén de datos en la nube diseñado para análisis a gran escala?',
+      options: [
+        'Amazon S3',
+        'Amazon EBS',
+        'Amazon Redshift',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon Redshift',
+    },
+    {
+      question: '¿Qué tipo de almacenamiento es ideal para datos estructurados en bases de datos relacionales?',
+      options: [
+        'Almacenamiento en bloque',
+        'Almacenamiento de objetos',
+        'Almacenamiento de archivos',
+        'Almacenamiento de datos',
+      ],
+      correctAnswer: 'Almacenamiento de datos',
+    },
+    {
+      question: '¿Qué característica tiene el almacenamiento de archivos en la nube?',
+      options: [
+        'Escalabilidad masiva',
+        'Compatibilidad con protocolos NFS',
+        'Acceso mediante API',
+        'Baja latencia',
+      ],
+      correctAnswer: 'Compatibilidad con protocolos NFS',
+    },
+    {
+      question: '¿Qué servicio de AWS ofrece almacenamiento de archivos escalable basado en NFS?',
+      options: [
+        'Amazon S3',
+        'Amazon EBS',
+        'Amazon EFS',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon EFS',
+    },
+    {
+      question: '¿Qué tipo de almacenamiento es adecuado para aplicaciones empresariales de alto rendimiento?',
+      options: [
+        'Almacenamiento de objetos',
+        'Almacenamiento de archivos',
+        'Almacenamiento en bloque',
+        'Almacenamiento de datos',
+      ],
+      correctAnswer: 'Almacenamiento en bloque',
+    },
+    {
+      question: '¿Qué característica tiene el almacenamiento de datos en la nube?',
+      options: [
+        'Escalabilidad automática',
+        'Estructura jerárquica',
+        'Acceso mediante API',
+        'Baja latencia',
+      ],
+      correctAnswer: 'Escalabilidad automática',
+    },
+    {
+      question: '¿Qué servicio de AWS es un almacén de datos en la nube diseñado para análisis a gran escala?',
+      options: [
+        'Amazon S3',
+        'Amazon EBS',
+        'Amazon Redshift',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon Redshift',
+    },
+    {
+      question: '¿Qué tipo de almacenamiento es ideal para datos estructurados en bases de datos relacionales?',
+      options: [
+        'Almacenamiento en bloque',
+        'Almacenamiento de objetos',
+        'Almacenamiento de archivos',
+        'Almacenamiento de datos',
+      ],
+      correctAnswer: 'Almacenamiento de datos',
+    },
+  ],
+  bases_de_datos: [
+    {
+      question: '¿Cuál es uno de los beneficios de los servicios de bases de datos en la nube?',
+      options: [
+        'Mayor complejidad de gestión',
+        'Escalabilidad',
+        'Necesidad de mantenimiento de hardware',
+        'Menor accesibilidad remota',
+      ],
+      correctAnswer: 'Escalabilidad',
+    },
+    {
+      question: '¿Qué servicio de AWS es una base de datos NoSQL completamente administrada?',
+      options: [
+        'Amazon RDS',
+        'Amazon DynamoDB',
+        'Amazon Redshift',
+        'Amazon Aurora',
+      ],
+      correctAnswer: 'Amazon DynamoDB',
+    },
+    {
+      question: '¿Qué tipo de base de datos está optimizada para consultas complejas y generación de informes en tiempo real?',
+      options: [
+        'Base de datos transaccional',
+        'Base de datos analítica',
+        'Base de datos NoSQL',
+        'Base de datos relacional',
+      ],
+      correctAnswer: 'Base de datos analítica',
+    },
+    {
+      question: '¿Qué característica tienen las bases de datos relacionales?',
+      options: [
+        'Escalabilidad horizontal',
+        'Uso del lenguaje SQL',
+        'Modelo de consistencia eventual',
+        'Almacenamiento en columnas',
+      ],
+      correctAnswer: 'Uso del lenguaje SQL',
+    },
+    {
+      question: '¿Qué servicio de AWS está diseñado para almacenamiento y procesamiento de datos optimizado para análisis de grandes volúmenes de información?',
+      options: [
+        'Amazon DynamoDB',
+        'Amazon Redshift',
+        'Amazon Aurora',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon Redshift',
+    },
+    {
+      question: '¿Qué tipo de base de datos NoSQL almacena datos en formato de documentos JSON o BSON?',
+      options: [
+        'Base de datos de clave-valor',
+        'Base de datos de documentos',
+        'Base de datos de grafos',
+        'Base de datos de columnas anchas',
+      ],
+      correctAnswer: 'Base de datos de documentos',
+    },
+    {
+      question: '¿Qué característica tienen las bases de datos NoSQL?',
+      options: [
+        'Escalabilidad vertical',
+        'Modelo de datos flexible',
+        'Transaccionalidad estricta',
+        'Uso del lenguaje SQL',
+      ],
+      correctAnswer: 'Modelo de datos flexible',
+    },
+    {
+      question: '¿Qué servicio de AWS es compatible con MongoDB?',
+      options: [
+        'Amazon DocumentDB',
+        'Amazon DynamoDB',
+        'Amazon Neptune',
+        'Amazon Keyspaces',
+      ],
+      correctAnswer: 'Amazon DocumentDB',
+    },
+    {
+      question: '¿Qué tipo de base de datos NoSQL es ideal para gestionar relaciones complejas entre datos?',
+      options: [
+        'Base de datos de documentos',
+        'Base de datos de clave-valor',
+        'Base de datos de grafos',
+        'Base de datos de columnas anchas',
+      ],
+      correctAnswer: 'Base de datos de grafos',
+    },
+    {
+      question: '¿Qué característica tienen las bases de datos analíticas?',
+      options: [
+        'Optimización para consultas complejas',
+        'Escalabilidad vertical',
+        'Modelo de consistencia eventual',
+        'Uso del lenguaje SQL',
+      ],
+      correctAnswer: 'Optimización para consultas complejas',
+    },
+    {
+      question: '¿Qué servicio de AWS es un almacén de datos en la nube diseñado para análisis a gran escala?',
+      options: [
+        'Amazon DynamoDB',
+        'Amazon Redshift',
+        'Amazon Aurora',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon Redshift',
+    },
+    {
+      question: '¿Qué tipo de base de datos NoSQL almacena datos en columnas en lugar de filas?',
+      options: [
+        'Base de datos de clave-valor',
+        'Base de datos de documentos',
+        'Base de datos de grafos',
+        'Base de datos de columnas anchas',
+      ],
+      correctAnswer: 'Base de datos de columnas anchas',
+    },
+    {
+      question: '¿Qué característica tienen las bases de datos relacionales?',
+      options: [
+        'Escalabilidad horizontal',
+        'Integridad referencial',
+        'Modelo de consistencia eventual',
+        'Almacenamiento en columnas',
+      ],
+      correctAnswer: 'Integridad referencial',
+    },
+    {
+      question: '¿Qué servicio de AWS es compatible con Apache Cassandra?',
+      options: [
+        'Amazon DocumentDB',
+        'Amazon DynamoDB',
+        'Amazon Neptune',
+        'Amazon Keyspaces',
+      ],
+      correctAnswer: 'Amazon Keyspaces',
+    },
+    {
+      question: '¿Qué tipo de base de datos NoSQL es ideal para cachés y sesiones de usuario?',
+      options: [
+        'Base de datos de documentos',
+        'Base de datos de clave-valor',
+        'Base de datos de grafos',
+        'Base de datos de columnas anchas',
+      ],
+      correctAnswer: 'Base de datos de clave-valor',
+    },
+    {
+      question: '¿Qué característica tienen las bases de datos analíticas?',
+      options: [
+        'Optimización para consultas complejas',
+        'Escalabilidad vertical',
+        'Modelo de consistencia eventual',
+        'Uso del lenguaje SQL',
+      ],
+      correctAnswer: 'Optimización para consultas complejas',
+    },
+    {
+      question: '¿Qué servicio de AWS es un almacén de datos en la nube diseñado para análisis a gran escala?',
+      options: [
+        'Amazon DynamoDB',
+        'Amazon Redshift',
+        'Amazon Aurora',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon Redshift',
+    },
+    {
+      question: '¿Qué tipo de base de datos NoSQL almacena datos en columnas en lugar de filas?',
+      options: [
+        'Base de datos de clave-valor',
+        'Base de datos de documentos',
+        'Base de datos de grafos',
+        'Base de datos de columnas anchas',
+      ],
+      correctAnswer: 'Base de datos de columnas anchas',
+    },
+    {
+      question: '¿Qué característica tienen las bases de datos relacionales?',
+      options: [
+        'Escalabilidad horizontal',
+        'Integridad referencial',
+        'Modelo de consistencia eventual',
+        'Almacenamiento en columnas',
+      ],
+      correctAnswer: 'Integridad referencial',
+    },
+    {
+      question: '¿Qué servicio de AWS es compatible con Apache Cassandra?',
+      options: [
+        'Amazon DocumentDB',
+        'Amazon DynamoDB',
+        'Amazon Neptune',
+        'Amazon Keyspaces',
+      ],
+      correctAnswer: 'Amazon Keyspaces',
+    },
+    {
+      question: '¿Qué tipo de base de datos NoSQL es ideal para cachés y sesiones de usuario?',
+      options: [
+        'Base de datos de documentos',
+        'Base de datos de clave-valor',
+        'Base de datos de grafos',
+        'Base de datos de columnas anchas',
+      ],
+      correctAnswer: 'Base de datos de clave-valor',
+    },
+    {
+      question: '¿Qué característica tienen las bases de datos analíticas?',
+      options: [
+        'Optimización para consultas complejas',
+        'Escalabilidad vertical',
+        'Modelo de consistencia eventual',
+        'Uso del lenguaje SQL',
+      ],
+      correctAnswer: 'Optimización para consultas complejas',
+    },
+    {
+      question: '¿Qué servicio de AWS es un almacén de datos en la nube diseñado para análisis a gran escala?',
+      options: [
+        'Amazon DynamoDB',
+        'Amazon Redshift',
+        'Amazon Aurora',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon Redshift',
+    },
+    {
+      question: '¿Qué tipo de base de datos NoSQL almacena datos en columnas en lugar de filas?',
+      options: [
+        'Base de datos de clave-valor',
+        'Base de datos de documentos',
+        'Base de datos de grafos',
+        'Base de datos de columnas anchas',
+      ],
+      correctAnswer: 'Base de datos de columnas anchas',
+    },
+    {
+      question: '¿Qué característica tienen las bases de datos relacionales?',
+      options: [
+        'Escalabilidad horizontal',
+        'Integridad referencial',
+        'Modelo de consistencia eventual',
+        'Almacenamiento en columnas',
+      ],
+      correctAnswer: 'Integridad referencial',
+    },
+    {
+      question: '¿Qué servicio de AWS es compatible con Apache Cassandra?',
+      options: [
+        'Amazon DocumentDB',
+        'Amazon DynamoDB',
+        'Amazon Neptune',
+        'Amazon Keyspaces',
+      ],
+      correctAnswer: 'Amazon Keyspaces',
+    },
+    {
+      question: '¿Qué tipo de base de datos NoSQL es ideal para cachés y sesiones de usuario?',
+      options: [
+        'Base de datos de documentos',
+        'Base de datos de clave-valor',
+        'Base de datos de grafos',
+        'Base de datos de columnas anchas',
+      ],
+      correctAnswer: 'Base de datos de clave-valor',
+    },
+    {
+      question: '¿Qué característica tienen las bases de datos analíticas?',
+      options: [
+        'Optimización para consultas complejas',
+        'Escalabilidad vertical',
+        'Modelo de consistencia eventual',
+        'Uso del lenguaje SQL',
+      ],
+      correctAnswer: 'Optimización para consultas complejas',
+    },
+    {
+      question: '¿Qué servicio de AWS es un almacén de datos en la nube diseñado para análisis a gran escala?',
+      options: [
+        'Amazon DynamoDB',
+        'Amazon Redshift',
+        'Amazon Aurora',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon Redshift',
+    },
+    {
+      question: '¿Qué tipo de base de datos NoSQL almacena datos en columnas en lugar de filas?',
+      options: [
+        'Base de datos de clave-valor',
+        'Base de datos de documentos',
+        'Base de datos de grafos',
+        'Base de datos de columnas anchas',
+      ],
+      correctAnswer: 'Base de datos de columnas anchas',
+    },
+    {
+      question: '¿Qué característica tienen las bases de datos relacionales?',
+      options: [
+        'Escalabilidad horizontal',
+        'Integridad referencial',
+        'Modelo de consistencia eventual',
+        'Almacenamiento en columnas',
+      ],
+      correctAnswer: 'Integridad referencial',
+    },
+    {
+      question: '¿Qué servicio de AWS es compatible con Apache Cassandra?',
+      options: [
+        'Amazon DocumentDB',
+        'Amazon DynamoDB',
+        'Amazon Neptune',
+        'Amazon Keyspaces',
+      ],
+      correctAnswer: 'Amazon Keyspaces',
+    },
+    {
+      question: '¿Qué tipo de base de datos NoSQL es ideal para cachés y sesiones de usuario?',
+      options: [
+        'Base de datos de documentos',
+        'Base de datos de clave-valor',
+        'Base de datos de grafos',
+        'Base de datos de columnas anchas',
+      ],
+      correctAnswer: 'Base de datos de clave-valor',
+    },
+    {
+      question: '¿Qué característica tienen las bases de datos analíticas?',
+      options: [
+        'Optimización para consultas complejas',
+        'Escalabilidad vertical',
+        'Modelo de consistencia eventual',
+        'Uso del lenguaje SQL',
+      ],
+      correctAnswer: 'Optimización para consultas complejas',
+    },
+    {
+      question: '¿Qué servicio de AWS es un almacén de datos en la nube diseñado para análisis a gran escala?',
+      options: [
+        'Amazon DynamoDB',
+        'Amazon Redshift',
+        'Amazon Aurora',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon Redshift',
+    },
+    {
+      question: '¿Qué tipo de base de datos NoSQL almacena datos en columnas en lugar de filas?',
+      options: [
+        'Base de datos de clave-valor',
+        'Base de datos de documentos',
+        'Base de datos de grafos',
+        'Base de datos de columnas anchas',
+      ],
+      correctAnswer: 'Base de datos de columnas anchas',
+    },
+    {
+      question: '¿Qué característica tienen las bases de datos relacionales?',
+      options: [
+        'Escalabilidad horizontal',
+        'Integridad referencial',
+        'Modelo de consistencia eventual',
+        'Almacenamiento en columnas',
+      ],
+      correctAnswer: 'Integridad referencial',
+    },
+    {
+      question: '¿Qué servicio de AWS es compatible con Apache Cassandra?',
+      options: [
+        'Amazon DocumentDB',
+        'Amazon DynamoDB',
+        'Amazon Neptune',
+        'Amazon Keyspaces',
+      ],
+      correctAnswer: 'Amazon Keyspaces',
+    },
+    {
+      question: '¿Qué tipo de base de datos NoSQL es ideal para cachés y sesiones de usuario?',
+      options: [
+        'Base de datos de documentos',
+        'Base de datos de clave-valor',
+        'Base de datos de grafos',
+        'Base de datos de columnas anchas',
+      ],
+      correctAnswer: 'Base de datos de clave-valor',
+    },
+    {
+      question: '¿Qué característica tienen las bases de datos analíticas?',
+      options: [
+        'Optimización para consultas complejas',
+        'Escalabilidad vertical',
+        'Modelo de consistencia eventual',
+        'Uso del lenguaje SQL',
+      ],
+      correctAnswer: 'Optimización para consultas complejas',
+    },
+    {
+      question: '¿Qué servicio de AWS es un almacén de datos en la nube diseñado para análisis a gran escala?',
+      options: [
+        'Amazon DynamoDB',
+        'Amazon Redshift',
+        'Amazon Aurora',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon Redshift',
+    },
+    {
+      question: '¿Qué tipo de base de datos NoSQL almacena datos en columnas en lugar de filas?',
+      options: [
+        'Base de datos de clave-valor',
+        'Base de datos de documentos',
+        'Base de datos de grafos',
+        'Base de datos de columnas anchas',
+      ],
+      correctAnswer: 'Base de datos de columnas anchas',
+    },
+    {
+      question: '¿Qué característica tienen las bases de datos relacionales?',
+      options: [
+        'Escalabilidad horizontal',
+        'Integridad referencial',
+        'Modelo de consistencia eventual',
+        'Almacenamiento en columnas',
+      ],
+      correctAnswer: 'Integridad referencial',
+    },
+    {
+      question: '¿Qué servicio de AWS es compatible con Apache Cassandra?',
+      options: [
+        'Amazon DocumentDB',
+        'Amazon DynamoDB',
+        'Amazon Neptune',
+        'Amazon Keyspaces',
+      ],
+      correctAnswer: 'Amazon Keyspaces',
+    },
+    {
+      question: '¿Qué tipo de base de datos NoSQL es ideal para cachés y sesiones de usuario?',
+      options: [
+        'Base de datos de documentos',
+        'Base de datos de clave-valor',
+        'Base de datos de grafos',
+        'Base de datos de columnas anchas',
+      ],
+      correctAnswer: 'Base de datos de clave-valor',
+    },
+    {
+      question: '¿Qué característica tienen las bases de datos analíticas?',
+      options: [
+        'Optimización para consultas complejas',
+        'Escalabilidad vertical',
+        'Modelo de consistencia eventual',
+        'Uso del lenguaje SQL',
+      ],
+      correctAnswer: 'Optimización para consultas complejas',
+    },
+    {
+      question: '¿Qué servicio de AWS es un almacén de datos en la nube diseñado para análisis a gran escala?',
+      options: [
+        'Amazon DynamoDB',
+        'Amazon Redshift',
+        'Amazon Aurora',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon Redshift',
+    },
+    {
+      question: '¿Qué tipo de base de datos NoSQL almacena datos en columnas en lugar de filas?',
+      options: [
+        'Base de datos de clave-valor',
+        'Base de datos de documentos',
+        'Base de datos de grafos',
+        'Base de datos de columnas anchas',
+      ],
+      correctAnswer: 'Base de datos de columnas anchas',
+    },
+    {
+      question: '¿Qué característica tienen las bases de datos relacionales?',
+      options: [
+        'Escalabilidad horizontal',
+        'Integridad referencial',
+        'Modelo de consistencia eventual',
+        'Almacenamiento en columnas',
+      ],
+      correctAnswer: 'Integridad referencial',
+    },
+    {
+      question: '¿Qué servicio de AWS es compatible con Apache Cassandra?',
+      options: [
+        'Amazon DocumentDB',
+        'Amazon DynamoDB',
+        'Amazon Neptune',
+        'Amazon Keyspaces',
+      ],
+      correctAnswer: 'Amazon Keyspaces',
+    },
+    {
+      question: '¿Qué tipo de base de datos NoSQL es ideal para cachés y sesiones de usuario?',
+      options: [
+        'Base de datos de documentos',
+        'Base de datos de clave-valor',
+        'Base de datos de grafos',
+        'Base de datos de columnas anchas',
+      ],
+      correctAnswer: 'Base de datos de clave-valor',
+    },
+    {
+      question: '¿Qué característica tienen las bases de datos analíticas?',
+      options: [
+        'Optimización para consultas complejas',
+        'Escalabilidad vertical',
+        'Modelo de consistencia eventual',
+        'Uso del lenguaje SQL',
+      ],
+      correctAnswer: 'Optimización para consultas complejas',
+    },
+    {
+      question: '¿Qué servicio de AWS es un almacén de datos en la nube diseñado para análisis a gran escala?',
+      options: [
+        'Amazon DynamoDB',
+        'Amazon Redshift',
+        'Amazon Aurora',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon Redshift',
+    },
+    {
+      question: '¿Qué tipo de base de datos NoSQL almacena datos en columnas en lugar de filas?',
+      options: [
+        'Base de datos de clave-valor',
+        'Base de datos de documentos',
+        'Base de datos de grafos',
+        'Base de datos de columnas anchas',
+      ],
+      correctAnswer: 'Base de datos de columnas anchas',
+    },
+    {
+      question: '¿Qué característica tienen las bases de datos relacionales?',
+      options: [
+        'Escalabilidad horizontal',
+        'Integridad referencial',
+        'Modelo de consistencia eventual',
+        'Almacenamiento en columnas',
+      ],
+      correctAnswer: 'Integridad referencial',
+    },
+    {
+      question: '¿Qué servicio de AWS es compatible con Apache Cassandra?',
+      options: [
+        'Amazon DocumentDB',
+        'Amazon DynamoDB',
+        'Amazon Neptune',
+        'Amazon Keyspaces',
+      ],
+      correctAnswer: 'Amazon Keyspaces',
+    },
+    {
+      question: '¿Qué tipo de base de datos NoSQL es ideal para cachés y sesiones de usuario?',
+      options: [
+        'Base de datos de documentos',
+        'Base de datos de clave-valor',
+        'Base de datos de grafos',
+        'Base de datos de columnas anchas',
+      ],
+      correctAnswer: 'Base de datos de clave-valor',
+    },
+  ],
+  arquitectura: [
+    {
+      question: '¿Cuál es una característica clave de la arquitectura en la nube?',
+      options: [
+        'Escalabilidad',
+        'Necesidad de mantenimiento de hardware',
+        'Menor accesibilidad remota',
+        'Mayor complejidad de gestión',
+      ],
+      correctAnswer: 'Escalabilidad',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la automatización de la infraestructura como código?',
+      options: [
+        'AWS Lambda',
+        'AWS CloudFormation',
+        'Amazon S3',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'AWS CloudFormation',
+    },
+    {
+      question: '¿Qué principio del Well-Architected Framework se refiere a la capacidad de ejecutar y monitorear sistemas de manera eficiente?',
+      options: [
+        'Seguridad',
+        'Excelencia Operacional',
+        'Fiabilidad',
+        'Sostenibilidad',
+      ],
+      correctAnswer: 'Excelencia Operacional',
+    },
+    {
+      question: '¿Qué servicio de AWS se utiliza para monitorear el rendimiento de los servicios en la nube?',
+      options: [
+        'AWS CloudTrail',
+        'AWS CloudWatch',
+        'AWS Config',
+        'AWS Trusted Advisor',
+      ],
+      correctAnswer: 'AWS CloudWatch',
+    },
+    {
+      question: '¿Qué modelo de seguridad se aplica en la nube?',
+      options: [
+        'Responsabilidad única',
+        'Responsabilidad compartida',
+        'Responsabilidad del cliente',
+        'Responsabilidad del proveedor',
+      ],
+      correctAnswer: 'Responsabilidad compartida',
+    },
+    {
+      question: '¿Qué servicio de AWS ayuda a detectar amenazas en la nube?',
+      options: [
+        'AWS Shield',
+        'AWS GuardDuty',
+        'AWS KMS',
+        'AWS IAM',
+      ],
+      correctAnswer: 'AWS GuardDuty',
+    },
+    {
+      question: '¿Qué característica tiene un sistema fiable y altamente disponible en la nube?',
+      options: [
+        'Redundancia',
+        'Escalabilidad vertical',
+        'Modelo de consistencia eventual',
+        'Uso del lenguaje SQL',
+      ],
+      correctAnswer: 'Redundancia',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la replicación de datos en múltiples regiones?',
+      options: [
+        'Amazon S3 Cross-Region Replication',
+        'Amazon RDS Multi-AZ',
+        'AWS CloudFront',
+        'AWS Lambda',
+      ],
+      correctAnswer: 'Amazon S3 Cross-Region Replication',
+    },
+    {
+      question: '¿Qué servicio de AWS se utiliza para distribuir el tráfico entre múltiples servidores?',
+      options: [
+        'Elastic Load Balancing',
+        'AWS Auto Scaling',
+        'Amazon CloudFront',
+        'AWS Lambda',
+      ],
+      correctAnswer: 'Elastic Load Balancing',
+    },
+    {
+      question: '¿Qué servicio de AWS permite ejecutar código sin necesidad de gestionar servidores?',
+      options: [
+        'AWS Lambda',
+        'Amazon EC2',
+        'AWS CloudFormation',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'AWS Lambda',
+    },
+    {
+      question: '¿Qué servicio de AWS proporciona una conexión privada de alta velocidad entre la empresa y AWS?',
+      options: [
+        'AWS Direct Connect',
+        'Amazon VPC',
+        'AWS CloudFront',
+        'AWS Lambda',
+      ],
+      correctAnswer: 'AWS Direct Connect',
+    },
+    {
+      question: '¿Qué servicio de AWS ayuda a optimizar costos en la nube?',
+      options: [
+        'AWS Cost Explorer',
+        'AWS CloudTrail',
+        'AWS CloudWatch',
+        'AWS Trusted Advisor',
+      ],
+      correctAnswer: 'AWS Cost Explorer',
+    },
+    {
+      question: '¿Qué servicio de AWS permite definir infraestructura con archivos de configuración en JSON o YAML?',
+      options: [
+        'AWS CloudFormation',
+        'AWS Lambda',
+        'Amazon S3',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'AWS CloudFormation',
+    },
+    {
+      question: '¿Qué servicio de AWS permite orquestar procesos automatizados en la nube?',
+      options: [
+        'AWS Step Functions',
+        'AWS CloudFormation',
+        'AWS Lambda',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'AWS Step Functions',
+    },
+    {
+      question: '¿Qué servicio de AWS facilita la creación y gestión de APIs?',
+      options: [
+        'Amazon API Gateway',
+        'AWS CloudFront',
+        'AWS Lambda',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon API Gateway',
+    },
+    {
+      question: '¿Qué servicio de AWS permite conectar eventos entre aplicaciones y servicios?',
+      options: [
+        'Amazon EventBridge',
+        'AWS CloudTrail',
+        'AWS CloudWatch',
+        'AWS Trusted Advisor',
+      ],
+      correctAnswer: 'Amazon EventBridge',
+    },
+    {
+      question: '¿Qué servicio de AWS proporciona recomendaciones para mejorar arquitecturas en la nube?',
+      options: [
+        'AWS Well-Architected Tool',
+        'AWS CloudFormation',
+        'AWS Lambda',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'AWS Well-Architected Tool',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la gestión de usuarios y control de accesos?',
+      options: [
+        'AWS IAM',
+        'AWS KMS',
+        'AWS Shield',
+        'AWS GuardDuty',
+      ],
+      correctAnswer: 'AWS IAM',
+    },
+    {
+      question: '¿Qué servicio de AWS proporciona almacenamiento en caché para reducir la latencia en la recuperación de datos?',
+      options: [
+        'Amazon ElastiCache',
+        'Amazon S3',
+        'Amazon RDS',
+        'AWS Lambda',
+      ],
+      correctAnswer: 'Amazon ElastiCache',
+    },
+    {
+      question: '¿Qué servicio de AWS permite almacenar datos en diferentes niveles de acceso?',
+      options: [
+        'Amazon S3 Intelligent-Tiering',
+        'Amazon S3 Glacier',
+        'Amazon EBS',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon S3 Intelligent-Tiering',
+    },
+    {
+      question: '¿Qué servicio de AWS proporciona almacenamiento de bajo costo para archivos de acceso infrecuente?',
+      options: [
+        'Amazon S3 Glacier',
+        'Amazon S3 Standard',
+        'Amazon EBS',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon S3 Glacier',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la automatización de copias de seguridad de datos y aplicaciones?',
+      options: [
+        'AWS Backup',
+        'AWS CloudTrail',
+        'AWS CloudWatch',
+        'AWS Trusted Advisor',
+      ],
+      correctAnswer: 'AWS Backup',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la ejecución de contenedores sin administrar servidores?',
+      options: [
+        'AWS Fargate',
+        'Amazon ECS',
+        'Amazon EKS',
+        'AWS Lambda',
+      ],
+      correctAnswer: 'AWS Fargate',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la creación de alertas de gasto para evitar sobrecostos?',
+      options: [
+        'AWS Budgets',
+        'AWS CloudTrail',
+        'AWS CloudWatch',
+        'AWS Trusted Advisor',
+      ],
+      correctAnswer: 'AWS Budgets',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la revisión de arquitecturas en la nube basándose en principios de diseño recomendados?',
+      options: [
+        'AWS Well-Architected Tool',
+        'AWS CloudFormation',
+        'AWS Lambda',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'AWS Well-Architected Tool',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la gestión de claves de seguridad?',
+      options: [
+        'AWS KMS',
+        'AWS IAM',
+        'AWS Shield',
+        'AWS GuardDuty',
+      ],
+      correctAnswer: 'AWS KMS',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la protección contra ataques DDoS?',
+      options: [
+        'AWS Shield',
+        'AWS IAM',
+        'AWS KMS',
+        'AWS GuardDuty',
+      ],
+      correctAnswer: 'AWS Shield',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la detección de amenazas en la nube?',
+      options: [
+        'AWS GuardDuty',
+        'AWS IAM',
+        'AWS KMS',
+        'AWS Shield',
+      ],
+      correctAnswer: 'AWS GuardDuty',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la gestión de usuarios y control de accesos?',
+      options: [
+        'AWS IAM',
+        'AWS KMS',
+        'AWS Shield',
+        'AWS GuardDuty',
+      ],
+      correctAnswer: 'AWS IAM',
+    },
+    {
+      question: '¿Qué servicio de AWS proporciona almacenamiento en caché para reducir la latencia en la recuperación de datos?',
+      options: [
+        'Amazon ElastiCache',
+        'Amazon S3',
+        'Amazon RDS',
+        'AWS Lambda',
+      ],
+      correctAnswer: 'Amazon ElastiCache',
+    },
+    {
+      question: '¿Qué servicio de AWS permite almacenar datos en diferentes niveles de acceso?',
+      options: [
+        'Amazon S3 Intelligent-Tiering',
+        'Amazon S3 Glacier',
+        'Amazon EBS',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon S3 Intelligent-Tiering',
+    },
+    {
+      question: '¿Qué servicio de AWS proporciona almacenamiento de bajo costo para archivos de acceso infrecuente?',
+      options: [
+        'Amazon S3 Glacier',
+        'Amazon S3 Standard',
+        'Amazon EBS',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon S3 Glacier',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la automatización de copias de seguridad de datos y aplicaciones?',
+      options: [
+        'AWS Backup',
+        'AWS CloudTrail',
+        'AWS CloudWatch',
+        'AWS Trusted Advisor',
+      ],
+      correctAnswer: 'AWS Backup',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la ejecución de contenedores sin administrar servidores?',
+      options: [
+        'AWS Fargate',
+        'Amazon ECS',
+        'Amazon EKS',
+        'AWS Lambda',
+      ],
+      correctAnswer: 'AWS Fargate',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la creación de alertas de gasto para evitar sobrecostos?',
+      options: [
+        'AWS Budgets',
+        'AWS CloudTrail',
+        'AWS CloudWatch',
+        'AWS Trusted Advisor',
+      ],
+      correctAnswer: 'AWS Budgets',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la revisión de arquitecturas en la nube basándose en principios de diseño recomendados?',
+      options: [
+        'AWS Well-Architected Tool',
+        'AWS CloudFormation',
+        'AWS Lambda',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'AWS Well-Architected Tool',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la gestión de claves de seguridad?',
+      options: [
+        'AWS KMS',
+        'AWS IAM',
+        'AWS Shield',
+        'AWS GuardDuty',
+      ],
+      correctAnswer: 'AWS KMS',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la protección contra ataques DDoS?',
+      options: [
+        'AWS Shield',
+        'AWS IAM',
+        'AWS KMS',
+        'AWS GuardDuty',
+      ],
+      correctAnswer: 'AWS Shield',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la detección de amenazas en la nube?',
+      options: [
+        'AWS GuardDuty',
+        'AWS IAM',
+        'AWS KMS',
+        'AWS Shield',
+      ],
+      correctAnswer: 'AWS GuardDuty',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la gestión de usuarios y control de accesos?',
+      options: [
+        'AWS IAM',
+        'AWS KMS',
+        'AWS Shield',
+        'AWS GuardDuty',
+      ],
+      correctAnswer: 'AWS IAM',
+    },
+    {
+      question: '¿Qué servicio de AWS proporciona almacenamiento en caché para reducir la latencia en la recuperación de datos?',
+      options: [
+        'Amazon ElastiCache',
+        'Amazon S3',
+        'Amazon RDS',
+        'AWS Lambda',
+      ],
+      correctAnswer: 'Amazon ElastiCache',
+    },
+    {
+      question: '¿Qué servicio de AWS permite almacenar datos en diferentes niveles de acceso?',
+      options: [
+        'Amazon S3 Intelligent-Tiering',
+        'Amazon S3 Glacier',
+        'Amazon EBS',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon S3 Intelligent-Tiering',
+    },
+    {
+      question: '¿Qué servicio de AWS proporciona almacenamiento de bajo costo para archivos de acceso infrecuente?',
+      options: [
+        'Amazon S3 Glacier',
+        'Amazon S3 Standard',
+        'Amazon EBS',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon S3 Glacier',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la automatización de copias de seguridad de datos y aplicaciones?',
+      options: [
+        'AWS Backup',
+        'AWS CloudTrail',
+        'AWS CloudWatch',
+        'AWS Trusted Advisor',
+      ],
+      correctAnswer: 'AWS Backup',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la ejecución de contenedores sin administrar servidores?',
+      options: [
+        'AWS Fargate',
+        'Amazon ECS',
+        'Amazon EKS',
+        'AWS Lambda',
+      ],
+      correctAnswer: 'AWS Fargate',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la creación de alertas de gasto para evitar sobrecostos?',
+      options: [
+        'AWS Budgets',
+        'AWS CloudTrail',
+        'AWS CloudWatch',
+        'AWS Trusted Advisor',
+      ],
+      correctAnswer: 'AWS Budgets',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la revisión de arquitecturas en la nube basándose en principios de diseño recomendados?',
+      options: [
+        'AWS Well-Architected Tool',
+        'AWS CloudFormation',
+        'AWS Lambda',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'AWS Well-Architected Tool',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la gestión de claves de seguridad?',
+      options: [
+        'AWS KMS',
+        'AWS IAM',
+        'AWS Shield',
+        'AWS GuardDuty',
+      ],
+      correctAnswer: 'AWS KMS',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la protección contra ataques DDoS?',
+      options: [
+        'AWS Shield',
+        'AWS IAM',
+        'AWS KMS',
+        'AWS GuardDuty',
+      ],
+      correctAnswer: 'AWS Shield',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la detección de amenazas en la nube?',
+      options: [
+        'AWS GuardDuty',
+        'AWS IAM',
+        'AWS KMS',
+        'AWS Shield',
+      ],
+      correctAnswer: 'AWS GuardDuty',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la gestión de usuarios y control de accesos?',
+      options: [
+        'AWS IAM',
+        'AWS KMS',
+        'AWS Shield',
+        'AWS GuardDuty',
+      ],
+      correctAnswer: 'AWS IAM',
+    },
+    {
+      question: '¿Qué servicio de AWS proporciona almacenamiento en caché para reducir la latencia en la recuperación de datos?',
+      options: [
+        'Amazon ElastiCache',
+        'Amazon S3',
+        'Amazon RDS',
+        'AWS Lambda',
+      ],
+      correctAnswer: 'Amazon ElastiCache',
+    },
+    {
+      question: '¿Qué servicio de AWS permite almacenar datos en diferentes niveles de acceso?',
+      options: [
+        'Amazon S3 Intelligent-Tiering',
+        'Amazon S3 Glacier',
+        'Amazon EBS',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon S3 Intelligent-Tiering',
+    },
+    {
+      question: '¿Qué servicio de AWS proporciona almacenamiento de bajo costo para archivos de acceso infrecuente?',
+      options: [
+        'Amazon S3 Glacier',
+        'Amazon S3 Standard',
+        'Amazon EBS',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'Amazon S3 Glacier',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la automatización de copias de seguridad de datos y aplicaciones?',
+      options: [
+        'AWS Backup',
+        'AWS CloudTrail',
+        'AWS CloudWatch',
+        'AWS Trusted Advisor',
+      ],
+      correctAnswer: 'AWS Backup',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la ejecución de contenedores sin administrar servidores?',
+      options: [
+        'AWS Fargate',
+        'Amazon ECS',
+        'Amazon EKS',
+        'AWS Lambda',
+      ],
+      correctAnswer: 'AWS Fargate',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la creación de alertas de gasto para evitar sobrecostos?',
+      options: [
+        'AWS Budgets',
+        'AWS CloudTrail',
+        'AWS CloudWatch',
+        'AWS Trusted Advisor',
+      ],
+      correctAnswer: 'AWS Budgets',
+    },
+    {
+      question: '¿Qué servicio de AWS permite la revisión de arquitecturas en la nube basándose en principios de diseño recomendados?',
+      options: [
+        'AWS Well-Architected Tool',
+        'AWS CloudFormation',
+        'AWS Lambda',
+        'Amazon RDS',
+      ],
+      correctAnswer: 'AWS Well-Architected Tool',
+    },
+  ],  
 }

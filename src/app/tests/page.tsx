@@ -419,9 +419,12 @@ const QuizApp = () => {
                     <SelectValue placeholder="Selecciona un tema" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="seguridad_old">Seguridad</SelectItem>
+                    {/*<SelectItem value="seguridad_old">Seguridad</SelectItem>
                     <SelectItem value="redes">Redes</SelectItem>
-                    <SelectItem value="servicios_old">Servicios</SelectItem>
+                    <SelectItem value="servicios_old">Servicios</SelectItem>*/}
+                    <SelectItem value="almacenamiento">Almacenamiento</SelectItem>
+                    <SelectItem value="bases_de_datos">BBDD</SelectItem>
+                    <SelectItem value="arquitectura">Arquitectura</SelectItem>
                   </SelectContent>
                 </Select>
               </motion.div>
