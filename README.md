@@ -22,9 +22,9 @@
 - [x] Seguridad
 - [x] Redes
 - [x] Servicios de cómputo
-- [ ] Almacenamiento (Próximamente)
-- [ ] Bases de datos (Próximamente)
-- [ ] Principios arquitectónicos (Próximamente)
+- [x] Almacenamiento 
+- [x] Bases de datos 
+- [x] Principios arquitectónicos 
 - [ ] Arquitecturas elásticas (Próximamente)
 
 ### ✨ Características adicionales
