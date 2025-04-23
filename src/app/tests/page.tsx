@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback, useRef } from 'react'
 import Head from 'next/head'
-import { tests } from '../data/tests'
+import { tests } from '../data/tests/tests'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   AlertCircle,
@@ -75,7 +75,7 @@ interface QuizConfig {
 
 const DEFAULT_COUNTDOWN = 300
 const DEFAULT_CONFIG: QuizConfig = {
-  testType: 'seguridad',
+  testType: 'almacenamiento',
   questionCount: 10,
   timerType: 'stopwatch',
   countdownTime: DEFAULT_COUNTDOWN,
@@ -150,6 +150,7 @@ const QuizApp = () => {
     grade: number
   } | null>(null)
   const timerRef = useRef<number | null>(null)
+  const [blockAnswers, setBlockAnswers] = useState(false);
 
   const initializeQuiz = useCallback(() => {
     const testQuestions = tests[config.testType] || []
@@ -304,16 +305,20 @@ const QuizApp = () => {
     setQuizStates(newStates)
 
     if (config.quizMode === 'exam') {
-      if (currentQuestion < questions.length - 1) {
+      if (currentQuestion < questions.length - 1 && !blockAnswers) {
+        setBlockAnswers(true);
         setTimeout(() => {
           setCurrentQuestion((prev) => prev + 1)
+          setBlockAnswers(false);
         }, 300)
       }
     } else {
-      if (currentQuestion < questions.length - 1) {
+      if (currentQuestion < questions.length - 1 && !blockAnswers) {
+        setBlockAnswers(true);
         setTimeout(
           () => {
             setCurrentQuestion((prev) => prev + 1)
+            setBlockAnswers(false);
           },
           isCorrect ? 500 : 3000,
         )
