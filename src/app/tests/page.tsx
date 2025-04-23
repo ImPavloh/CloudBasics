@@ -150,7 +150,7 @@ const QuizApp = () => {
     grade: number
   } | null>(null)
   const timerRef = useRef<number | null>(null)
-  const [blockAnswers, setBlockAnswers] = useState(false);
+  const [blockAnswers, setBlockAnswers] = useState(false)
 
   const initializeQuiz = useCallback(() => {
     const testQuestions = tests[config.testType] || []
@@ -306,19 +306,19 @@ const QuizApp = () => {
 
     if (config.quizMode === 'exam') {
       if (currentQuestion < questions.length - 1 && !blockAnswers) {
-        setBlockAnswers(true);
+        setBlockAnswers(true)
         setTimeout(() => {
           setCurrentQuestion((prev) => prev + 1)
-          setBlockAnswers(false);
+          setBlockAnswers(false)
         }, 300)
       }
     } else {
       if (currentQuestion < questions.length - 1 && !blockAnswers) {
-        setBlockAnswers(true);
+        setBlockAnswers(true)
         setTimeout(
           () => {
             setCurrentQuestion((prev) => prev + 1)
-            setBlockAnswers(false);
+            setBlockAnswers(false)
           },
           isCorrect ? 500 : 3000,
         )
@@ -424,9 +424,6 @@ const QuizApp = () => {
                     <SelectValue placeholder="Selecciona un tema" />
                   </SelectTrigger>
                   <SelectContent>
-                    {/*<SelectItem value="seguridad_old">Seguridad</SelectItem>
-                    <SelectItem value="redes">Redes</SelectItem>
-                    <SelectItem value="servicios_old">Servicios</SelectItem>*/}
                     <SelectItem value="almacenamiento">Almacenamiento</SelectItem>
                     <SelectItem value="bases_de_datos">BBDD</SelectItem>
                     <SelectItem value="arquitectura">Arquitectura</SelectItem>
@@ -793,10 +790,14 @@ const QuizApp = () => {
                     onClick={() =>
                       setCurrentQuestion((prev) => Math.max(prev - 1, 0))
                     }
-                    disabled={currentQuestion === 0}
+                    disabled={currentQuestion === 0 || blockAnswers}
                     className="flex items-center gap-1 md:gap-2 py-2 px-3 md:py-2 md:px-4 bg-gray-600 text-white rounded-md hover:bg-gray-700 disabled:opacity-50 transition-colors"
-                    whileHover={{ scale: currentQuestion !== 0 ? 1.05 : 1 }}
-                    whileTap={{ scale: currentQuestion !== 0 ? 0.95 : 1 }}
+                    whileHover={{
+                      scale: currentQuestion !== 0 && !blockAnswers ? 1.05 : 1,
+                    }}
+                    whileTap={{
+                      scale: currentQuestion !== 0 && !blockAnswers ? 0.95 : 1,
+                    }}
                   >
                     <ChevronLeft className="w-3 h-3 md:w-4 md:h-4" />
                     <span className="hidden sm:inline">Anterior</span>
@@ -805,9 +806,10 @@ const QuizApp = () => {
                   {stage === 'quiz' && config.allowSkip && (
                     <motion.button
                       onClick={handleSkipQuestion}
-                      className="flex items-center gap-1 md:gap-2 py-2 px-3 md:py-2 md:px-4 bg-yellow-600 text-white rounded-md hover:bg-yellow-700 transition-colors"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                      disabled={blockAnswers}
+                      className="flex items-center gap-1 md:gap-2 py-2 px-3 md:py-2 md:px-4 bg-yellow-600 text-white rounded-md hover:bg-yellow-700 disabled:opacity-50 transition-colors"
+                      whileHover={{ scale: !blockAnswers ? 1.05 : 1 }}
+                      whileTap={{ scale: !blockAnswers ? 0.95 : 1 }}
                     >
                       <SkipForward className="w-3 h-3 md:w-4 md:h-4" />
                       <span className="hidden sm:inline">Saltar</span>
@@ -821,13 +823,19 @@ const QuizApp = () => {
                       Math.min(prev + 1, questions.length - 1),
                     )
                   }
-                  disabled={currentQuestion === questions.length - 1}
+                  disabled={currentQuestion === questions.length - 1 || blockAnswers}
                   className="flex items-center gap-1 md:gap-2 py-2 px-3 md:py-2 md:px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 transition-colors"
                   whileHover={{
-                    scale: currentQuestion !== questions.length - 1 ? 1.05 : 1,
+                    scale:
+                      currentQuestion !== questions.length - 1 && !blockAnswers
+                        ? 1.05
+                        : 1,
                   }}
                   whileTap={{
-                    scale: currentQuestion !== questions.length - 1 ? 0.95 : 1,
+                    scale:
+                      currentQuestion !== questions.length - 1 && !blockAnswers
+                        ? 0.95
+                        : 1,
                   }}
                 >
                   <span className="hidden sm:inline">Siguiente</span>

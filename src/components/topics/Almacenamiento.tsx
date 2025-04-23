@@ -74,7 +74,7 @@ export default function AlmacenamientoEnLaNube() {
           <TabsTrigger value="objetos">Objetos</TabsTrigger>
           <TabsTrigger value="archivos">Archivos</TabsTrigger>
           <TabsTrigger value="datos">Datos</TabsTrigger>
-          <TabsTrigger value="optimizacion">Almacenamiento</TabsTrigger>
+          <TabsTrigger value="optimizacion">Optimización</TabsTrigger>
         </TabsList>
 
         <TabsContent value="introduccion">
