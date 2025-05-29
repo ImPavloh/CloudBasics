@@ -424,6 +424,9 @@ const QuizApp = () => {
                     <SelectValue placeholder="Selecciona un tema" />
                   </SelectTrigger>
                   <SelectContent>
+                    <SelectItem value="redes">Redes</SelectItem>
+                    <SelectItem value="seguridad">Seguridad</SelectItem>
+                    <SelectItem value="servicios">Servicios</SelectItem>
                     <SelectItem value="almacenamiento">Almacenamiento</SelectItem>
                     <SelectItem value="bases_de_datos">BBDD</SelectItem>
                     <SelectItem value="arquitectura">Arquitectura</SelectItem>
